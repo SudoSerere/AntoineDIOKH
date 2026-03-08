@@ -18,18 +18,18 @@
 html{scroll-behavior:smooth;scroll-padding-top:80px}
 
 :root{
-  --bg:    #060608;
-  --surf:  #0d0d13;
-  --card:  #131319;
-  --cardh: #1b1b24;
-  --text:  #eeeef3;
-  --muted: #7e7e9e;
-  --sub:   #46465a;
+  --bg:    #f7f7fc;
+  --surf:  #eeeef6;
+  --card:  #ffffff;
+  --cardh: #f0f0f8;
+  --text:  #0f0f18;
+  --muted: #52526e;
+  --sub:   #9090b0;
   --acc:   #4f7ef6;
   --acch:  #3b6df0;
   --glow:  rgba(79,126,246,.22);
-  --bord:  rgba(255,255,255,.055);
-  --bords: rgba(255,255,255,.11);
+  --bord:  rgba(0,0,0,.08);
+  --bords: rgba(0,0,0,.14);
   --grn:   #34d399;
   --sans:  'Inter',system-ui,sans-serif;
   --disp:  'DM Serif Display',Georgia,serif;
@@ -37,11 +37,24 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
   --ease:cubic-bezier(.4,0,.2,1);
   --eout:cubic-bezier(0,.55,.45,1);
   --t:240ms;--ts:480ms;
-  --shmd:0 4px 24px rgba(0,0,0,.5);
-  --shlg:0 24px 80px rgba(0,0,0,.65);
+  --shmd:0 4px 24px rgba(0,0,0,.08);
+  --shlg:0 24px 80px rgba(0,0,0,.14);
+}
+body.dark{
+  --bg:    #060608;
+  --surf:  #0d0d13;
+  --card:  #131319;
+  --cardh: #1b1b24;
+  --text:  #eeeef3;
+  --muted: #7e7e9e;
+  --sub:   #46465a;
+  --bord:  rgba(255,255,255,.055);
+  --bords: rgba(255,255,255,.11);
+  --shmd:  0 4px 24px rgba(0,0,0,.5);
+  --shlg:  0 24px 80px rgba(0,0,0,.65);
 }
 
-body{font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s var(--ease),color .3s var(--ease)}
 body.noscroll{overflow:hidden}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
@@ -81,7 +94,8 @@ input,textarea{font:inherit}
    NAV
    ========================================================= */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;transition:background var(--t) var(--ease),box-shadow var(--t) var(--ease)}
-.nav.stuck{background:rgba(6,6,8,.93);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--bord)}
+.nav.stuck{background:rgba(247,247,252,.93);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--bord)}
+body.dark .nav.stuck{background:rgba(6,6,8,.93)}
 .nav-i{display:flex;align-items:center;gap:4px;height:76px;max-width:1280px;margin:0 auto}
 .nav-logo{font-family:var(--disp);font-size:22px;color:var(--text);margin-right:auto;letter-spacing:-.02em;transition:color var(--t)}
 .nav-logo:hover{color:var(--acc)}
@@ -94,14 +108,17 @@ input,textarea{font:inherit}
 .nav-cta{background:var(--acc);color:#fff;padding:7px 16px;border-radius:var(--pill);font-size:13px;font-weight:600;box-shadow:0 2px 12px var(--glow);transition:background var(--t)}
 .nav-cta::after{display:none!important}
 .nav-cta:hover{background:var(--acch)}
-.lang-btn{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--bords);padding:6px 12px;border-radius:var(--pill);transition:color var(--t),border-color var(--t);margin-left:8px}
+.lang-btn{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--bords);padding:6px 12px;border-radius:var(--pill);transition:color var(--t),border-color var(--t),background var(--t);margin-left:8px}
 .lang-btn:hover{color:var(--acc);border-color:var(--acc)}
+.theme-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;color:var(--muted);background:var(--card);border:1px solid var(--bords);border-radius:50%;transition:color var(--t),border-color var(--t),background var(--t);margin-left:8px;flex-shrink:0}
+.theme-btn:hover{color:var(--acc);border-color:var(--acc)}
 .burger{display:none;flex-direction:column;gap:5px;width:28px;padding:2px;flex-shrink:0;margin-left:8px}
 .burger span{height:2px;background:var(--text);border-radius:2px;transition:transform var(--t),opacity var(--t)}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.nav-drawer{display:none;position:fixed;top:76px;left:0;right:0;background:rgba(6,6,8,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--bord);padding:16px 24px 28px;flex-direction:column;gap:2px;box-shadow:var(--shlg)}
+.nav-drawer{display:none;position:fixed;top:76px;left:0;right:0;background:rgba(247,247,252,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--bord);padding:16px 24px 28px;flex-direction:column;gap:2px;box-shadow:var(--shlg)}
+body.dark .nav-drawer{background:rgba(6,6,8,.97)}
 .nav-drawer.open{display:flex}
 .nav-drawer .nav-link{font-size:17px;padding:13px 16px;color:var(--muted)}
 .nav-drawer .nav-cta{margin-top:8px;display:flex;justify-content:center}
@@ -126,8 +143,8 @@ input,textarea{font:inherit}
 
 .hero-visual{position:relative}
 .hero-frame{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;background:var(--card);border:1px solid var(--bords);box-shadow:0 40px 120px rgba(0,0,0,.7)}
-.hero-frame img{width:100%;height:100%;object-fit:cover;object-position:top center}
-.hero-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(6,6,8,.75))}
+.hero-frame img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.hero-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(0,0,0,.72))}
 .hero-caption{position:absolute;bottom:0;left:0;right:0;z-index:1;padding:22px 24px;display:flex;align-items:flex-end;justify-content:space-between}
 .hero-caption-name{font-family:var(--disp);font-size:20px;color:var(--text);line-height:1;letter-spacing:-.02em}
 .hero-caption-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38)}
@@ -187,7 +204,7 @@ input,textarea{font:inherit}
 .pf-card:nth-child(1) .pf-thumb,.pf-card:nth-child(4) .pf-thumb{aspect-ratio:16/10}
 .pf-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 .pf-card:hover .pf-thumb img{transform:scale(1.06)}
-.pf-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,6,8,.92) 0%,rgba(6,6,8,.4) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px;opacity:0;transition:opacity var(--t)}
+.pf-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.35) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px;opacity:0;transition:opacity var(--t)}
 .pf-card:hover .pf-overlay{opacity:1}
 .pf-ov-cat{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:5px}
 .pf-ov-title{font-family:var(--disp);font-size:18px;font-weight:400;color:var(--text);line-height:1.3;margin-bottom:12px}
@@ -370,6 +387,9 @@ input,textarea{font:inherit}
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
       <span id="langLabel">EN</span>
     </button>
+    <button class="theme-btn" id="themeBtn" aria-label="Basculer le thème">
+      <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
   <div class="nav-drawer" id="navDrawer">
@@ -403,7 +423,7 @@ input,textarea{font:inherit}
       </div>
       <div class="hero-visual">
         <div class="hero-frame">
-          <img src="assets/image/photoo.png" alt="Antoine DIOKH — Product Designer">
+          <img src="assets/image/antoine-digdash.jpg" alt="Antoine DIOKH — Product Designer">
           <div class="hero-caption">
             <span class="hero-caption-name">Antoine DIOKH</span>
             <span class="hero-caption-tag">Product Designer</span>
@@ -859,36 +879,49 @@ var PROJECTS = [
 ];
 
 /* ── TESTIMONIALS DATA ────────────────────────────── */
-/* ⚠ Ces témoignages sont des placeholders — remplace-les par les vrais de ton LinkedIn */
 var TESTIMONIALS = [
   {
     text:{
-      fr:"Antoine fait preuve d'une vraie maturité dans son approche du design produit. Sa capacité à transformer des besoins complexes en interfaces intuitives, tout en maintenant un dialogue constant avec notre équipe technique, en fait un profil rare et précieux.",
-      en:"Antoine shows real maturity in his product design approach. His ability to turn complex requirements into intuitive interfaces, while maintaining constant dialogue with our tech team, makes him a rare and valuable profile."
+      fr:"Antoine possède un talent avéré pour le graphisme. Il a su par ses compétences dépasser les attentes et fournir un travail de qualité. Vous pouvez compter sur Antoine.",
+      en:"Antoine has a definite talent for graphic design. He was able to use his skills to exceed expectations and deliver quality work. You can count on Antoine."
     },
-    author:"Kévin Marchal",
-    role:{fr:"Lead Développeur, DIGDASH",en:"Lead Developer, DIGDASH"},
-    initials:"KM"
+    author:"Anouk Spitz",
+    role:{fr:"Développeuse de réseau",en:"Network Developer"},
+    initials:"AS"
   },
   {
     text:{
-      fr:"Lors de son stage chez nous, Antoine a démontré une remarquable polyvalence — de la refonte UX de notre site à la conception d'icônes pour notre application mobile. Sa rigueur méthodologique et sa créativité ont largement dépassé nos attentes.",
-      en:"During his internship with us, Antoine demonstrated remarkable versatility — from redesigning our website UX to creating icons for our mobile app. His rigour and creativity exceeded our expectations."
+      fr:"Je recommande Antoine vivement. C'est quelqu'un de très agréable au travail, qui s'est travaillé en équipe et défini ses priorités. Il travaille rapidement, et à beaucoup de compétences dans divers domaines.",
+      en:"I highly recommend Antoine. He is a very pleasant person to work with, who works well in a team and sets his priorities clearly. He works quickly and has many skills in various areas."
     },
-    author:"Sophie Lambert",
-    role:{fr:"Chef de projet, BioPoolTech",en:"Project Manager, BioPoolTech"},
-    initials:"SL"
+    author:"Carla Rossi",
+    role:{fr:"Responsable Communication",en:"Communications Manager"},
+    initials:"CR"
   },
   {
     text:{
-      fr:"Antoine a redesigné l'identité visuelle de notre outil en s'appuyant sur une vraie démarche centrée utilisateur. Le résultat est une interface plus claire, mieux accueillie par nos clients. Un designer qui comprend les enjeux produit.",
-      en:"Antoine redesigned our product's visual identity using a genuine user-centred approach. The result is a clearer interface, better received by our clients. A designer who truly understands product challenges."
+      fr:"Excellent collaborateur, toujours à l'écoute, très efficace et totalement engagé 👏",
+      en:"Excellent collaborator, always attentive, very efficient and totally committed 👏"
     },
-    author:"Marc Thibault",
-    role:{fr:"Directeur Marketing, DIGDASH",en:"Marketing Director, DIGDASH"},
-    initials:"MT"
+    author:"Emmanuel Berthod",
+    role:{fr:"Business Unit Executive",en:"Business Unit Executive"},
+    initials:"EB"
   }
 ];
+
+/* ── THEME ────────────────────────────────────────── */
+var SUN = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+var MOON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+var isDark = localStorage.getItem('ad_theme') === 'dark';
+
+function applyTheme(dark) {
+  isDark = dark;
+  document.body.classList.toggle('dark', dark);
+  localStorage.setItem('ad_theme', dark ? 'dark' : 'light');
+  document.getElementById('themeIcon').innerHTML = dark ? SUN : MOON;
+}
+applyTheme(isDark);
+document.getElementById('themeBtn').addEventListener('click', function(){ applyTheme(!isDark); });
 
 /* ── LANG ─────────────────────────────────────────── */
 var lang = localStorage.getItem('ad_lang') || 'fr';
