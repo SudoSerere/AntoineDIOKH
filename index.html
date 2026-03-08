@@ -177,78 +177,69 @@ input, textarea { font: inherit; }
    HERO
    ============================================= */
 .hero {
-  min-height: 100svh;
-  display: flex; align-items: center;
-  padding: 100px 24px 60px;
+  padding: 152px 24px 80px;
   max-width: 1120px; margin: 0 auto;
   position: relative;
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 64px;
-  width: 100%;
+/* Eyebrow status line */
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--c-muted); margin-bottom: 28px;
 }
-
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 12px; font-weight: 500; color: var(--c-muted);
-  background: var(--c-card); border: 1px solid var(--c-border-s);
-  padding: 6px 14px; border-radius: 100px; margin-bottom: 28px;
-}
-.badge-dot {
+.eyebrow-dot {
   width: 7px; height: 7px; border-radius: 50%;
-  background: var(--c-green);
+  background: var(--c-green); flex-shrink: 0;
   animation: blink 2.5s ease-in-out infinite;
 }
-@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.45;transform:scale(.8)} }
+.eyebrow-sep { color: var(--c-subtle); }
+@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.75)} }
 
+/* Name + photo row */
+.hero-top {
+  display: flex; align-items: flex-end;
+  justify-content: space-between; gap: 32px;
+  margin-bottom: 0;
+}
 .hero-name {
   font-family: var(--font-disp);
-  font-size: clamp(56px, 8vw, 96px);
-  font-weight: 400; line-height: 1;
-  letter-spacing: -.025em; color: var(--c-text);
-  margin-bottom: 14px;
+  font-size: clamp(64px, 9.5vw, 112px);
+  font-weight: 400; line-height: .9;
+  letter-spacing: -.035em; color: var(--c-text);
 }
-.hero-name em { font-style: italic; color: var(--c-accent); }
+.hero-name em { font-style: italic; color: var(--c-accent); display: block; }
 
+.hero-photo {
+  width: 90px; height: 90px; border-radius: var(--r-md);
+  overflow: hidden; flex-shrink: 0;
+  border: 1px solid var(--c-border-s);
+  box-shadow: 0 12px 40px rgba(0,0,0,.5);
+  margin-bottom: 6px;
+  transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+}
+.hero-photo:hover { transform: scale(1.04); box-shadow: 0 16px 48px rgba(0,0,0,.6); }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+/* Divider */
+.hero-divider { height: 1px; background: var(--c-border-s); margin: 26px 0 22px; }
+
+/* Role line */
 .hero-role {
-  font-size: 15px; font-weight: 500;
-  color: var(--c-subtle); letter-spacing: .04em; margin-bottom: 20px;
+  font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--c-subtle); margin-bottom: 20px;
 }
 
+/* Bottom row */
+.hero-bottom {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
 .hero-desc {
-  font-size: 16px; line-height: 1.75;
-  color: var(--c-muted); max-width: 500px; margin-bottom: 36px;
+  font-size: 15px; line-height: 1.8;
+  color: var(--c-muted); max-width: 480px;
 }
-
-.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-
-/* Avatar */
-.hero-avatar { position: relative; flex-shrink: 0; }
-.avatar-wrap {
-  width: 148px; height: 148px; border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--c-border-s);
-  box-shadow: 0 0 0 7px var(--c-surface), 0 0 40px var(--c-glow);
-  position: relative; z-index: 1;
-}
-.avatar-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-.avatar-ring {
-  position: absolute; inset: -12px;
-  border-radius: 50%;
-  border: 1px solid rgba(79,126,246,.35);
-  animation: ring 3s ease-in-out infinite;
-}
-@keyframes ring { 0%,100%{transform:scale(1);opacity:.35} 50%{transform:scale(1.07);opacity:.12} }
-.avatar-orb {
-  position: absolute; border-radius: 50%; filter: blur(40px); z-index: 0;
-}
-.avatar-orb.a { width:180px;height:180px; background:rgba(79,126,246,.1); top:-20px;right:-20px; animation:orb 7s ease-in-out infinite; }
-.avatar-orb.b { width:120px;height:120px; background:rgba(79,126,246,.07); bottom:-10px;left:-10px; animation:orb 9s ease-in-out infinite reverse; }
-@keyframes orb { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 4px; flex-shrink: 0; }
 
 /* =============================================
    SECTION COMMON
@@ -562,10 +553,10 @@ input, textarea { font: inherit; }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .burger { display: flex; }
-  .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-  .hero-avatar { order: -1; display: flex; justify-content: center; }
-  .hero-desc { margin: 0 auto 36px; }
-  .hero-actions { justify-content: center; }
+  .hero-photo { width: 70px; height: 70px; }
+  .hero-name { font-size: clamp(52px, 14vw, 80px); }
+  .hero-bottom { flex-direction: column; gap: 20px; }
+  .hero-desc { max-width: 100%; }
   .form-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
@@ -618,30 +609,33 @@ input, textarea { font: inherit; }
 <!-- ═══ HERO ══════════════════════════════════════════ -->
 <section id="hero" style="padding-top:0">
   <div class="hero">
-    <div class="hero-grid">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          <span data-key="hero_available">Disponible pour de nouvelles opportunités</span>
-        </div>
-        <h1 class="hero-name">Antoine<br><em>DIOKH</em></h1>
-        <p class="hero-role" data-key="hero_role">Designer de produit · UX/UI · Motion</p>
-        <p class="hero-desc" data-key="hero_desc">Créateur de produits à la fois beaux et intelligents. J'accorde une grande importance à la collaboration avec les développeurs et à l'expérience que je crée pour les utilisateurs.</p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary" data-key="hero_cta1">Me contacter</a>
-          <a href="#portfolio" class="btn btn-ghost" data-key="hero_cta2">Voir mon travail</a>
-        </div>
-      </div>
 
-      <div class="hero-avatar">
-        <div class="avatar-orb a"></div>
-        <div class="avatar-orb b"></div>
-        <div class="avatar-ring"></div>
-        <div class="avatar-wrap">
-          <img src="assets/image/photoo.png" alt="Antoine DIOKH">
-        </div>
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span data-key="hero_available">Disponible pour de nouvelles opportunités</span>
+      <span class="eyebrow-sep">·</span>
+      <span>France</span>
+    </div>
+
+    <div class="hero-top">
+      <h1 class="hero-name">Antoine<em>DIOKH</em></h1>
+      <div class="hero-photo">
+        <img src="assets/image/photoo.png" alt="Antoine DIOKH">
       </div>
     </div>
+
+    <div class="hero-divider"></div>
+
+    <p class="hero-role" data-key="hero_role">Designer de produit · UX/UI · Motion</p>
+
+    <div class="hero-bottom">
+      <p class="hero-desc" data-key="hero_desc">Créateur de produits à la fois beaux et intelligents. J'accorde une grande importance à la collaboration avec les développeurs et à l'expérience que je crée pour les utilisateurs.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary" data-key="hero_cta1">Me contacter</a>
+        <a href="#portfolio" class="btn btn-ghost" data-key="hero_cta2">Voir mon travail</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
