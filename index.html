@@ -20,11 +20,18 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav__links" id="navLinks" role="list">
-        <li><a href="#about" class="nav__link">À propos</a></li>
-        <li><a href="#skills" class="nav__link">Compétences</a></li>
-        <li><a href="#experience" class="nav__link">Expérience</a></li>
-        <li><a href="#contact" class="nav__link nav__link--cta">Contact</a></li>
+        <li><a href="#about"      class="nav__link" data-i18n="nav.about">À propos</a></li>
+        <li><a href="#skills"     class="nav__link" data-i18n="nav.skills">Compétences</a></li>
+        <li><a href="#portfolio"  class="nav__link" data-i18n="nav.portfolio">Portfolio</a></li>
+        <li><a href="#experience" class="nav__link" data-i18n="nav.experience">Expérience</a></li>
+        <li><a href="#contact"    class="nav__link nav__link--cta" data-i18n="nav.contact">Contact</a></li>
       </ul>
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <span class="lang-toggle__label">EN</span>
+        <span class="lang-toggle__icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        </span>
+      </button>
     </div>
   </nav>
 
@@ -33,30 +40,30 @@
     <div class="hero__content">
       <div class="hero__badge">
         <span class="hero__badge-dot"></span>
-        Disponible pour de nouvelles opportunités
+        <span data-i18n="hero.available">Disponible pour de nouvelles opportunités</span>
       </div>
       <h1 class="hero__name">
         Antoine<br>
         <em>DIOKH</em>
       </h1>
-      <p class="hero__role">Designer de produit · UX/UI · Motion</p>
-      <p class="hero__desc">
+      <p class="hero__role" data-i18n="hero.role">Designer de produit · UX/UI · Motion</p>
+      <p class="hero__desc" data-i18n="hero.desc">
         Créateur de produits à la fois beaux et intelligents. J'accorde une grande importance à la collaboration avec les développeurs et à l'expérience que je crée pour les utilisateurs.
       </p>
       <div class="hero__actions">
-        <a href="#contact" class="btn btn--primary">Me contacter</a>
-        <a href="#experience" class="btn btn--ghost">Voir mon parcours</a>
+        <a href="#contact" class="btn btn--primary" data-i18n="hero.cta1">Me contacter</a>
+        <a href="#portfolio" class="btn btn--ghost" data-i18n="hero.cta2">Voir mon travail</a>
       </div>
     </div>
     <div class="hero__visual" aria-hidden="true">
       <div class="hero__photo-wrap">
         <img src="assets/image/photoo.png" alt="Antoine DIOKH" class="hero__photo">
+        <div class="hero__photo-ring"></div>
       </div>
       <div class="hero__orb hero__orb--1"></div>
       <div class="hero__orb hero__orb--2"></div>
     </div>
     <a href="#about" class="hero__scroll" aria-label="Défiler vers le bas">
-      <span class="hero__scroll-label">Défiler</span>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </a>
   </section>
@@ -67,32 +74,32 @@
       <div class="section__header">
         <span class="section__num" aria-hidden="true">01</span>
         <div>
-          <span class="section__label">À propos</span>
-          <h2 class="section__title">Design centré utilisateur,<br>produits qui font sens</h2>
+          <span class="section__label" data-i18n="about.label">À propos</span>
+          <h2 class="section__title" data-i18n="about.title">Design centré utilisateur,<br>produits qui font sens</h2>
         </div>
       </div>
       <div class="about__grid">
         <div class="about__text">
-          <p>Designer de produit avec une solide formation en design d'expérience et d'interface numérique, je m'attache à créer des interfaces claires, accessibles et cohérentes avec l'identité de marque.</p>
-          <p>Habitué à travailler en proximité avec les équipes de développement, je pilote chaque projet de la recherche utilisateur à la livraison — en passant par la conception, le prototypage et la validation.</p>
-          <p>Polyvalent, j'interviens aussi bien en design de produit qu'en communication visuelle : print, motion design, illustration. Basé à Bouc-Bel-Air, ouvert à la mobilité nationale.</p>
+          <p data-i18n="about.p1">Designer de produit avec une solide formation en design d'expérience et d'interface numérique, je m'attache à créer des interfaces claires, accessibles et cohérentes avec l'identité de marque.</p>
+          <p data-i18n="about.p2">Habitué à travailler en proximité avec les équipes de développement, je pilote chaque projet de la recherche utilisateur à la livraison — en passant par la conception, le prototypage et la validation.</p>
+          <p data-i18n="about.p3">Polyvalent, j'interviens aussi bien en design de produit qu'en communication visuelle : print, motion design, illustration. Basé à Bouc-Bel-Air, ouvert à la mobilité nationale.</p>
         </div>
         <div class="about__stats">
           <div class="stat">
             <span class="stat__num">2+</span>
-            <span class="stat__label">Ans d'expérience</span>
+            <span class="stat__label" data-i18n="about.stat1">Ans d'expérience</span>
           </div>
           <div class="stat">
             <span class="stat__num">UX</span>
-            <span class="stat__label">Research & Strategy</span>
+            <span class="stat__label" data-i18n="about.stat2">Research &amp; Strategy</span>
           </div>
           <div class="stat">
             <span class="stat__num">UI</span>
-            <span class="stat__label">Interface & Prototype</span>
+            <span class="stat__label" data-i18n="about.stat3">Interface &amp; Prototype</span>
           </div>
           <div class="stat">
             <span class="stat__num">2D</span>
-            <span class="stat__label">Motion & Print</span>
+            <span class="stat__label" data-i18n="about.stat4">Motion &amp; Print</span>
           </div>
         </div>
       </div>
@@ -105,8 +112,8 @@
       <div class="section__header">
         <span class="section__num" aria-hidden="true">02</span>
         <div>
-          <span class="section__label">Compétences</span>
-          <h2 class="section__title">Outils &amp; savoir-faire</h2>
+          <span class="section__label" data-i18n="skills.label">Compétences</span>
+          <h2 class="section__title" data-i18n="skills.title">Outils &amp; savoir-faire</h2>
         </div>
       </div>
       <div class="skills__grid">
@@ -114,24 +121,20 @@
           <div class="skill-group__icon" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 4.9V17L12 22l-9-5.1V7z"/><path d="M12 22V12"/><path d="M21 7l-9 5"/><path d="M3 7l9 5"/></svg>
           </div>
-          <h3 class="skill-group__title">Design &amp; Prototypage</h3>
+          <h3 class="skill-group__title" data-i18n="skills.g1">Design &amp; Prototypage</h3>
           <div class="skill-tags">
-            <span class="tag">Figma</span>
-            <span class="tag">Zeroheight</span>
-            <span class="tag">Webflow</span>
-            <span class="tag">3ds Max</span>
+            <span class="tag">Figma</span><span class="tag">Zeroheight</span>
+            <span class="tag">Webflow</span><span class="tag">3ds Max</span>
           </div>
         </div>
         <div class="skill-group">
           <div class="skill-group__icon" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           </div>
-          <h3 class="skill-group__title">Développement web</h3>
+          <h3 class="skill-group__title" data-i18n="skills.g2">Développement web</h3>
           <div class="skill-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">WordPress</span>
+            <span class="tag">HTML</span><span class="tag">CSS</span>
+            <span class="tag">JavaScript</span><span class="tag">WordPress</span>
           </div>
         </div>
         <div class="skill-group">
@@ -140,10 +143,8 @@
           </div>
           <h3 class="skill-group__title">Adobe Creative Cloud</h3>
           <div class="skill-tags">
-            <span class="tag">Illustrator</span>
-            <span class="tag">Photoshop</span>
-            <span class="tag">After Effects</span>
-            <span class="tag">Premiere Pro</span>
+            <span class="tag">Illustrator</span><span class="tag">Photoshop</span>
+            <span class="tag">After Effects</span><span class="tag">Premiere Pro</span>
             <span class="tag">Dimension</span>
           </div>
         </div>
@@ -151,10 +152,10 @@
           <div class="skill-group__icon" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
-          <h3 class="skill-group__title">Méthodes UX</h3>
+          <h3 class="skill-group__title" data-i18n="skills.g4">Méthodes UX</h3>
           <div class="skill-tags">
-            <span class="tag">Entretiens utilisateurs</span>
-            <span class="tag">Tests d'usabilité</span>
+            <span class="tag" data-i18n="tag.interviews">Entretiens utilisateurs</span>
+            <span class="tag" data-i18n="tag.tests">Tests d'usabilité</span>
             <span class="tag">Wireframes</span>
             <span class="tag">User flows</span>
           </div>
@@ -163,14 +164,115 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section class="section" id="experience">
+  <!-- PORTFOLIO -->
+  <section class="section" id="portfolio">
     <div class="container">
       <div class="section__header">
         <span class="section__num" aria-hidden="true">03</span>
         <div>
-          <span class="section__label">Expérience</span>
-          <h2 class="section__title">Parcours professionnel</h2>
+          <span class="section__label" data-i18n="portfolio.label">Portfolio</span>
+          <h2 class="section__title" data-i18n="portfolio.title">Travaux &amp; projets</h2>
+        </div>
+      </div>
+
+      <div class="portfolio__grid">
+
+        <!-- Card 1 -->
+        <button class="pf-card" data-project="0" aria-label="Voir le projet Logo Greilsalmmer">
+          <div class="pf-card__img">
+            <img src="assets/image/logoG.png" alt="Logo Greilsalmmer" loading="lazy">
+          </div>
+          <div class="pf-card__body">
+            <span class="pf-card__cat" data-i18n="cat.identity">Identité visuelle</span>
+            <h3 class="pf-card__title" data-i18n="pf0.title">Logo pour une entreprise de logistique</h3>
+            <span class="pf-card__cta" data-i18n="pf.view">Voir le projet →</span>
+          </div>
+        </button>
+
+        <!-- Card 2 -->
+        <button class="pf-card" data-project="1" aria-label="Voir le projet App COVID">
+          <div class="pf-card__img">
+            <img src="assets/image/applicov.png" alt="Application COVID" loading="lazy">
+          </div>
+          <div class="pf-card__body">
+            <span class="pf-card__cat">UX/UI Design</span>
+            <h3 class="pf-card__title" data-i18n="pf1.title">Application mobile COVID-19</h3>
+            <span class="pf-card__cta" data-i18n="pf.view">Voir le projet →</span>
+          </div>
+        </button>
+
+        <!-- Card 3 -->
+        <button class="pf-card" data-project="2" aria-label="Voir le projet RODIA">
+          <div class="pf-card__img">
+            <img src="assets/image/rodia.png" alt="Site RODIA" loading="lazy">
+          </div>
+          <div class="pf-card__body">
+            <span class="pf-card__cat">UX/UI Design</span>
+            <h3 class="pf-card__title" data-i18n="pf2.title">Refonte site web — La RODIA</h3>
+            <span class="pf-card__cta" data-i18n="pf.view">Voir le projet →</span>
+          </div>
+        </button>
+
+        <!-- Card 4 -->
+        <button class="pf-card" data-project="3" aria-label="Voir le projet Affiche escape game">
+          <div class="pf-card__img">
+            <img src="assets/image/wal.png" alt="Affiche escape game" loading="lazy">
+          </div>
+          <div class="pf-card__body">
+            <span class="pf-card__cat" data-i18n="cat.print">Design print</span>
+            <h3 class="pf-card__title" data-i18n="pf3.title">Affiche — Escape game</h3>
+            <span class="pf-card__cta" data-i18n="pf.view">Voir le projet →</span>
+          </div>
+        </button>
+
+        <!-- Card 5 -->
+        <button class="pf-card" data-project="4" aria-label="Voir le projet Animation site de rencontre">
+          <div class="pf-card__img">
+            <img src="assets/image/rich.png" alt="Animation vidéo" loading="lazy">
+          </div>
+          <div class="pf-card__body">
+            <span class="pf-card__cat" data-i18n="cat.motion">Motion design</span>
+            <h3 class="pf-card__title" data-i18n="pf4.title">Animation vidéo — Site de rencontre</h3>
+            <span class="pf-card__cta" data-i18n="pf.view">Voir le projet →</span>
+          </div>
+        </button>
+
+        <!-- Card 6 -->
+        <button class="pf-card" data-project="5" aria-label="Voir le projet Vectorisation et animation">
+          <div class="pf-card__img">
+            <img src="assets/image/cat.png" alt="Vectorisation et animation" loading="lazy">
+          </div>
+          <div class="pf-card__body">
+            <span class="pf-card__cat" data-i18n="cat.motion">Motion design</span>
+            <h3 class="pf-card__title" data-i18n="pf5.title">Vectorisation &amp; animation 2D</h3>
+            <span class="pf-card__cta" data-i18n="pf.view">Voir le projet →</span>
+          </div>
+        </button>
+
+        <!-- Card 7 -->
+        <button class="pf-card" data-project="6" aria-label="Voir le projet Animation services">
+          <div class="pf-card__img">
+            <img src="assets/image/lam.png" alt="Animation services" loading="lazy">
+          </div>
+          <div class="pf-card__body">
+            <span class="pf-card__cat" data-i18n="cat.motion">Motion design</span>
+            <h3 class="pf-card__title" data-i18n="pf6.title">Animation vidéo — Services d'entreprise</h3>
+            <span class="pf-card__cta" data-i18n="pf.view">Voir le projet →</span>
+          </div>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section section--alt" id="experience">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__num" aria-hidden="true">04</span>
+        <div>
+          <span class="section__label" data-i18n="exp.label">Expérience</span>
+          <h2 class="section__title" data-i18n="exp.title">Parcours professionnel</h2>
         </div>
       </div>
 
@@ -180,19 +282,19 @@
           <div class="timeline__body">
             <div class="timeline__top">
               <div>
-                <h3 class="timeline__role">Designer de produit</h3>
+                <h3 class="timeline__role" data-i18n="exp.job1.role">Designer de produit</h3>
                 <p class="timeline__company">DIGDASH · Fuveau La Barque</p>
               </div>
-              <span class="timeline__date">Sept 2023 — Présent</span>
+              <span class="timeline__date" data-i18n="exp.job1.date">Sept 2023 — Présent</span>
             </div>
             <ul class="timeline__list">
-              <li>Études utilisateurs : entretiens, tests et observations pour identifier besoins et points de friction</li>
-              <li>Conception du nouveau thème visuel Digdash Entreprise, en cohérence avec l'identité de marque</li>
-              <li>Élaboration de prototypes interactifs et maquettes clients pour valider les parcours utilisateurs</li>
-              <li>Définition et documentation de parcours utilisateurs (user flows, wireframes)</li>
-              <li>Collaboration avec les équipes développement pour assurer la faisabilité et cohérence de l'intégration UI/UX</li>
-              <li>Design graphique print : brochures, habillage de stand lors de salons BIGDATA</li>
-              <li>Motion design : montage de tutoriels et webinaires, animations 2D</li>
+              <li data-i18n="exp.job1.l1">Études utilisateurs : entretiens, tests et observations pour identifier besoins et points de friction</li>
+              <li data-i18n="exp.job1.l2">Conception du nouveau thème visuel Digdash Entreprise en cohérence avec l'identité de marque</li>
+              <li data-i18n="exp.job1.l3">Élaboration de prototypes interactifs et maquettes clients pour valider les parcours utilisateurs</li>
+              <li data-i18n="exp.job1.l4">Définition et documentation de parcours utilisateurs (user flows, wireframes)</li>
+              <li data-i18n="exp.job1.l5">Collaboration avec les équipes développement pour assurer la faisabilité et cohérence de l'intégration UI/UX</li>
+              <li data-i18n="exp.job1.l6">Design graphique print : brochures, habillage de stands lors de salons BIGDATA</li>
+              <li data-i18n="exp.job1.l7">Motion design : montage de tutoriels et webinaires, animations 2D</li>
             </ul>
           </div>
         </div>
@@ -202,17 +304,17 @@
           <div class="timeline__body">
             <div class="timeline__top">
               <div>
-                <h3 class="timeline__role">Stage — Designer &amp; UX Designer</h3>
+                <h3 class="timeline__role" data-i18n="exp.job2.role">Stage — Designer &amp; UX Designer</h3>
                 <p class="timeline__company">BioPoolTech · BioHomeTech, Aix-en-Provence</p>
               </div>
-              <span class="timeline__date">Mars — Sept 2023</span>
+              <span class="timeline__date" data-i18n="exp.job2.date">Mars — Sept 2023</span>
             </div>
             <ul class="timeline__list">
-              <li>Nouvelle ergonomie de l'accueil du site et refonte de l'arborescence du menu</li>
-              <li>Conception des icônes de l'application mobile BiopoolConnect</li>
-              <li>Prototypage des piscines sur 3ds Max</li>
-              <li>Design graphique print : plaquettes, étiquettes produits, habillage de stands</li>
-              <li>Motion design : animations 2D de présentation des produits</li>
+              <li data-i18n="exp.job2.l1">Nouvelle ergonomie de l'accueil du site et refonte de l'arborescence du menu</li>
+              <li data-i18n="exp.job2.l2">Conception des icônes de l'application mobile BiopoolConnect</li>
+              <li data-i18n="exp.job2.l3">Prototypage des piscines sur 3ds Max</li>
+              <li data-i18n="exp.job2.l4">Design graphique print : plaquettes, étiquettes produits, habillage de stands</li>
+              <li data-i18n="exp.job2.l5">Motion design : animations 2D de présentation des produits</li>
             </ul>
           </div>
         </div>
@@ -220,10 +322,10 @@
 
       <!-- EDUCATION -->
       <div class="section__header section__header--sub">
-        <span class="section__num" aria-hidden="true">04</span>
+        <span class="section__num" aria-hidden="true">05</span>
         <div>
-          <span class="section__label">Formation</span>
-          <h2 class="section__title">Parcours académique</h2>
+          <span class="section__label" data-i18n="edu.label">Formation</span>
+          <h2 class="section__title" data-i18n="edu.title">Parcours académique</h2>
         </div>
       </div>
 
@@ -231,45 +333,45 @@
         <div class="edu__item">
           <span class="edu__year">2021 — 2023</span>
           <div class="edu__info">
-            <h3 class="edu__degree">Master Design de Produits et Services Multimédias</h3>
+            <h3 class="edu__degree" data-i18n="edu.d1">Master Design de Produits et Services Multimédias</h3>
             <p class="edu__school">Université de Franche-Comté · Montbéliard</p>
-            <p class="edu__detail">Ergonomie, design d'expérience et d'interface numérique, enseignements techniques et conduite de projets</p>
+            <p class="edu__detail" data-i18n="edu.d1d">Ergonomie, design d'expérience et d'interface numérique, enseignements techniques et conduite de projets</p>
           </div>
         </div>
         <div class="edu__item">
           <span class="edu__year">2018 — 2020</span>
           <div class="edu__info">
-            <h3 class="edu__degree">Master 2 Communication des technologies numériques</h3>
+            <h3 class="edu__degree" data-i18n="edu.d2">Master 2 Communication des technologies numériques</h3>
             <p class="edu__school">Université Gaston Berger · Saint-Louis</p>
-            <p class="edu__detail">Méthodologie de recherche scientifique, stratégie de contenu</p>
+            <p class="edu__detail" data-i18n="edu.d2d">Méthodologie de recherche scientifique, stratégie de contenu</p>
           </div>
         </div>
         <div class="edu__item">
           <span class="edu__year">2014 — 2017</span>
           <div class="edu__info">
-            <h3 class="edu__degree">Licence en Infographie</h3>
+            <h3 class="edu__degree" data-i18n="edu.d3">Licence en Infographie</h3>
             <p class="edu__school">Université Gaston Berger · Saint-Louis</p>
-            <p class="edu__detail">Conception d'infographie, principes du design, multimédias, CMS</p>
+            <p class="edu__detail" data-i18n="edu.d3d">Conception d'infographie, principes du design, multimédias, CMS</p>
           </div>
         </div>
         <div class="edu__item">
           <span class="edu__year">2014</span>
           <div class="edu__info">
-            <h3 class="edu__degree">Baccalauréat — Série S2, Sciences expérimentales</h3>
+            <h3 class="edu__degree" data-i18n="edu.d4">Baccalauréat — Série S2, Sciences expérimentales</h3>
           </div>
         </div>
       </div>
 
       <div class="certif">
-        <h3 class="certif__title">Certifications</h3>
+        <h3 class="certif__title" data-i18n="certif.title">Certifications</h3>
         <div class="certif__list">
           <div class="certif__item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-            Cybersécurité — MOOC SecNumAcadémie · ANSSI
+            <span data-i18n="certif.c1">Cybersécurité — MOOC SecNumAcadémie · ANSSI</span>
           </div>
           <div class="certif__item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-            Visualisation des données — Udemy
+            <span data-i18n="certif.c2">Visualisation des données — Udemy</span>
           </div>
         </div>
       </div>
@@ -277,18 +379,18 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="section section--dark" id="contact">
+  <section class="section section--contact" id="contact">
     <div class="container">
       <div class="section__header">
-        <span class="section__num section__num--light" aria-hidden="true">05</span>
+        <span class="section__num section__num--light" aria-hidden="true">06</span>
         <div>
-          <span class="section__label section__label--light">Contact</span>
-          <h2 class="section__title section__title--light">Travaillons ensemble</h2>
+          <span class="section__label section__label--light" data-i18n="contact.label">Contact</span>
+          <h2 class="section__title section__title--light" data-i18n="contact.title">Travaillons ensemble</h2>
         </div>
       </div>
       <div class="contact__grid">
         <div class="contact__info">
-          <p class="contact__desc">
+          <p class="contact__desc" data-i18n="contact.desc">
             Vous avez un projet, une opportunité ou simplement une question ? Écrivez-moi, je vous réponds dans les meilleurs délais.
           </p>
           <a href="mailto:antoinediokh@gmail.com" class="contact__email">
@@ -307,18 +409,11 @@
           </div>
         </div>
 
-        <!--
-          FORMULAIRE DE CONTACT
-          Pour activer l'envoi d'emails :
-          1. Créez un compte gratuit sur https://formspree.io
-          2. Créez un nouveau formulaire avec votre email
-          3. Remplacez "YOUR_FORM_ID" ci-dessous par votre identifiant de formulaire
-        -->
         <form class="contact__form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
           <div class="form__row">
             <div class="form__group">
-              <label class="form__label" for="name">Nom *</label>
-              <input class="form__input" type="text" id="name" name="name" required placeholder="Votre nom" autocomplete="name">
+              <label class="form__label" for="name" data-i18n="form.name">Nom *</label>
+              <input class="form__input" type="text" id="name" name="name" required placeholder="Votre nom" autocomplete="name" data-i18n-ph="form.name.ph">
             </div>
             <div class="form__group">
               <label class="form__label" for="email">Email *</label>
@@ -326,15 +421,15 @@
             </div>
           </div>
           <div class="form__group">
-            <label class="form__label" for="subject">Sujet</label>
-            <input class="form__input" type="text" id="subject" name="subject" placeholder="Opportunité, projet, collaboration...">
+            <label class="form__label" for="subject" data-i18n="form.subject">Sujet</label>
+            <input class="form__input" type="text" id="subject" name="subject" placeholder="Opportunité, projet, collaboration..." data-i18n-ph="form.subject.ph">
           </div>
           <div class="form__group">
-            <label class="form__label" for="message">Message *</label>
-            <textarea class="form__input form__textarea" id="message" name="message" required placeholder="Décrivez votre projet ou votre demande..."></textarea>
+            <label class="form__label" for="message" data-i18n="form.message">Message *</label>
+            <textarea class="form__input form__textarea" id="message" name="message" required placeholder="Décrivez votre projet ou votre demande..." data-i18n-ph="form.message.ph"></textarea>
           </div>
           <button type="submit" class="btn btn--primary btn--full">
-            <span>Envoyer le message</span>
+            <span data-i18n="form.submit">Envoyer le message</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
           <p class="form__success" id="formSuccess" role="status" aria-live="polite"></p>
@@ -348,14 +443,33 @@
     <div class="container footer__inner">
       <p class="footer__copy">© 2025 Antoine DIOKH</p>
       <nav class="footer__nav" aria-label="Navigation footer">
-        <a href="#about">À propos</a>
-        <a href="#skills">Compétences</a>
-        <a href="#experience">Expérience</a>
-        <a href="#contact">Contact</a>
+        <a href="#about"      data-i18n="nav.about">À propos</a>
+        <a href="#skills"     data-i18n="nav.skills">Compétences</a>
+        <a href="#portfolio"  data-i18n="nav.portfolio">Portfolio</a>
+        <a href="#experience" data-i18n="nav.experience">Expérience</a>
+        <a href="#contact"    data-i18n="nav.contact">Contact</a>
       </nav>
-      <p class="footer__made">Basé en France · Ouvert à la mobilité nationale</p>
+      <p class="footer__made" data-i18n="footer.location">Basé en France · Ouvert à la mobilité nationale</p>
     </div>
   </footer>
+
+  <!-- ─── PORTFOLIO MODAL ─────────────────────────────────────── -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal">
+      <button class="modal__close" id="modalClose" aria-label="Fermer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal__img-wrap">
+        <img class="modal__img" id="modalImg" src="" alt="">
+      </div>
+      <div class="modal__body">
+        <span class="modal__cat" id="modalCat"></span>
+        <h2 class="modal__title" id="modalTitle"></h2>
+        <p class="modal__desc" id="modalDesc"></p>
+        <div class="modal__links" id="modalLinks"></div>
+      </div>
+    </div>
+  </div>
 
   <script src="assets/js/main.js"></script>
 </body>
