@@ -3,622 +3,546 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Antoine DIOKH · Product Designer basé en France. Je conçois des produits intuitifs pour les utilisateurs et clairs pour les équipes qui les construisent.">
-<title>Antoine DIOKH · Product Designer</title>
+<meta name="description" content="Antoine DIOKH · Product Designer. Idées non conventionnelles, exécution minimaliste. UX/UI, design systems, motion.">
+<title>Antoine DIOKH — Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=Doto:wght@700;900&family=Abril+Fatface&family=Lobster&family=Lora:ital@0;1&family=Merriweather:wght@700&family=Oswald:wght@500&family=Pacifico&display=swap" rel="stylesheet">
 <style>
 
 /* =========================================================
-   RESET & TOKENS · inspiration : palette émeraude sur crème,
-   serif expressive, titres [ entre crochets ], blanc généreux
+   TOKENS · colonne de cartes sur fond menthe
    ========================================================= */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
 
 :root{
-  --bg:    #FBFFFD;
-  --surf:  #ECF8F5;
-  --card:  #ffffff;
-  --text:  #121312;
-  --muted: rgba(17,35,34,.62);
-  --sub:   rgba(17,35,34,.42);
-  --acc:   #00A084;
-  --accd:  #005C47;
-  --hl:    #4EDF88;
-  --teal:  #c2e9e7;
-  --bord:  rgba(0,92,71,.14);
-  --bords: rgba(0,92,71,.26);
-  --glow:  rgba(0,160,132,.16);
-  --sans:  'Inter',system-ui,sans-serif;
-  --disp:  'Fraunces',Georgia,serif;
-  --rsm:8px;--rmd:14px;--rlg:22px;--pill:100px;
-  --ease:cubic-bezier(.4,0,.2,1);
-  --eout:cubic-bezier(0,.55,.45,1);
-  --t:240ms;--ts:480ms;
-  --shmd:0 6px 28px rgba(0,92,71,.09);
-  --shlg:0 28px 90px rgba(0,92,71,.16);
+  --bg:      #cfe9e4;           /* fond profond entre les cartes */
+  --rail:    #e6f5f1;           /* cellules latérales */
+  --card:    #FDFFFE;           /* cartes de contenu */
+  --ink:     #121312;
+  --muted:   rgba(17,35,34,.6);
+  --sub:     rgba(17,35,34,.38);
+  --green:   #00A084;
+  --greend:  #005C47;
+  --mint:    #4EDF88;
+  --teal:    #c2e9e7;
+  --figma:   #0C8CE9;
+  --bord:    rgba(0,92,71,.12);
+  --led-bg:  #101312;
+  --sans:'Inter',system-ui,sans-serif;
+  --serif:'Fraunces',Georgia,serif;
+  --dot:'Doto',monospace;
+  --r:14px;
+  --gap:3px;
+  --col:536px;
+  --t:220ms cubic-bezier(.4,0,.2,1);
 }
 body.dark{
-  --bg:    #0e100f;
-  --surf:  #141816;
-  --card:  #181d1a;
-  --text:  #eef5f1;
-  --muted: rgba(219,235,228,.6);
-  --sub:   rgba(219,235,228,.36);
-  --acc:   #4EDF88;
-  --accd:  #00A084;
-  --hl:    #4EDF88;
-  --teal:  rgba(78,223,136,.16);
-  --bord:  rgba(255,255,255,.07);
-  --bords: rgba(255,255,255,.14);
-  --glow:  rgba(78,223,136,.12);
-  --shmd:  0 6px 28px rgba(0,0,0,.5);
-  --shlg:  0 28px 90px rgba(0,0,0,.65);
+  --bg:      #0a0f0d;
+  --rail:    #101614;
+  --card:    #151b18;
+  --ink:     #eef5f1;
+  --muted:   rgba(219,235,228,.6);
+  --sub:     rgba(219,235,228,.34);
+  --green:   #4EDF88;
+  --greend:  #00A084;
+  --teal:    rgba(78,223,136,.14);
+  --bord:    rgba(255,255,255,.06);
+  --led-bg:  #050807;
 }
 
-body{font-family:var(--sans);font-size:16px;line-height:1.7;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s var(--ease),color .3s var(--ease)}
+body{font-family:var(--sans);font-size:16px;line-height:1.7;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
 body.noscroll{overflow:hidden}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
 ul{list-style:none}
-input,textarea{font:inherit}
-::selection{background:var(--hl);color:#121312}
-
-.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 48px}
+::selection{background:var(--mint);color:#121312}
 
 /* =========================================================
-   BOUTONS
+   GRILLE · chaque rangée = rail | carte | rail
    ========================================================= */
-.btn-p{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:15px 30px;background:var(--acc);color:var(--bg);
-  border-radius:var(--pill);font-size:14px;font-weight:600;
-  box-shadow:0 6px 24px var(--glow);white-space:nowrap;
-  transition:background var(--t) var(--ease),transform var(--t) var(--ease),box-shadow var(--t) var(--ease);
-}
-body.dark .btn-p{color:#0e100f}
-.btn-p:hover{background:var(--accd);transform:translateY(-2px);box-shadow:0 10px 34px var(--glow)}
-body.dark .btn-p:hover{color:#fff}
-.btn-p .a{transition:transform var(--ts) var(--eout)}
-.btn-p:hover .a{transform:translateX(3px) translateY(-3px)}
+.row{display:grid;grid-template-columns:1fr min(var(--col),calc(100vw - 12px)) 1fr;gap:var(--gap);margin-bottom:var(--gap)}
+.row::before,.row::after{content:'';background:var(--rail);border-radius:var(--r);min-height:100%}
+.row>.cell{background:var(--card);border-radius:var(--r);padding:34px 32px;position:relative}
+.row>.cell.flush{padding:0;overflow:hidden}
+.row>.cell.split{display:grid;grid-template-columns:1fr 1.2fr;gap:var(--gap);background:transparent;padding:0}
+.row>.cell.split>div{background:var(--card);border-radius:var(--r);padding:28px 26px}
+.row>.cell.cells4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);background:transparent;padding:0}
+.row>.cell.cells4>a{background:var(--card);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:20px 8px;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--ink);transition:color var(--t),background var(--t)}
+.row>.cell.cells4>a:hover{color:var(--green)}
+.row>.cell.cells4>a svg{transition:transform var(--t)}
+.row>.cell.cells4>a:hover svg{transform:translateY(-2px)}
 
-.btn-g{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:14px 26px;color:var(--text);
-  border:1.5px solid var(--bords);border-radius:var(--pill);
-  font-size:14px;font-weight:500;white-space:nowrap;
-  transition:border-color var(--t) var(--ease),color var(--t) var(--ease),background var(--t) var(--ease);
-}
-.btn-g:hover{border-color:var(--acc);color:var(--acc)}
+/* espaceur entre groupes de sections */
+.gaprow{height:56px}
 
 /* =========================================================
-   NAV
+   BARRE HAUTE · MENU
    ========================================================= */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;transition:background var(--t) var(--ease),box-shadow var(--t) var(--ease)}
-.nav.stuck{background:rgba(251,255,253,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--bord)}
-body.dark .nav.stuck{background:rgba(14,16,15,.92)}
-.nav-i{display:flex;align-items:center;gap:4px;height:80px;max-width:1200px;margin:0 auto}
-.nav-logo{font-family:var(--disp);font-size:21px;font-weight:500;color:var(--text);margin-right:auto;letter-spacing:-.01em;transition:color var(--t)}
-.nav-logo em{font-style:italic;color:var(--acc)}
-.nav-logo:hover{color:var(--acc)}
-.nav-links{display:flex;align-items:center;gap:2px}
-.nav-link{position:relative;font-size:13.5px;font-weight:500;color:var(--muted);padding:7px 14px;border-radius:var(--rsm);transition:color var(--t)}
-.nav-link::before{content:'[';margin-right:5px;color:var(--acc);opacity:0;transition:opacity var(--t)}
-.nav-link::after{content:']';margin-left:5px;color:var(--acc);opacity:0;transition:opacity var(--t)}
-.nav-link:hover,.nav-link.active{color:var(--text)}
-.nav-link:hover::before,.nav-link:hover::after,
-.nav-link.active::before,.nav-link.active::after{opacity:1}
-.nav-cta{background:var(--acc);color:var(--bg);padding:8px 18px;border-radius:var(--pill);font-size:13px;font-weight:600;box-shadow:0 2px 14px var(--glow);transition:background var(--t);margin-left:8px}
-body.dark .nav-cta{color:#0e100f}
-.nav-cta::before,.nav-cta::after{display:none!important}
-.nav-cta:hover{background:var(--accd);color:var(--bg)}
-body.dark .nav-cta:hover{color:#fff}
-.lang-btn{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--bords);padding:6px 12px;border-radius:var(--pill);transition:color var(--t),border-color var(--t);margin-left:10px}
-.lang-btn:hover{color:var(--acc);border-color:var(--acc)}
-.theme-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;color:var(--muted);background:var(--card);border:1px solid var(--bords);border-radius:50%;transition:color var(--t),border-color var(--t);margin-left:8px;flex-shrink:0}
-.theme-btn:hover{color:var(--acc);border-color:var(--acc)}
-.burger{display:none;flex-direction:column;gap:5px;width:28px;padding:2px;flex-shrink:0;margin-left:8px}
-.burger span{height:2px;background:var(--text);border-radius:2px;transition:transform var(--t),opacity var(--t)}
-.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.burger.open span:nth-child(2){opacity:0}
-.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.nav-drawer{display:none;position:fixed;top:80px;left:0;right:0;background:rgba(251,255,253,.97);backdrop-filter:blur(18px);border-bottom:1px solid var(--bord);padding:16px 24px 28px;flex-direction:column;gap:2px;box-shadow:var(--shlg)}
-body.dark .nav-drawer{background:rgba(14,16,15,.97)}
-.nav-drawer.open{display:flex}
-.nav-drawer .nav-link{font-size:17px;padding:13px 16px}
-.nav-drawer .nav-cta{margin:8px 0 0;display:flex;justify-content:center}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100}
+.topbar .menu-cell{background:var(--card);border-radius:0 0 var(--r) var(--r);display:flex;align-items:center;justify-content:center;height:58px}
+.topbar::before,.topbar::after{border-radius:0 0 var(--r) var(--r);min-height:58px}
+.menu-btn{font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--green);padding:10px 26px;transition:letter-spacing var(--t)}
+.menu-btn:hover{letter-spacing:.34em}
+
+/* overlay menu */
+.menu-ov{position:fixed;inset:0;z-index:200;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center}
+.menu-ov.open{display:flex;animation:fdi .25s ease}
+@keyframes fdi{from{opacity:0}to{opacity:1}}
+.menu-ov a{font-family:var(--serif);font-size:clamp(34px,6vw,54px);font-weight:500;color:var(--ink);line-height:1.35;transition:color var(--t),letter-spacing var(--t)}
+.menu-ov a:hover{color:var(--green);letter-spacing:.02em}
+.menu-ov a i{font-style:normal;color:var(--green)}
+.menu-x{position:absolute;top:18px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--green);padding:10px 26px}
+.menu-tools{display:flex;gap:10px;margin-top:38px}
+.menu-tools button{font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--muted);background:var(--card);border-radius:var(--pill,100px);padding:10px 22px;transition:color var(--t)}
+.menu-tools button:hover{color:var(--green)}
 
 /* =========================================================
    HERO
    ========================================================= */
-#hero{position:relative;background:
-  radial-gradient(900px 500px at 85% -10%, var(--teal) 0%, transparent 60%),
-  radial-gradient(700px 420px at -10% 110%, var(--teal) 0%, transparent 55%)}
-.hero-wrap{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 48px 90px;max-width:980px;margin:0 auto;position:relative}
-
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:34px;background:var(--card);border:1px solid var(--bord);padding:9px 20px;border-radius:var(--pill)}
-.edot{width:7px;height:7px;border-radius:50%;background:var(--hl);box-shadow:0 0 10px rgba(78,223,136,.6);animation:blink 2.5s ease-in-out infinite;flex-shrink:0}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
-
-.hero-title{font-family:var(--disp);font-size:clamp(38px,5.6vw,76px);font-weight:500;line-height:1.12;letter-spacing:-.02em;color:var(--text);margin-bottom:28px}
-.hero-title em{font-style:italic;font-weight:400;color:var(--acc)}
-.hero-title .hl{position:relative;white-space:nowrap}
-.hero-title .hl::after{content:'';position:absolute;left:0;right:0;bottom:.08em;height:.32em;background:var(--hl);opacity:.35;z-index:-1;border-radius:3px}
-
-.hero-sub{font-size:17px;line-height:1.7;color:var(--muted);margin-bottom:44px;max-width:620px}
-
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:72px}
-
-.hero-scroll{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--sub);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;animation:bobble 2s ease-in-out infinite}
-@keyframes bobble{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.hero-h{font-family:var(--serif);font-size:clamp(30px,4.6vw,42px);font-weight:600;line-height:1.22;letter-spacing:-.01em;margin-bottom:22px}
+.hero-h i{font-style:normal;color:var(--green)}
+.hero-p{font-size:15.5px;color:var(--muted);margin-bottom:34px}
+.hero-p b{color:var(--ink);font-weight:600}
+.hero-p .cut{color:var(--green);font-weight:600;white-space:nowrap}
+.narrator{font-size:14px;color:var(--muted);margin-bottom:30px}
+.narrator b{color:var(--ink);font-weight:600}
+.timebar{display:flex;align-items:center;gap:14px;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--sub)}
+.timebar .dia{color:var(--green);font-size:13px}
+.timebar .clock{font-family:var(--dot);font-weight:900;font-size:15px;color:var(--ink);letter-spacing:.08em}
+.timebar .gmt{color:var(--green);font-family:var(--dot);font-weight:700}
 
 /* =========================================================
-   MARQUEE
+   RÔLE · Product Designer + sélection Figma
    ========================================================= */
-.marquee-band{background:var(--surf);border-top:1px solid var(--bord);border-bottom:1px solid var(--bord);padding:16px 0;overflow:hidden}
-.marquee-track{display:flex;width:max-content;animation:mq 32s linear infinite}
-.marquee-band:hover .marquee-track{animation-play-state:paused}
-.mq-item{display:inline-flex;align-items:center;gap:22px;padding:0 22px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-.mq-dot{color:var(--acc);font-size:9px}
-@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.role-h{font-family:var(--serif);font-size:clamp(40px,7vw,58px);font-weight:500;line-height:1.18;letter-spacing:-.015em}
+.figsel{position:relative;display:inline-block;outline:1.6px solid var(--figma);outline-offset:4px;margin:4px}
+.figsel b{position:absolute;width:7px;height:7px;background:var(--card);border:1.6px solid var(--figma);z-index:1}
+.figsel b:nth-child(1){top:-8px;left:-8px}
+.figsel b:nth-child(2){top:-8px;right:-8px}
+.figsel b:nth-child(3){bottom:-8px;left:-8px}
+.figsel b:nth-child(4){bottom:-8px;right:-8px}
+
+/* portrait */
+.portrait{background:linear-gradient(180deg,#00A084 0%,#005C47 100%);border-radius:10px;border:2px solid var(--greend);overflow:hidden;position:relative}
+.portrait img{width:100%;aspect-ratio:4/3.4;object-fit:cover;object-position:center 20%;mix-blend-mode:luminosity;opacity:.92}
+.portrait::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,160,132,.25),rgba(0,92,71,.05));pointer-events:none}
+
+/* panneau Fonts façon Figma */
+.fonts-panel{background:#1e1e1e;border-radius:10px;overflow:hidden;color:#e6e6e6;font-size:13px;box-shadow:0 18px 60px rgba(0,40,30,.25)}
+.fp-head{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;font-weight:600;font-size:12.5px;border-bottom:1px solid #2c2c2c}
+.fp-head svg{opacity:.55;cursor:pointer}
+.fp-search{margin:10px 12px 6px;display:flex;align-items:center;gap:8px;background:#2c2c2c;border-radius:6px;padding:7px 10px;color:#9a9a9a}
+.fp-search input{background:none;border:none;outline:none;color:#e6e6e6;font-size:12.5px;width:100%}
+.fp-hint{margin:6px 12px 8px;border:1px solid #3a3a3a;border-radius:6px;padding:6px 10px;font-size:11.5px;color:#bdbdbd}
+.fp-list{padding:2px 4px 8px;max-height:250px;overflow:auto}
+.fp-list::-webkit-scrollbar{width:4px}
+.fp-list::-webkit-scrollbar-thumb{background:#3a3a3a;border-radius:2px}
+.fp-item{display:flex;align-items:center;gap:9px;width:100%;text-align:left;padding:7px 12px;border-radius:5px;font-size:15px;color:#e6e6e6;transition:background .15s}
+.fp-item:hover,.fp-item.on{background:#333}
+.fp-item .tick{width:12px;color:#4EDF88;font-size:11px;visibility:hidden}
+.fp-item.on .tick{visibility:visible}
 
 /* =========================================================
-   SECTIONS · titres [ entre crochets ]
+   STATS · chiffres dot-matrix
    ========================================================= */
-.section{padding:130px 0}
-.sect-alt{background:var(--surf)}
+.stat-lbl{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.stat-num{font-family:var(--dot);font-weight:900;font-size:clamp(44px,7vw,58px);line-height:1;color:var(--ink);letter-spacing:.04em}
+.stat-note{font-size:13.5px;color:var(--muted);line-height:1.65}
 
-.sect-hd{text-align:center;margin-bottom:72px}
-.bracket-lbl{display:inline-flex;align-items:baseline;gap:10px;font-family:var(--disp);font-size:15px;font-weight:500;letter-spacing:.06em;color:var(--muted);margin-bottom:18px}
-.bracket-lbl::before{content:'[';color:var(--acc);font-size:1.25em;font-weight:400}
-.bracket-lbl::after{content:']';color:var(--acc);font-size:1.25em;font-weight:400}
-.sect-title{font-family:var(--disp);font-size:clamp(30px,3.6vw,50px);font-weight:500;line-height:1.15;color:var(--text);letter-spacing:-.02em}
-.sect-title em{font-style:italic;font-weight:400;color:var(--acc)}
+/* bandeau LED */
+.led{background:var(--led-bg);border-radius:10px;border-left:10px solid var(--green);border-right:10px solid var(--green);overflow:hidden;padding:14px 0}
+.led-track{display:flex;width:max-content;animation:led 18s linear infinite;font-family:var(--dot);font-weight:900;font-size:24px;color:var(--mint);letter-spacing:.14em;white-space:nowrap}
+.led-track span{padding:0 26px}
+@keyframes led{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* carte-lien fléchée */
+.arrow-link{display:flex;align-items:center;gap:14px;font-size:20px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:uppercase;transition:color var(--t)}
+.arrow-link em{font-style:normal;color:var(--green)}
+.arrow-link .arr{color:var(--green);font-size:22px;transition:transform var(--t)}
+.arrow-link:hover{color:var(--green)}
+.arrow-link:hover .arr{transform:translateX(6px)}
+.arrow-sub{font-size:13.5px;color:var(--muted);margin-top:8px}
 
 /* =========================================================
-   À PROPOS
+   NOTE DU NARRATEUR / sections texte
    ========================================================= */
-.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:start}
-.about-quote{font-family:var(--disp);font-size:clamp(22px,2.4vw,31px);font-weight:400;line-height:1.45;color:var(--text);letter-spacing:-.015em;margin-bottom:26px}
-.about-quote em{font-style:italic;color:var(--acc)}
-.about-p{font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:14px}
-.about-p:last-of-type{margin-bottom:0}
-.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.stat-c{background:var(--card);border:1px solid var(--bord);border-radius:var(--rmd);padding:24px 20px;transition:border-color var(--t),transform var(--t)}
-.stat-c:hover{border-color:var(--acc);transform:translateY(-3px)}
-.stat-n{display:block;font-family:var(--disp);font-size:36px;font-weight:500;color:var(--acc);line-height:1;margin-bottom:7px}
-.stat-l{display:block;font-size:12px;font-weight:500;color:var(--sub)}
-.skill-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
-.stag{font-size:12.5px;font-weight:500;color:var(--muted);background:var(--card);border:1px solid var(--bord);padding:6px 14px;border-radius:var(--pill);transition:color var(--t),border-color var(--t)}
-.stag:hover{color:var(--acc);border-color:var(--acc)}
+.sec-lbl{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+.note-p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:18px}
+.note-p:last-child{margin-bottom:0}
+.note-p b{color:var(--ink);font-weight:600}
 
 /* =========================================================
-   PROJETS
+   < PROJETS /> · rangées de travaux
    ========================================================= */
-.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.pf-card{position:relative;border-radius:var(--rmd);overflow:hidden;cursor:pointer;background:var(--card);border:1px solid var(--bord);text-align:left;transition:border-color var(--t),transform var(--t),box-shadow var(--t)}
-.pf-card:hover{border-color:var(--acc);transform:translateY(-4px);box-shadow:var(--shmd)}
-.pf-thumb{aspect-ratio:3/2;overflow:hidden;background:var(--surf)}
-.pf-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.pf-card:hover .pf-thumb img{transform:scale(1.05)}
-.pf-info{padding:14px 16px 16px}
-.pf-cat{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
-.pf-name{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.4}
+.code-h{font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.code-h i{font-style:normal;color:var(--green);font-weight:600}
+.code-sub{font-size:14.5px;color:var(--muted)}
+.work{width:100%;text-align:left;transition:background var(--t)}
+.work-t{display:flex;align-items:center;gap:13px;font-size:20px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);margin-bottom:10px;transition:color var(--t)}
+.work-t .arr{color:var(--green);font-size:21px;flex-shrink:0;transition:transform var(--t)}
+.work:hover .work-t{color:var(--green)}
+.work:hover .work-t .arr{transform:translateX(6px)}
+.work-d{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px}
+.work-tags{display:flex;flex-wrap:wrap;gap:20px;font-size:13px;font-weight:600;color:var(--muted)}
+.work-tags span{display:inline-flex;align-items:center;gap:8px}
+.work-tags .dia{color:var(--green);font-size:11px}
 
 /* =========================================================
-   PARCOURS · CV condensé
+   PARCOURS
    ========================================================= */
-.cv-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:56px}
-.cv-head .sect-hd{text-align:left;margin-bottom:0}
-.timeline{position:relative;padding-left:32px;max-width:840px}
-.timeline::before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:1px;background:var(--bords)}
-.tl-item{position:relative;padding-bottom:40px}
-.tl-item:last-child{padding-bottom:0}
-.tl-dot{position:absolute;left:-38px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 3px var(--bg),0 0 16px var(--glow)}
-.tl-card{background:var(--card);border:1px solid var(--bord);border-radius:var(--rmd);padding:26px 30px;transition:border-color var(--t),box-shadow var(--t)}
-.tl-card:hover{border-color:var(--bords);box-shadow:var(--shmd)}
-.tl-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:16px}
-.tl-role{font-family:var(--disp);font-size:19px;font-weight:500;color:var(--text);margin-bottom:3px}
-.tl-company{font-size:13px;font-weight:600;color:var(--acc)}
-.tl-date{font-size:11px;font-weight:600;color:var(--muted);background:var(--surf);border:1px solid var(--bord);padding:5px 13px;border-radius:var(--pill);white-space:nowrap}
-.tl-list{display:flex;flex-direction:column;gap:9px}
-.tl-list li{font-size:13.5px;line-height:1.65;color:var(--muted);padding-left:18px;position:relative}
-.tl-list li::before{content:'→';position:absolute;left:0;color:var(--acc);font-size:12px}
+.job-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.job-role{font-family:var(--serif);font-size:23px;font-weight:600}
+.job-role i{font-style:normal;color:var(--green)}
+.job-date{font-family:var(--dot);font-weight:700;font-size:13px;letter-spacing:.06em;color:var(--green)}
+.job-org{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.job-list li{font-size:14px;color:var(--muted);line-height:1.7;padding-left:20px;position:relative;margin-bottom:10px}
+.job-list li::before{content:'✦';position:absolute;left:0;top:1px;color:var(--green);font-size:11px}
+.job-list li:last-child{margin-bottom:0}
 
-/* Formation compacte */
-.edu-block{margin-top:72px;max-width:840px}
-.edu-h{font-family:var(--disp);font-size:22px;font-weight:500;color:var(--text);margin-bottom:22px}
-.edu-h em{font-style:italic;color:var(--acc)}
-.edu-list{border-top:1px solid var(--bord)}
-.edu-row{display:grid;grid-template-columns:110px 1fr auto;gap:18px;align-items:baseline;padding:16px 4px;border-bottom:1px solid var(--bord);transition:background var(--t)}
-.edu-row:hover{background:var(--surf)}
-.edu-yr{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--acc)}
-.edu-deg{font-size:14px;font-weight:600;color:var(--text);line-height:1.45}
-.edu-sch{font-size:12.5px;color:var(--sub);text-align:right;white-space:nowrap}
-.certif-strip{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:26px}
-.certif-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sub)}
-.certif-item{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;color:var(--text);background:var(--card);border:1px solid var(--bord);padding:7px 15px;border-radius:var(--pill)}
-.certif-item svg{color:var(--acc);flex-shrink:0}
+.edu-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px dashed var(--bord)}
+.edu-row:last-of-type{border-bottom:none}
+.edu-deg{font-size:14px;font-weight:600;line-height:1.5}
+.edu-deg small{display:block;font-weight:400;font-size:12.5px;color:var(--sub)}
+.edu-yr{font-family:var(--dot);font-weight:700;font-size:13px;color:var(--green);white-space:nowrap}
 
 /* =========================================================
-   TÉMOIGNAGES · grille statique
+   TÉMOIGNAGES
    ========================================================= */
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.testi-card{background:var(--card);border:1px solid var(--bord);border-radius:var(--rlg);padding:36px 32px;display:flex;flex-direction:column;transition:border-color var(--t),transform var(--t),box-shadow var(--t)}
-.testi-card:hover{border-color:var(--acc);transform:translateY(-4px);box-shadow:var(--shmd)}
-.testi-q{font-family:var(--disp);font-size:17px;font-weight:400;line-height:1.6;color:var(--text);letter-spacing:-.01em;margin-bottom:28px;flex:1}
-.testi-q::before{content:'\201C';font-size:2em;color:var(--acc);line-height:0;vertical-align:-.3em;margin-right:4px}
-.testi-author{display:flex;align-items:center;gap:13px}
-.testi-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--accd));display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:15px;color:#fff;flex-shrink:0}
-.testi-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:1px}
-.testi-role{font-size:12px;color:var(--muted)}
+.q-txt{font-family:var(--serif);font-size:17.5px;font-weight:400;line-height:1.65;margin-bottom:20px}
+.q-txt::before{content:'\201C';color:var(--green);margin-right:2px}
+.q-txt::after{content:'\201D';color:var(--green);margin-left:2px}
+.q-by{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.q-by .dia{color:var(--green);font-size:11px}
+.q-by b{color:var(--ink);font-weight:600}
 
 /* =========================================================
-   CONTACT
+   CONTACT · [ … ]
    ========================================================= */
-.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start}
-.contact-intro{font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:28px}
-.contact-mail{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-size:21px;font-weight:500;color:var(--text);text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--teal);margin-bottom:32px;transition:color var(--t),text-decoration-color var(--t)}
-.contact-mail:hover{color:var(--acc);text-decoration-color:var(--acc)}
-.socials{display:flex;flex-wrap:wrap;gap:8px}
-.social-lk{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:var(--muted);background:var(--card);border:1px solid var(--bord);padding:9px 17px;border-radius:var(--pill);transition:color var(--t),border-color var(--t)}
-.social-lk:hover{color:var(--acc);border-color:var(--acc)}
-.form{display:flex;flex-direction:column;gap:16px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.fg{display:flex;flex-direction:column;gap:6px}
-.fl{font-size:12px;font-weight:600;color:var(--sub);letter-spacing:.02em}
-.fi{background:var(--card);border:1px solid var(--bords);border-radius:var(--rsm);padding:13px 16px;font-size:14px;color:var(--text);outline:none;transition:border-color var(--t),box-shadow var(--t)}
-.fi::placeholder{color:var(--sub)}
-.fi:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--glow)}
-.ft{resize:vertical;min-height:130px;line-height:1.6}
-.f-status{font-size:13px;font-weight:500;text-align:center;min-height:18px}
+.mute-h{font-family:var(--sans);font-size:clamp(34px,5.6vw,46px);font-weight:600;color:var(--green);letter-spacing:.01em;margin-bottom:56px}
+.ct-p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:26px}
+.ct-mail{display:inline-flex;align-items:center;gap:10px;font-family:var(--serif);font-size:clamp(19px,3.4vw,25px);font-weight:500;color:var(--ink);border-bottom:2px solid var(--green);padding-bottom:4px;transition:color var(--t)}
+.ct-mail:hover{color:var(--green)}
+.ct-mail .arr{color:var(--green)}
 
 /* =========================================================
    FOOTER
    ========================================================= */
-.footer{background:var(--bg);border-top:1px solid var(--bord);padding:34px 0}
-.footer-i{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
-.footer-logo{font-family:var(--disp);font-size:19px;font-weight:500;color:var(--text)}
-.footer-logo em{font-style:italic;color:var(--acc)}
-.footer-nav{display:flex;gap:20px}
-.footer-nav a{font-size:12px;color:var(--sub);transition:color var(--t)}
-.footer-nav a:hover{color:var(--acc)}
-.footer-loc{font-size:12px;color:var(--sub)}
+.copy-l{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.copy-s{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);margin-bottom:34px}
+.fin{font-family:var(--serif);font-size:clamp(48px,8vw,64px);font-weight:500;line-height:1}
+.fin i{font-style:italic}
+.fin span{color:var(--green)}
+.lego{height:220px;border-radius:var(--r);background:
+  radial-gradient(circle at 50% 42%, var(--teal) 26%, rgba(0,92,71,.18) 30%, transparent 34%),
+  var(--teal);
+  background-size:44px 44px;opacity:.85}
+body.dark .lego{opacity:.35}
 
 /* =========================================================
-   MODAL
+   MODAL PROJET
    ========================================================= */
-.modal-bd{display:none;position:fixed;inset:0;z-index:200;background:rgba(4,12,10,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:20px}
-.modal-bd.show{display:flex;animation:fdi .22s var(--ease)}
-@keyframes fdi{from{opacity:0}to{opacity:1}}
-.modal-box{background:var(--card);border:1px solid var(--bords);border-radius:var(--rlg);overflow:hidden;width:100%;max-width:840px;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;animation:sdi .28s var(--ease);box-shadow:var(--shlg);position:relative}
-@keyframes sdi{from{opacity:0;transform:scale(.95) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal-box::-webkit-scrollbar{width:4px}
-.modal-box::-webkit-scrollbar-thumb{background:var(--bords);border-radius:2px}
-.m-img{background:var(--surf);display:flex;align-items:center;justify-content:center;padding:28px;min-height:300px}
-.m-img img{max-height:380px;object-fit:contain;border-radius:var(--rsm)}
-.m-body{padding:40px 36px;display:flex;flex-direction:column;gap:13px}
-.m-close{position:absolute;top:14px;right:14px;z-index:1;width:36px;height:36px;border-radius:50%;background:var(--surf);border:1px solid var(--bords);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:color var(--t),background var(--t)}
-.m-close:hover{color:var(--text)}
-.m-cat{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
-.m-title{font-family:var(--disp);font-size:23px;font-weight:500;color:var(--text);line-height:1.3}
-.m-desc{font-size:13.5px;line-height:1.8;color:var(--muted)}
-.m-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}
-.m-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:10px 19px;border-radius:var(--pill);border:1px solid var(--bords);color:var(--text);transition:color var(--t),border-color var(--t),background var(--t)}
-.m-btn:hover{color:var(--acc);border-color:var(--acc)}
-.m-btn.pri{background:var(--acc);color:var(--bg);border-color:transparent;box-shadow:0 4px 16px var(--glow)}
-body.dark .m-btn.pri{color:#0e100f}
-.m-btn.pri:hover{background:var(--accd);color:var(--bg)}
-body.dark .m-btn.pri:hover{color:#fff}
+.modal-bd{display:none;position:fixed;inset:0;z-index:300;background:rgba(4,14,11,.86);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:16px}
+.modal-bd.show{display:flex;animation:fdi .2s ease}
+.modal-box{background:var(--card);border-radius:var(--r);overflow:hidden;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;position:relative;animation:sdi .25s ease}
+@keyframes sdi{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.m-close{position:absolute;top:12px;right:12px;z-index:1;width:34px;height:34px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.m-close:hover{color:var(--ink)}
+.m-img{background:var(--rail);display:flex;align-items:center;justify-content:center;padding:24px}
+.m-img img{max-height:280px;object-fit:contain;border-radius:8px}
+.m-body{padding:28px 30px 32px}
+.m-cat{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
+.m-title{font-family:var(--serif);font-size:22px;font-weight:600;margin:8px 0 12px}
+.m-desc{font-size:13.5px;color:var(--muted);line-height:1.75;margin-bottom:22px}
+.m-links{display:flex;flex-wrap:wrap;gap:16px}
+.m-links a{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);transition:color var(--t)}
+.m-links a .arr{color:var(--green);transition:transform var(--t)}
+.m-links a:hover{color:var(--green)}
+.m-links a:hover .arr{transform:translateX(5px)}
 
 /* =========================================================
-   REVEAL
+   REVEAL & RESPONSIVE
    ========================================================= */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-@media(max-width:960px){
-  .wrap{padding:0 32px}
-  .pf-grid{grid-template-columns:repeat(2,1fr)}
-  .about-grid{grid-template-columns:1fr;gap:48px}
-  .contact-grid{grid-template-columns:1fr;gap:48px}
-  .testi-grid{grid-template-columns:1fr}
-  .modal-box{grid-template-columns:1fr}
-  .m-img{min-height:200px}
+@media(max-width:700px){
+  .row{grid-template-columns:6px 1fr 6px}
+  .row::before,.row::after{border-radius:6px}
+  .row>.cell{padding:28px 22px}
+  .row>.cell.split{grid-template-columns:1fr}
+  .topbar{grid-template-columns:6px 1fr 6px}
+  .gaprow{height:36px}
 }
-@media(max-width:768px){
-  .wrap{padding:0 24px}
-  .nav{padding:0 24px}
-  .nav-links{display:none}
-  .burger{display:flex}
-  .hero-wrap{padding:110px 24px 60px}
-  .pf-grid{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
-  .edu-row{grid-template-columns:80px 1fr;gap:12px}
-  .edu-sch{grid-column:2;text-align:left;white-space:normal}
-}
-@media(max-width:640px){
-  .section{padding:88px 0}
-  .stat-row{grid-template-columns:1fr 1fr}
-  .footer-i{flex-direction:column;text-align:center}
-  .footer-nav{flex-wrap:wrap;justify-content:center}
-  .cv-head{flex-direction:column;align-items:flex-start}
-}
-
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" id="mainNav">
-  <div class="nav-i">
-    <a href="#hero" class="nav-logo">Antoine <em>Diokh</em></a>
-    <div class="nav-links" id="navLinks">
-      <a href="#about"   class="nav-link" data-key="nav_about">À propos</a>
-      <a href="#work"    class="nav-link" data-key="nav_work">Projets</a>
-      <a href="#resume"  class="nav-link" data-key="nav_resume">Parcours</a>
-      <a href="#contact" class="nav-link nav-cta" data-key="nav_contact">Contact</a>
-    </div>
-    <button class="lang-btn" id="langBtn" aria-label="Switch language">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
-      <span id="langLabel">EN</span>
-    </button>
-    <button class="theme-btn" id="themeBtn" aria-label="Basculer le thème">
-      <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+<!-- BARRE HAUTE -->
+<header class="topbar row" style="margin-bottom:0">
+  <div class="cell menu-cell flush" style="border-radius:0 0 var(--r) var(--r)">
+    <button class="menu-btn" id="menuBtn">MENU</button>
   </div>
-  <div class="nav-drawer" id="navDrawer">
-    <a href="#about"   class="nav-link" data-key="nav_about">À propos</a>
-    <a href="#work"    class="nav-link" data-key="nav_work">Projets</a>
-    <a href="#resume"  class="nav-link" data-key="nav_resume">Parcours</a>
-    <a href="#contact" class="nav-link nav-cta" data-key="nav_contact">Contact</a>
-  </div>
-</nav>
+</header>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-wrap">
-    <span class="hero-eyebrow"><span class="edot"></span><span data-key="hero_eyebrow">Antoine Diokh · Product Designer</span></span>
-    <h1 class="hero-title" data-key="hero_title">Je conçois des produits <span class="hl">intuitifs</span> pour les utilisateurs, <em>clairs</em> pour les équipes qui les construisent.</h1>
-    <p class="hero-sub" data-key="hero_sub">De la recherche utilisateur aux prototypes haute-fidélité : un design minimal, délibéré, au service du produit.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-p">
-        <span data-key="hero_cta1">Me contacter</span>
-        <span class="a">↗</span>
-      </a>
-      <a href="#work" class="btn-g" data-key="hero_cta2">Voir mes projets</a>
-    </div>
-    <a href="#about" class="hero-scroll" aria-label="Défiler">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-    </a>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-band" aria-hidden="true">
-  <div class="marquee-track" id="mqTrack">
-    <!-- injecté par JS (x2 pour boucle continue) -->
+<!-- OVERLAY MENU -->
+<div class="menu-ov" id="menuOv">
+  <button class="menu-x" id="menuX" data-key="menu_close">FERMER</button>
+  <a href="#hero"    data-key="m_home">Accueil<i>.</i></a>
+  <a href="#works"   data-key="m_work">Projets<i>.</i></a>
+  <a href="#resume"  data-key="m_resume">Parcours<i>.</i></a>
+  <a href="#contact" data-key="m_contact">Contact<i>.</i></a>
+  <div class="menu-tools">
+    <button id="langBtn"><span id="langLabel">EN</span></button>
+    <button id="themeBtn" data-key="menu_theme">Mode sombre</button>
   </div>
 </div>
 
-<!-- À PROPOS -->
-<section class="section" id="about">
-  <div class="wrap">
-    <div class="sect-hd reveal">
-      <span class="bracket-lbl" data-key="about_lbl">À propos</span>
-      <h2 class="sect-title" data-key="about_title">Design <em>centré humain</em>, du cadrage à la livraison</h2>
-    </div>
-    <div class="about-grid">
-      <div class="reveal">
-        <p class="about-quote" data-key="about_quote">Un bon produit n'a pas besoin d'être expliqué : <em>il se comprend.</em></p>
-        <p class="about-p" data-key="about_p1">Product Designer avec 2 ans d'expérience en conception UX/UI pour des produits B2B et B2C, je suis spécialisé dans la recherche utilisateur, les design systems et la collaboration étroite avec les équipes de développement.</p>
-        <p class="about-p" data-key="about_p2">Polyvalent, j'interviens aussi en communication visuelle : print, motion design, illustration. Basé à Bouc-Bel-Air, ouvert à la mobilité nationale.</p>
-        <div class="skill-tags">
-          <span class="stag">Figma</span><span class="stag">Zeroheight</span><span class="stag">Design system</span>
-          <span class="stag">Prototypage</span><span class="stag">HTML / CSS</span><span class="stag">Webflow</span>
-          <span class="stag">After Effects</span><span class="stag">Illustrator</span><span class="stag">3ds Max</span>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="stat-row">
-          <div class="stat-c"><span class="stat-n">2+</span><span class="stat-l" data-key="s1">Ans d'expérience</span></div>
-          <div class="stat-c"><span class="stat-n">UX</span><span class="stat-l" data-key="s2">Research & Strategy</span></div>
-          <div class="stat-c"><span class="stat-n">UI</span><span class="stat-l" data-key="s3">Interface & Prototype</span></div>
-          <div class="stat-c"><span class="stat-n">2D</span><span class="stat-l" data-key="s4">Motion & Print</span></div>
-        </div>
+<main style="padding-top:61px">
+
+  <!-- HERO -->
+  <div class="row" id="hero">
+    <div class="cell reveal">
+      <h1 class="hero-h" data-key="hero_h">Idées non conventionnelles<i>,</i><br>exécution minimaliste<i>.</i></h1>
+      <p class="hero-p" data-key="hero_p">Bonjour, bonjour ! Moi c'est <b>Antoine Diokh.</b> Je conçois des produits intuitifs pour les utilisateurs et clairs pour les développeurs. Je fais aussi du mot— <span class="cut">[ micro coupé ]</span></p>
+      <p class="narrator" data-key="hero_nar"><b>Narrateur :</b> Ceci était la version bavarde de lui.</p>
+      <div class="timebar">
+        <span class="dia">✦</span>
+        <span data-key="time_lbl">HEURE LOCALE</span>
+        <span class="clock" id="clock">--:--</span>
+        <span class="gmt" id="gmt">GMT +0100</span>
       </div>
     </div>
   </div>
-</section>
 
-<!-- PROJETS -->
-<section class="section sect-alt" id="work">
-  <div class="wrap">
-    <div class="sect-hd reveal">
-      <span class="bracket-lbl" data-key="pf_lbl">Projets</span>
-      <h2 class="sect-title" data-key="pf_title">Une sélection de <em>travaux choisis</em></h2>
+  <!-- RÔLE -->
+  <div class="row">
+    <div class="cell reveal">
+      <h2 class="role-h"><span class="figsel"><b></b><b></b><b></b><b></b><span id="roleWord">Product</span></span><br><span id="roleWord2">Designer</span></h2>
     </div>
-    <div class="pf-grid" id="pfGrid"><!-- injecté par JS --></div>
   </div>
-</section>
 
-<!-- PARCOURS · CV condensé -->
-<section class="section" id="resume">
-  <div class="wrap">
-    <div class="cv-head reveal">
-      <div class="sect-hd">
-        <span class="bracket-lbl" data-key="exp_lbl">Parcours</span>
-        <h2 class="sect-title" data-key="exp_title">L'essentiel, <em>en bref</em></h2>
+  <!-- PORTRAIT -->
+  <div class="row">
+    <div class="cell reveal">
+      <div class="portrait"><img src="assets/image/antoine-digdash.jpg" alt="Antoine Diokh"></div>
+    </div>
+  </div>
+
+  <!-- PANNEAU FONTS -->
+  <div class="row">
+    <div class="cell reveal">
+      <div class="fonts-panel">
+        <div class="fp-head">
+          <span data-key="fp_title">Polices</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </div>
+        <div class="fp-search">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="fpSearch" data-ph="fp_ph" placeholder="Rechercher une police">
+        </div>
+        <div class="fp-hint" data-key="fp_hint">Choisis une police avec moi</div>
+        <div class="fp-list" id="fpList"></div>
       </div>
-      <a href="assets/CV_Antoine_DIOKH.pdf" target="_blank" rel="noopener" class="btn-g">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span data-key="cv_dl">Télécharger mon CV</span>
+    </div>
+  </div>
+
+  <div class="gaprow"></div>
+
+  <!-- STATS -->
+  <div class="row">
+    <div class="cell reveal">
+      <div class="stat-lbl" data-key="st1">Projets présentés</div>
+      <div class="stat-num">07</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell reveal">
+      <div class="stat-lbl" data-key="st2">Années de design</div>
+      <div class="stat-num">+2</div>
+    </div>
+  </div>
+
+  <!-- BANDEAU LED -->
+  <div class="row">
+    <div class="cell flush reveal" style="background:transparent">
+      <div class="led">
+        <div class="led-track" id="ledTrack"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CV -->
+  <div class="row">
+    <div class="cell reveal">
+      <a class="arrow-link" href="assets/CV_Antoine_DIOKH.pdf" target="_blank" rel="noopener">
+        <span class="arr">⇢</span><span data-key="cv_lk">VOIR <em>LE CV</em></span>
+      </a>
+      <p class="arrow-sub" data-key="cv_sub">PDF, s'ouvre dans un nouvel onglet</p>
+    </div>
+  </div>
+
+  <!-- CERTIFS -->
+  <div class="row">
+    <div class="cell split reveal">
+      <div>
+        <div class="stat-lbl" data-key="st3">Certifications</div>
+        <div class="stat-num">02</div>
+      </div>
+      <div>
+        <p class="stat-note" data-key="st3_note">Chaque compétence validée est consignée dans sa base de données : cybersécurité (ANSSI · SecNumAcadémie) et visualisation de données (Udemy).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="gaprow"></div>
+
+  <!-- NOTE DU NARRATEUR -->
+  <div class="row" id="about">
+    <div class="cell reveal">
+      <div class="sec-lbl" data-key="nar_lbl">Note du narrateur</div>
+      <p class="note-p" data-key="nar_p1">Depuis deux ans, Antoine s'est plongé dans le design produit, avec le rêve de faire des interfaces que personne n'a besoin d'expliquer. Discret, on le surprend à redessiner mentalement les écrans mal alignés des autres.</p>
+      <p class="note-p" data-key="nar_p2">Formé au design d'expérience et d'interface numérique, il travaille là où la logique rencontre l'intuition : recherche utilisateur d'un côté, pixels soignés de l'autre.</p>
+      <p class="note-p" data-key="nar_p3">En ce moment, il est <b>Product Designer chez DigDash</b>, où il façonne le thème visuel et le design system d'une plateforme de business intelligence.</p>
+    </div>
+  </div>
+
+  <div class="gaprow"></div>
+
+  <!-- PROJETS -->
+  <div class="row" id="works">
+    <div class="cell reveal">
+      <h2 class="code-h"><i>&lt;</i> PROJETS <i>/&gt;</i></h2>
+      <p class="code-sub" data-key="wk_sub">Une collection des travaux choisis d'Antoine. Cliquez pour voir.</p>
+    </div>
+  </div>
+  <div id="worksList"><!-- injecté par JS --></div>
+
+  <div class="gaprow"></div>
+
+  <!-- PARCOURS -->
+  <div class="row" id="resume">
+    <div class="cell reveal">
+      <h2 class="code-h"><i>&lt;</i> PARCOURS <i>/&gt;</i></h2>
+      <p class="code-sub" data-key="rs_sub">L'essentiel, en bref. Le reste est dans le CV.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell reveal">
+      <div class="job-top">
+        <div class="job-role" data-key="j1_role">Product Designer<i>.</i></div>
+        <div class="job-date">2023 ⇢ AUJ.</div>
+      </div>
+      <div class="job-org">DIGDASH ✦ FUVEAU</div>
+      <ul class="job-list">
+        <li data-key="j1_1">Recherche utilisateur (entretiens, tests, observations) pour orienter les évolutions produit</li>
+        <li data-key="j1_2">Refonte du thème visuel DigDash Enterprise et contribution au design system (Figma + Zeroheight)</li>
+        <li data-key="j1_3">Prototypes interactifs, user flows et wireframes validés avec les clients</li>
+        <li data-key="j1_4">Collaboration quotidienne avec les développeurs · print & motion (salons, tutoriels, webinaires)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell reveal">
+      <div class="job-top">
+        <div class="job-role" data-key="j2_role">UX Designer · Stage<i>.</i></div>
+        <div class="job-date">2023</div>
+      </div>
+      <div class="job-org">BIOPOOLTECH ✦ AIX-EN-PROVENCE</div>
+      <ul class="job-list">
+        <li data-key="j2_1">Refonte de l'ergonomie du site et de l'arborescence du menu</li>
+        <li data-key="j2_2">Icônes de l'application mobile BiopoolConnect et prototypage 3D (3ds Max)</li>
+        <li data-key="j2_3">Print & motion : plaquettes, étiquettes produits, animations 2D</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell reveal">
+      <div class="sec-lbl" data-key="edu_lbl">Formation</div>
+      <div class="edu-row">
+        <div class="edu-deg" data-key="e1">Master Design de Produits et Services Multimédias<small>Université de Franche-Comté</small></div>
+        <span class="edu-yr">2021⇢23</span>
+      </div>
+      <div class="edu-row">
+        <div class="edu-deg" data-key="e2">Master 2 Communication des technologies numériques<small>Université Gaston Berger</small></div>
+        <span class="edu-yr">2018⇢20</span>
+      </div>
+      <div class="edu-row">
+        <div class="edu-deg" data-key="e3">Licence en Infographie<small>Université Gaston Berger</small></div>
+        <span class="edu-yr">2014⇢17</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gaprow"></div>
+
+  <!-- TÉMOIGNAGES -->
+  <div class="row">
+    <div class="cell reveal">
+      <h2 class="code-h"><i>&lt;</i> <span data-key="tm_h">TÉMOIGNAGES</span> <i>/&gt;</i></h2>
+      <p class="code-sub" data-key="tm_sub">Des personnes réelles. Des mots vérifiés par le narrateur.</p>
+    </div>
+  </div>
+  <div id="testiList"><!-- injecté par JS --></div>
+
+  <div class="gaprow"></div>
+
+  <!-- CONTACT -->
+  <div class="row" id="contact">
+    <div class="cell reveal">
+      <h2 class="mute-h" data-key="ct_h">[ Micro réactivé ]</h2>
+      <p class="ct-p" data-key="ct_p">Toujours partant pour discuter, de motion design, de dataviz ou de votre prochain projet. Vous pouvez m'écrire à..</p>
+      <a class="ct-mail" href="mailto:antoinediokh@gmail.com">antoinediokh@gmail.com <span class="arr">⇢</span></a>
+    </div>
+  </div>
+
+  <div class="gaprow"></div>
+
+  <!-- FOOTER -->
+  <div class="row">
+    <div class="cell cells4 reveal">
+      <a href="https://www.linkedin.com/in/antoinengordiokh/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="mailto:antoinediokh@gmail.com" aria-label="Email">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+      </a>
+      <a href="https://github.com/SudoSerere" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+      <a href="assets/CV_Antoine_DIOKH.pdf" target="_blank" rel="noopener" aria-label="CV">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       </a>
     </div>
-    <div class="timeline">
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-top">
-            <div>
-              <div class="tl-role" data-key="j1_role">Product Designer</div>
-              <div class="tl-company">DIGDASH · Fuveau</div>
-            </div>
-            <span class="tl-date" data-key="j1_date">Sept 2023 · Aujourd'hui</span>
-          </div>
-          <ul class="tl-list">
-            <li data-key="j1_1">Recherche utilisateur (entretiens, tests, observations) pour orienter les évolutions produit</li>
-            <li data-key="j1_2">Refonte du thème visuel DigDash Enterprise et contribution au design system (Figma + Zeroheight)</li>
-            <li data-key="j1_3">Prototypes interactifs, user flows et wireframes validés avec les clients</li>
-            <li data-key="j1_4">Collaboration quotidienne avec les développeurs · print & motion (salons, tutoriels, webinaires)</li>
-          </ul>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-top">
-            <div>
-              <div class="tl-role" data-key="j2_role">UX Designer · Stage</div>
-              <div class="tl-company">BioPoolTech · Aix-en-Provence</div>
-            </div>
-            <span class="tl-date" data-key="j2_date">Mars · Sept 2023</span>
-          </div>
-          <ul class="tl-list">
-            <li data-key="j2_1">Refonte de l'ergonomie du site et de l'arborescence du menu</li>
-            <li data-key="j2_2">Icônes de l'application mobile BiopoolConnect et prototypage 3D (3ds Max)</li>
-            <li data-key="j2_3">Print & motion : plaquettes, étiquettes produits, animations 2D</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- FORMATION compacte -->
-    <div class="edu-block">
-      <h3 class="edu-h reveal" data-key="edu_h">Formation & <em>certifications</em></h3>
-      <div class="edu-list reveal">
-        <div class="edu-row">
-          <span class="edu-yr">2021 · 23</span>
-          <span class="edu-deg" data-key="e1">Master Design de Produits et Services Multimédias</span>
-          <span class="edu-sch">Univ. de Franche-Comté</span>
-        </div>
-        <div class="edu-row">
-          <span class="edu-yr">2018 · 20</span>
-          <span class="edu-deg" data-key="e2">Master 2 Communication des technologies numériques</span>
-          <span class="edu-sch">Univ. Gaston Berger</span>
-        </div>
-        <div class="edu-row">
-          <span class="edu-yr">2014 · 17</span>
-          <span class="edu-deg" data-key="e3">Licence en Infographie</span>
-          <span class="edu-sch">Univ. Gaston Berger</span>
-        </div>
-      </div>
-      <div class="certif-strip reveal">
-        <span class="certif-lbl" data-key="cert_lbl">Certifications</span>
-        <div class="certif-item">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-          <span data-key="cert1">Cybersécurité · SecNumAcadémie ANSSI</span>
-        </div>
-        <div class="certif-item">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-          <span data-key="cert2">Visualisation des données · Udemy</span>
-        </div>
-      </div>
+  </div>
+  <div class="row">
+    <div class="cell cells4 reveal">
+      <a href="#hero"    data-key="f_home">ACCUEIL</a>
+      <a href="#works"   data-key="f_work">PROJETS</a>
+      <a href="#resume"  data-key="f_resume">PARCOURS</a>
+      <a href="#contact" data-key="f_contact">CONTACT</a>
     </div>
   </div>
-</section>
-
-<!-- TÉMOIGNAGES -->
-<section class="section sect-alt" id="testimonials">
-  <div class="wrap">
-    <div class="sect-hd reveal">
-      <span class="bracket-lbl" data-key="testi_lbl">Témoignages</span>
-      <h2 class="sect-title" data-key="testi_title">Ce qu'ils disent <em>de moi</em></h2>
-    </div>
-    <div class="testi-grid" id="testiGrid"><!-- injecté par JS --></div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="section" id="contact">
-  <div class="wrap">
-    <div class="sect-hd reveal">
-      <span class="bracket-lbl" data-key="ct_lbl">Contact</span>
-      <h2 class="sect-title" data-key="ct_title">Travaillons <em>ensemble</em></h2>
-    </div>
-    <div class="contact-grid">
-      <div class="reveal">
-        <p class="contact-intro" data-key="ct_desc">Un projet, une opportunité, ou simplement envie d'échanger sur le design ? Écrivez-moi, je réponds vite.</p>
-        <a href="mailto:antoinediokh@gmail.com" class="contact-mail">
-          antoinediokh@gmail.com
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
-        </a>
-        <div class="socials">
-          <a href="https://www.linkedin.com/in/antoinengordiokh/" target="_blank" rel="noopener noreferrer" class="social-lk">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://github.com/SudoSerere" target="_blank" rel="noopener noreferrer" class="social-lk">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-      <form class="form reveal" id="contactForm">
-        <div class="form-row">
-          <div class="fg">
-            <label class="fl" for="fname" data-key="f_name">Nom *</label>
-            <input class="fi" type="text" id="fname" name="name" required autocomplete="name" data-ph="f_name_ph" placeholder="Votre nom">
-          </div>
-          <div class="fg">
-            <label class="fl" for="femail">Email *</label>
-            <input class="fi" type="email" id="femail" name="email" required autocomplete="email" placeholder="votre@email.com">
-          </div>
-        </div>
-        <div class="fg">
-          <label class="fl" for="fsubj" data-key="f_subj">Sujet</label>
-          <input class="fi" type="text" id="fsubj" name="subject" data-ph="f_subj_ph" placeholder="Opportunité, projet, collaboration...">
-        </div>
-        <div class="fg">
-          <label class="fl" for="fmsg" data-key="f_msg">Message *</label>
-          <textarea class="fi ft" id="fmsg" name="message" required data-ph="f_msg_ph" placeholder="Décrivez votre projet ou votre demande..."></textarea>
-        </div>
-        <button type="submit" class="btn-p" style="width:100%;justify-content:center" id="submitBtn">
-          <span id="submitLabel" data-key="f_send">Envoyer le message</span>
-          <span class="a"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
-        </button>
-        <p class="f-status" id="fStatus"></p>
-      </form>
+  <div class="row">
+    <div class="cell reveal">
+      <p class="copy-l">ANTOINE DIOKH © <span id="year">2026</span></p>
+      <p class="copy-s" data-key="f_lefts">TOUS DROITS RENVERSÉS</p>
+      <p class="fin">La <i>Fin</i><span>.</span></p>
     </div>
   </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="wrap footer-i">
-    <span class="footer-logo">Antoine <em>Diokh</em></span>
-    <nav class="footer-nav">
-      <a href="#about"   data-key="nav_about">À propos</a>
-      <a href="#work"    data-key="nav_work">Projets</a>
-      <a href="#resume"  data-key="nav_resume">Parcours</a>
-      <a href="#contact" data-key="nav_contact">Contact</a>
-    </nav>
-    <p class="footer-loc" data-key="footer_loc">Basé en France · Ouvert à la mobilité nationale</p>
+  <div class="row" style="margin-bottom:0">
+    <div class="cell flush" style="background:transparent"><div class="lego"></div></div>
   </div>
-</footer>
 
-<!-- MODAL -->
+</main>
+
+<!-- MODAL PROJET -->
 <div class="modal-bd" id="modalBd" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="modal-box" id="modalBox">
     <button class="m-close" id="mClose" aria-label="Fermer">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <div class="m-img"><img id="mImg" src="" alt=""></div>
     <div class="m-body">
@@ -636,183 +560,195 @@ body.dark .m-btn.pri:hover{color:#fff}
 /* ── TRADUCTIONS ──────────────────────────────────── */
 var T = {
   fr:{
-    nav_about:'À propos', nav_work:'Projets', nav_resume:'Parcours', nav_contact:'Contact',
-    hero_eyebrow:'Antoine Diokh · Product Designer',
-    hero_title:'Je conçois des produits <span class="hl">intuitifs</span> pour les utilisateurs, <em>clairs</em> pour les équipes qui les construisent.',
-    hero_sub:"De la recherche utilisateur aux prototypes haute-fidélité : un design minimal, délibéré, au service du produit.",
-    hero_cta1:'Me contacter', hero_cta2:'Voir mes projets',
-    about_lbl:'À propos',
-    about_title:'Design <em>centré humain</em>, du cadrage à la livraison',
-    about_quote:"Un bon produit n'a pas besoin d'être expliqué : <em>il se comprend.</em>",
-    about_p1:"Product Designer avec 2 ans d'expérience en conception UX/UI pour des produits B2B et B2C, je suis spécialisé dans la recherche utilisateur, les design systems et la collaboration étroite avec les équipes de développement.",
-    about_p2:"Polyvalent, j'interviens aussi en communication visuelle : print, motion design, illustration. Basé à Bouc-Bel-Air, ouvert à la mobilité nationale.",
-    s1:"Ans d'expérience", s2:'Research & Strategy', s3:'Interface & Prototype', s4:'Motion & Print',
-    pf_lbl:'Projets', pf_title:'Une sélection de <em>travaux choisis</em>',
-    pf_view:'Voir le projet', pf_mob:'Version mobile', pf_desk:'Version bureau',
-    exp_lbl:'Parcours', exp_title:"L'essentiel, <em>en bref</em>",
-    cv_dl:'Télécharger mon CV',
-    j1_role:'Product Designer', j1_date:"Sept 2023 · Aujourd'hui",
+    menu_close:'FERMER', menu_theme:'Mode sombre', menu_theme_l:'Mode clair',
+    m_home:'Accueil<i>.</i>', m_work:'Projets<i>.</i>', m_resume:'Parcours<i>.</i>', m_contact:'Contact<i>.</i>',
+    hero_h:'Idées non conventionnelles<i>,</i><br>exécution minimaliste<i>.</i>',
+    hero_p:'Bonjour, bonjour ! Moi c\'est <b>Antoine Diokh.</b> Je conçois des produits intuitifs pour les utilisateurs et clairs pour les développeurs. Je fais aussi du mot— <span class="cut">[ micro coupé ]</span>',
+    hero_nar:'<b>Narrateur :</b> Ceci était la version bavarde de lui.',
+    time_lbl:'HEURE LOCALE',
+    fp_title:'Polices', fp_ph:'Rechercher une police', fp_hint:'Choisis une police avec moi',
+    st1:'Projets présentés', st2:'Années de design', st3:'Certifications',
+    st3_note:'Chaque compétence validée est consignée dans sa base de données : cybersécurité (ANSSI · SecNumAcadémie) et visualisation de données (Udemy).',
+    cv_lk:'VOIR <em>LE CV</em>', cv_sub:"PDF, s'ouvre dans un nouvel onglet",
+    led:['ANTOINE DIOKH','PRODUCT DESIGNER','UX ✦ UI ✦ MOTION','DISPONIBLE POUR ÉCHANGER'],
+    nar_lbl:'Note du narrateur',
+    nar_p1:"Depuis deux ans, Antoine s'est plongé dans le design produit, avec le rêve de faire des interfaces que personne n'a besoin d'expliquer. Discret, on le surprend à redessiner mentalement les écrans mal alignés des autres.",
+    nar_p2:"Formé au design d'expérience et d'interface numérique, il travaille là où la logique rencontre l'intuition : recherche utilisateur d'un côté, pixels soignés de l'autre.",
+    nar_p3:"En ce moment, il est <b>Product Designer chez DigDash</b>, où il façonne le thème visuel et le design system d'une plateforme de business intelligence.",
+    wk_sub:"Une collection des travaux choisis d'Antoine. Cliquez pour voir.",
+    rs_sub:"L'essentiel, en bref. Le reste est dans le CV.",
+    j1_role:'Product Designer<i>.</i>',
     j1_1:"Recherche utilisateur (entretiens, tests, observations) pour orienter les évolutions produit",
     j1_2:"Refonte du thème visuel DigDash Enterprise et contribution au design system (Figma + Zeroheight)",
     j1_3:"Prototypes interactifs, user flows et wireframes validés avec les clients",
     j1_4:"Collaboration quotidienne avec les développeurs · print & motion (salons, tutoriels, webinaires)",
-    j2_role:'UX Designer · Stage', j2_date:'Mars · Sept 2023',
+    j2_role:'UX Designer · Stage<i>.</i>',
     j2_1:"Refonte de l'ergonomie du site et de l'arborescence du menu",
     j2_2:"Icônes de l'application mobile BiopoolConnect et prototypage 3D (3ds Max)",
     j2_3:"Print & motion : plaquettes, étiquettes produits, animations 2D",
-    edu_h:'Formation & <em>certifications</em>',
-    e1:'Master Design de Produits et Services Multimédias',
-    e2:'Master 2 Communication des technologies numériques',
-    e3:'Licence en Infographie',
-    cert_lbl:'Certifications',
-    cert1:'Cybersécurité · SecNumAcadémie ANSSI',
-    cert2:'Visualisation des données · Udemy',
-    testi_lbl:'Témoignages', testi_title:'Ce qu\'ils disent <em>de moi</em>',
-    ct_lbl:'Contact', ct_title:'Travaillons <em>ensemble</em>',
-    ct_desc:"Un projet, une opportunité, ou simplement envie d'échanger sur le design ? Écrivez-moi, je réponds vite.",
-    f_name:'Nom *', f_name_ph:'Votre nom',
-    f_subj:'Sujet', f_subj_ph:'Opportunité, projet, collaboration...',
-    f_msg:'Message *', f_msg_ph:'Décrivez votre projet ou votre demande...',
-    f_send:'Envoyer le message',
-    footer_loc:'Basé en France · Ouvert à la mobilité nationale',
-    form_ok:"Message envoyé ! Je vous réponds très bientôt.",
-    mq:['UX Research','Interface Design','Prototypage','Design System','Motion Design','Figma','User Testing','Product Strategy','Webflow','After Effects']
+    edu_lbl:'Formation',
+    e1:'Master Design de Produits et Services Multimédias<small>Université de Franche-Comté</small>',
+    e2:'Master 2 Communication des technologies numériques<small>Université Gaston Berger</small>',
+    e3:'Licence en Infographie<small>Université Gaston Berger</small>',
+    tm_h:'TÉMOIGNAGES', tm_sub:'Des personnes réelles. Des mots vérifiés par le narrateur.',
+    ct_h:'[ Micro réactivé ]',
+    ct_p:"Toujours partant pour discuter, de motion design, de dataviz ou de votre prochain projet. Vous pouvez m'écrire à..",
+    f_home:'ACCUEIL', f_work:'PROJETS', f_resume:'PARCOURS', f_contact:'CONTACT',
+    f_lefts:'TOUS DROITS RENVERSÉS',
+    pf_view:'Voir le projet', pf_mob:'Version mobile', pf_desk:'Version bureau'
   },
   en:{
-    nav_about:'About', nav_work:'Work', nav_resume:'Resume', nav_contact:'Contact',
-    hero_eyebrow:'Antoine Diokh · Product Designer',
-    hero_title:'I design products that are <span class="hl">intuitive</span> for users and <em>straightforward</em> for the teams building them.',
-    hero_sub:'From user research to high-fidelity prototypes: minimal, deliberate design in service of the product.',
-    hero_cta1:'Contact me', hero_cta2:'See my work',
-    about_lbl:'About',
-    about_title:'<em>Human-centred</em> design, from framing to delivery',
-    about_quote:"A good product needs no explanation: <em>it just makes sense.</em>",
-    about_p1:"Product Designer with 2 years of UX/UI experience across B2B and B2C products, specialised in user research, design systems and close collaboration with development teams.",
-    about_p2:"A versatile designer, I also work in visual communication: print, motion design, illustration. Based in southern France, open to relocation.",
-    s1:'Years of experience', s2:'Research & Strategy', s3:'Interface & Prototype', s4:'Motion & Print',
-    pf_lbl:'Work', pf_title:'A selection of <em>curated works</em>',
-    pf_view:'View project', pf_mob:'Mobile version', pf_desk:'Desktop version',
-    exp_lbl:'Resume', exp_title:'The essentials, <em>in brief</em>',
-    cv_dl:'Download my resume',
-    j1_role:'Product Designer', j1_date:'Sept 2023 · Present',
-    j1_1:"User research (interviews, tests, observations) to guide product decisions",
-    j1_2:"Redesign of the DigDash Enterprise visual theme and design system contribution (Figma + Zeroheight)",
-    j1_3:"Interactive prototypes, user flows and wireframes validated with clients",
-    j1_4:"Daily collaboration with developers · print & motion (trade shows, tutorials, webinars)",
-    j2_role:'UX Designer · Internship', j2_date:'March · Sept 2023',
-    j2_1:"Website ergonomics and menu architecture redesign",
-    j2_2:"BiopoolConnect mobile app icons and 3D prototyping (3ds Max)",
-    j2_3:"Print & motion: brochures, product labels, 2D animations",
-    edu_h:'Education & <em>certifications</em>',
-    e1:"Master's in Multimedia Product & Service Design",
-    e2:"Master's 2 in Digital Technology Communication",
-    e3:"Bachelor's in Infographics",
-    cert_lbl:'Certifications',
-    cert1:'Cybersecurity · SecNumAcadémie ANSSI',
-    cert2:'Data visualisation · Udemy',
-    testi_lbl:'Testimonials', testi_title:'What they say <em>about me</em>',
-    ct_lbl:'Contact', ct_title:"Let's work <em>together</em>",
-    ct_desc:"A project, an opportunity, or just fancy a chat about design? Write to me, I reply quickly.",
-    f_name:'Name *', f_name_ph:'Your name',
-    f_subj:'Subject', f_subj_ph:'Opportunity, project, collaboration...',
-    f_msg:'Message *', f_msg_ph:'Describe your project or enquiry...',
-    f_send:'Send message',
-    footer_loc:'Based in France · Open to relocation',
-    form_ok:"Message sent! I'll get back to you very soon.",
-    mq:['UX Research','Interface Design','Prototyping','Design System','Motion Design','Figma','User Testing','Product Strategy','Webflow','After Effects']
+    menu_close:'CLOSE', menu_theme:'Dark mode', menu_theme_l:'Light mode',
+    m_home:'Home<i>.</i>', m_work:'Work<i>.</i>', m_resume:'Resume<i>.</i>', m_contact:'Contact<i>.</i>',
+    hero_h:'Unconventional ideas<i>,</i><br>minimalist execution<i>.</i>',
+    hero_p:'Well hello there! I\'m <b>Antoine Diokh.</b> I design products that are intuitive for users and straightforward for developers. I also do mot— <span class="cut">[ muted ]</span>',
+    hero_nar:'<b>Narrator:</b> That was the loud version of him.',
+    time_lbl:'LOCAL TIME',
+    fp_title:'Fonts', fp_ph:'Search fonts', fp_hint:'Choose a font with me',
+    st1:'Projects showcased', st2:'Years of design', st3:'Certifications',
+    st3_note:'Every validated skill is registered in his database: cybersecurity (ANSSI · SecNumAcadémie) and data visualisation (Udemy).',
+    cv_lk:'VIEW <em>RESUME</em>', cv_sub:'PDF, opens in a new tab',
+    led:['ANTOINE DIOKH','PRODUCT DESIGNER','UX ✦ UI ✦ MOTION','OPEN TO A CHAT'],
+    nar_lbl:"Narrator's note",
+    nar_p1:"For the past two years, Antoine has immersed himself in product design, dreaming of interfaces nobody needs explained. Quiet by nature, he can be caught mentally realigning other people's misaligned screens.",
+    nar_p2:"Trained in experience and interface design, he works where logic meets intuition: user research on one side, well-kept pixels on the other.",
+    nar_p3:"Right now, he's a <b>Product Designer at DigDash</b>, shaping the visual theme and design system of a business intelligence platform.",
+    wk_sub:"A collection of Antoine's curated works. Click one to view.",
+    rs_sub:'The essentials, in brief. The rest lives in the resume.',
+    j1_role:'Product Designer<i>.</i>',
+    j1_1:'User research (interviews, tests, observations) to guide product decisions',
+    j1_2:'Redesign of the DigDash Enterprise visual theme and design system contribution (Figma + Zeroheight)',
+    j1_3:'Interactive prototypes, user flows and wireframes validated with clients',
+    j1_4:'Daily collaboration with developers · print & motion (trade shows, tutorials, webinars)',
+    j2_role:'UX Designer · Internship<i>.</i>',
+    j2_1:'Website ergonomics and menu architecture redesign',
+    j2_2:'BiopoolConnect mobile app icons and 3D prototyping (3ds Max)',
+    j2_3:'Print & motion: brochures, product labels, 2D animations',
+    edu_lbl:'Education',
+    e1:"Master's in Multimedia Product & Service Design<small>Université de Franche-Comté</small>",
+    e2:"Master's 2 in Digital Technology Communication<small>Université Gaston Berger</small>",
+    e3:"Bachelor's in Infographics<small>Université Gaston Berger</small>",
+    tm_h:'TESTIMONIALS', tm_sub:'Real people. Words verified by the narrator.',
+    ct_h:'[ Unmuted ]',
+    ct_p:"Always up for a chat, about motion design, dataviz or your next project. You can reach me at..",
+    f_home:'HOME', f_work:'WORK', f_resume:'RESUME', f_contact:'CONTACT',
+    f_lefts:'ALL RIGHTS RELAXED',
+    pf_view:'View project', pf_mob:'Mobile version', pf_desk:'Desktop version'
   }
 };
 
-/* ── DONNÉES PROJETS ──────────────────────────────── */
+/* ── PROJETS ──────────────────────────────────────── */
 var PROJECTS = [
   {
-    img:'assets/image/logoG.png',
-    cat:{fr:'Identité visuelle',en:'Brand identity'},
-    title:{fr:'Logo pour une entreprise de logistique',en:'Logo for a logistics company'},
-    desc:{fr:"Processus créatif et recherche graphique pour la conception d'un logo d'entreprise de logistique. Exploration typographique, symbolique et colorimétrique.",en:"Creative process and graphic research for designing a logistics company logo. Typographic, symbolic and colour exploration."},
-    links:[{key:'pf_view',url:'https://www.figma.com/proto/9UnTRkB8jRkeRqhKVPPMQA/presentation-greilsalmmer?page-id=0%3A1&node-id=1%3A3&starting-point-node-id=1%3A3',primary:true}]
-  },
-  {
-    img:'assets/image/applicov.png',
-    cat:{fr:'UX/UI Design',en:'UX/UI Design'},
-    title:{fr:'Application mobile COVID-19',en:'COVID-19 mobile application'},
-    desc:{fr:"Conception et proposition d'une nouvelle expérience utilisateur pour les applications COVID. Prototypage sur Figma : refonte des parcours, de l'interface et de l'ergonomie.",en:"Design and proposal for a new user experience for COVID applications. Figma prototyping: redesign of user flows, interface and ergonomics."},
-    links:[{key:'pf_view',url:'https://www.figma.com/proto/RpTAlaN1O2uk8Pq7qrRsC1/projet-covid19-Antoine?page-id=0%3A1&node-id=3%3A185&viewport=384%2C261%2C0.4&scaling=scale-down&starting-point-node-id=3%3A185&show-proto-sidebar=1',primary:true}]
-  },
-  {
     img:'assets/image/rodia.png',
+    name:'LA RODIA',
     cat:{fr:'UX/UI Design',en:'UX/UI Design'},
-    title:{fr:'Refonte site web · La RODIA',en:'Website redesign · La RODIA'},
-    desc:{fr:"Proposition d'un nouveau design de site pour La RODIA. Deux versions conçues : mobile et bureau, avec refonte complète de l'expérience utilisateur et de l'interface.",en:"New website design proposal for La RODIA. Two versions designed: mobile and desktop, with a complete UX and interface redesign."},
+    tags:{fr:['UX/UI','Mobile','Bureau'],en:['UX/UI','Mobile','Desktop']},
+    desc:{fr:"Refonte complète du site de la salle de concert La RODIA : expérience, interface et parcours repensés, en deux versions (mobile et bureau).",en:"Complete redesign of La RODIA concert hall website: experience, interface and flows rethought, in mobile and desktop versions."},
     links:[
-      {key:'pf_mob',url:'https://www.figma.com/proto/iS7UddRdFrbHbrAp9BMQAl/M1-PSM-%E2%80%94-Rodia---Antoine-DIOKH?page-id=1001%3A799&node-id=1001%3A809',primary:true},
-      {key:'pf_desk',url:'https://www.figma.com/proto/iS7UddRdFrbHbrAp9BMQAl/M1-PSM-%E2%80%94-Rodia---Antoine-DIOKH?page-id=1001%3A800&node-id=1001%3A813',primary:false}
+      {key:'pf_mob',url:'https://www.figma.com/proto/iS7UddRdFrbHbrAp9BMQAl/M1-PSM-%E2%80%94-Rodia---Antoine-DIOKH?page-id=1001%3A799&node-id=1001%3A809'},
+      {key:'pf_desk',url:'https://www.figma.com/proto/iS7UddRdFrbHbrAp9BMQAl/M1-PSM-%E2%80%94-Rodia---Antoine-DIOKH?page-id=1001%3A800&node-id=1001%3A813'}
     ]
   },
   {
+    img:'assets/image/applicov.png',
+    name:'COVID ALERT',
+    cat:{fr:'UX/UI Design',en:'UX/UI Design'},
+    tags:{fr:['App mobile','UX/UI','Figma'],en:['Mobile app','UX/UI','Figma']},
+    desc:{fr:"Proposition d'une nouvelle expérience utilisateur pour les applications COVID : refonte des parcours, de l'interface et de l'ergonomie, prototypée sur Figma.",en:"A new user experience proposal for COVID applications: flows, interface and ergonomics redesigned, prototyped in Figma."},
+    links:[{key:'pf_view',url:'https://www.figma.com/proto/RpTAlaN1O2uk8Pq7qrRsC1/projet-covid19-Antoine?page-id=0%3A1&node-id=3%3A185&viewport=384%2C261%2C0.4&scaling=scale-down&starting-point-node-id=3%3A185&show-proto-sidebar=1'}]
+  },
+  {
+    img:'assets/image/logoG.png',
+    name:'GREILSAMMER',
+    cat:{fr:'Identité visuelle',en:'Brand identity'},
+    tags:{fr:['Logo','Branding','Recherche'],en:['Logo','Branding','Research']},
+    desc:{fr:"Processus créatif complet pour le logo d'une entreprise de logistique : exploration typographique, symbolique et colorimétrique.",en:"Full creative process for a logistics company logo: typographic, symbolic and colour exploration."},
+    links:[{key:'pf_view',url:'https://www.figma.com/proto/9UnTRkB8jRkeRqhKVPPMQA/presentation-greilsalmmer?page-id=0%3A1&node-id=1%3A3&starting-point-node-id=1%3A3'}]
+  },
+  {
     img:'assets/image/wal.png',
+    name:'ESCAPE GAME',
     cat:{fr:'Design print',en:'Print design'},
-    title:{fr:'Affiche · Escape game',en:'Poster · Escape game'},
-    desc:{fr:"Conception d'une affiche et déclinaisons couleur pour un escape game. Travail sur la typographie, la composition et l'identité visuelle du lieu.",en:"Design of a poster and colour variations for an escape game. Typography, composition and venue visual identity."},
-    links:[{key:'pf_view',url:'assets/image/wal1.png',primary:true}]
+    tags:{fr:['Affiche','Print','Typo'],en:['Poster','Print','Type']},
+    desc:{fr:"Affiche et déclinaisons couleur pour un escape game : typographie, composition et identité visuelle du lieu.",en:"Poster and colour variations for an escape game: typography, composition and venue identity."},
+    links:[{key:'pf_view',url:'assets/image/wal1.png'}]
   },
   {
     img:'assets/image/rich.png',
+    name:'RICHMEET',
     cat:{fr:'Motion design',en:'Motion design'},
-    title:{fr:'Animation vidéo · Site de rencontre',en:'Video animation · Dating website'},
-    desc:{fr:"Réalisation d'une vidéo animée pour la présentation d'un site de rencontre. Conception des visuels, animation et montage.",en:"Production of an animated video to present a dating website. Visual design, animation and editing."},
-    links:[{key:'pf_view',url:'https://drive.google.com/file/d/1eMxyfWCYhAMQDXvZ1D4x0TnjUM_zYlYi/view?usp=sharing',primary:true}]
+    tags:{fr:['Animation 2D','Vidéo','Montage'],en:['2D animation','Video','Editing']},
+    desc:{fr:"Vidéo animée de présentation pour un site de rencontre : conception des visuels, animation et montage.",en:"Animated presentation video for a dating website: visuals, animation and editing."},
+    links:[{key:'pf_view',url:'https://drive.google.com/file/d/1eMxyfWCYhAMQDXvZ1D4x0TnjUM_zYlYi/view?usp=sharing'}]
   },
   {
     img:'assets/image/cat.png',
+    name:'RESCUE',
     cat:{fr:'Motion design',en:'Motion design'},
-    title:{fr:'Vectorisation & animation 2D',en:'Vectorisation & 2D animation'},
-    desc:{fr:"Vidéo de vectorisation et animation 2D réalisée pour présenter un service de secours lors de catastrophes naturelles.",en:"2D vectorisation and animation video created to present an emergency rescue service during natural disasters."},
-    links:[{key:'pf_view',url:'https://youtu.be/YFHvtz9IyHI',primary:true}]
+    tags:{fr:['Vectorisation','Animation 2D'],en:['Vectorising','2D animation']},
+    desc:{fr:"Vectorisation et animation 2D pour présenter un service de secours lors de catastrophes naturelles.",en:"2D vectorisation and animation presenting an emergency rescue service for natural disasters."},
+    links:[{key:'pf_view',url:'https://youtu.be/YFHvtz9IyHI'}]
   },
   {
     img:'assets/image/lam.png',
+    name:'LAMTORO',
     cat:{fr:'Motion design',en:'Motion design'},
-    title:{fr:"Animation vidéo · Services d'entreprise",en:'Video animation · Business services'},
-    desc:{fr:"Animation vidéo 2D pour la présentation des services d'une entreprise. Conception des illustrations, animation et montage final.",en:"2D video animation presenting a company's services. Illustration design, animation and final editing."},
-    links:[{key:'pf_view',url:'https://drive.google.com/file/d/1NarmXkKGJUxvmde1luEy8UjPIvljJJEW/view?usp=sharing',primary:true}]
+    tags:{fr:['Animation 2D','Illustration'],en:['2D animation','Illustration']},
+    desc:{fr:"Animation vidéo 2D des services d'une entreprise : illustrations, animation et montage final.",en:"2D video animation of a company's services: illustrations, animation and final editing."},
+    links:[{key:'pf_view',url:'https://drive.google.com/file/d/1NarmXkKGJUxvmde1luEy8UjPIvljJJEW/view?usp=sharing'}]
   }
 ];
 
 /* ── TÉMOIGNAGES ──────────────────────────────────── */
 var TESTIMONIALS = [
   {
-    text:{
-      fr:"Antoine possède un talent avéré pour le graphisme. Il a su par ses compétences dépasser les attentes et fournir un travail de qualité. Vous pouvez compter sur Antoine.",
-      en:"Antoine has a definite talent for graphic design. He was able to use his skills to exceed expectations and deliver quality work. You can count on Antoine."
-    },
-    author:"Anouk Spitz",
-    role:{fr:"Développeuse de réseau",en:"Network Developer"},
-    initials:"AS"
+    text:{fr:"Antoine possède un talent avéré pour le graphisme. Il a su par ses compétences dépasser les attentes et fournir un travail de qualité. Vous pouvez compter sur Antoine.",en:"Antoine has a definite talent for graphic design. He exceeded expectations and delivered quality work. You can count on Antoine."},
+    author:"Anouk Spitz", role:{fr:"Développeuse de réseau",en:"Network Developer"}
   },
   {
-    text:{
-      fr:"Je recommande Antoine vivement. C'est quelqu'un de très agréable au travail, qui sait travailler en équipe et définir ses priorités. Il travaille rapidement, et a beaucoup de compétences dans divers domaines.",
-      en:"I highly recommend Antoine. He is a very pleasant person to work with, who works well in a team and sets his priorities clearly. He works quickly and has many skills in various areas."
-    },
-    author:"Carla Rossi",
-    role:{fr:"Responsable Communication",en:"Communications Manager"},
-    initials:"CR"
+    text:{fr:"Je recommande Antoine vivement. Quelqu'un de très agréable au travail, qui sait travailler en équipe et définir ses priorités. Rapide, avec beaucoup de compétences dans divers domaines.",en:"I highly recommend Antoine. Very pleasant to work with, a real team player who sets priorities clearly. Fast, with skills across many areas."},
+    author:"Carla Rossi", role:{fr:"Responsable Communication",en:"Communications Manager"}
   },
   {
-    text:{
-      fr:"Excellent collaborateur, toujours à l'écoute, très efficace et totalement engagé 👏",
-      en:"Excellent collaborator, always attentive, very efficient and totally committed 👏"
-    },
-    author:"Emmanuel Berthod",
-    role:{fr:"Business Unit Executive",en:"Business Unit Executive"},
-    initials:"EB"
+    text:{fr:"Excellent collaborateur, toujours à l'écoute, très efficace et totalement engagé 👏",en:"Excellent collaborator, always attentive, very efficient and totally committed 👏"},
+    author:"Emmanuel Berthod", role:{fr:"Business Unit Executive",en:"Business Unit Executive"}
   }
 ];
 
+/* ── POLICES (panneau Figma) ──────────────────────── */
+var FONTS = [
+  {n:'Abril Fatface', f:"'Abril Fatface',serif"},
+  {n:'Lobster',       f:"'Lobster',cursive"},
+  {n:'Lora',          f:"'Lora',serif"},
+  {n:'Merriweather',  f:"'Merriweather',serif"},
+  {n:'Oswald',        f:"'Oswald',sans-serif"},
+  {n:'Pacifico',      f:"'Pacifico',cursive"},
+  {n:'Fraunces',      f:"'Fraunces',serif"},
+  {n:'Inter',         f:"'Inter',sans-serif"}
+];
+var curFont = 'Fraunces';
+
+function buildFonts(filter){
+  var list = document.getElementById('fpList');
+  list.innerHTML = '';
+  FONTS.forEach(function(ft){
+    if (filter && ft.n.toLowerCase().indexOf(filter.toLowerCase()) === -1) return;
+    var b = document.createElement('button');
+    b.className = 'fp-item' + (ft.n === curFont ? ' on' : '');
+    b.style.fontFamily = ft.f;
+    b.innerHTML = '<span class="tick">✦</span>' + ft.n;
+    b.addEventListener('click', function(){
+      curFont = ft.n;
+      document.querySelector('.role-h').style.fontFamily = ft.f;
+      buildFonts(document.getElementById('fpSearch').value);
+    });
+    list.appendChild(b);
+  });
+}
+document.getElementById('fpSearch').addEventListener('input', function(){ buildFonts(this.value); });
+
 /* ── THÈME ────────────────────────────────────────── */
-var SUN = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
-var MOON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
 var storedTheme = localStorage.getItem('ad_theme');
 var isDark = storedTheme ? storedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -820,10 +756,9 @@ function applyTheme(dark) {
   isDark = dark;
   document.body.classList.toggle('dark', dark);
   localStorage.setItem('ad_theme', dark ? 'dark' : 'light');
-  document.getElementById('themeIcon').innerHTML = dark ? SUN : MOON;
+  var btn = document.getElementById('themeBtn');
+  btn.textContent = dark ? T[lang].menu_theme_l : T[lang].menu_theme;
 }
-applyTheme(isDark);
-document.getElementById('themeBtn').addEventListener('click', function(){ applyTheme(!isDark); });
 
 /* ── LANGUE ───────────────────────────────────────── */
 var lang = localStorage.getItem('ad_lang') || 'fr';
@@ -841,167 +776,143 @@ function applyLang(l) {
     var v = T[l][el.dataset.ph];
     if (v !== undefined) el.placeholder = v;
   });
-  buildMarquee();
-  buildPortfolio();
+  buildLed();
+  buildWorks();
   buildTestimonials();
+  document.getElementById('themeBtn').textContent = isDark ? T[l].menu_theme_l : T[l].menu_theme;
 }
 
 document.getElementById('langBtn').addEventListener('click', function(){
   applyLang(lang === 'fr' ? 'en' : 'fr');
 });
+document.getElementById('themeBtn').addEventListener('click', function(){ applyTheme(!isDark); });
 
-/* ── MARQUEE ──────────────────────────────────────── */
-function buildMarquee() {
-  var track = document.getElementById('mqTrack');
-  var items = T[lang].mq;
+/* ── MENU ─────────────────────────────────────────── */
+var menuOv = document.getElementById('menuOv');
+function toggleMenu(open){
+  menuOv.classList.toggle('open', open);
+  document.body.classList.toggle('noscroll', open);
+}
+document.getElementById('menuBtn').addEventListener('click', function(){ toggleMenu(true); });
+document.getElementById('menuX').addEventListener('click', function(){ toggleMenu(false); });
+menuOv.querySelectorAll('a').forEach(function(a){
+  a.addEventListener('click', function(){ toggleMenu(false); });
+});
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape'){ toggleMenu(false); closeModal(); } });
+
+/* ── HORLOGE ──────────────────────────────────────── */
+function tickClock(){
+  var now = new Date();
+  try {
+    var timeStr = new Intl.DateTimeFormat('fr-FR',{timeZone:'Europe/Paris',hour:'2-digit',minute:'2-digit'}).format(now).replace(':', ':');
+    document.getElementById('clock').textContent = timeStr;
+    var parts = new Intl.DateTimeFormat('en',{timeZone:'Europe/Paris',timeZoneName:'shortOffset'}).formatToParts(now);
+    var tz = parts.filter(function(p){ return p.type === 'timeZoneName'; })[0].value; // ex: GMT+2
+    var m = tz.match(/GMT([+-])(\d+)/);
+    if (m) document.getElementById('gmt').textContent = 'GMT ' + m[1] + ('0'+m[2]).slice(-2) + '00';
+  } catch(e){
+    document.getElementById('clock').textContent = ('0'+now.getHours()).slice(-2) + ':' + ('0'+now.getMinutes()).slice(-2);
+  }
+}
+tickClock();
+setInterval(tickClock, 30000);
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ── LED ──────────────────────────────────────────── */
+function buildLed(){
+  var track = document.getElementById('ledTrack');
+  var items = T[lang].led;
   var html = '';
-  // doublé pour une boucle continue
   for (var r = 0; r < 2; r++) {
-    items.forEach(function(it){
-      html += '<span class="mq-item">' + it + '<span class="mq-dot">✳</span></span>';
-    });
+    items.forEach(function(it){ html += '<span>' + it + ' ✦</span>'; });
   }
   track.innerHTML = html;
 }
 
 /* ── PROJETS ──────────────────────────────────────── */
-function buildPortfolio() {
-  var grid = document.getElementById('pfGrid');
-  grid.innerHTML = '';
+function buildWorks(){
+  var wrap = document.getElementById('worksList');
+  wrap.innerHTML = '';
   PROJECTS.forEach(function(p, i){
-    var card = document.createElement('button');
-    card.className = 'pf-card reveal';
-    card.setAttribute('data-idx', i);
-    card.setAttribute('aria-label', p.title[lang]);
-    card.innerHTML =
-      '<div class="pf-thumb"><img src="' + p.img + '" alt="' + p.title[lang] + '" loading="lazy"></div>' +
-      '<div class="pf-info"><div class="pf-cat">' + p.cat[lang] + '</div><div class="pf-name">' + p.title[lang] + '</div></div>';
-    card.addEventListener('click', function(){ openModal(i); });
-    grid.appendChild(card);
+    var row = document.createElement('div');
+    row.className = 'row';
+    var tags = p.tags[lang].map(function(t){
+      return '<span><span class="dia">✦</span>' + t + '</span>';
+    }).join('');
+    row.innerHTML =
+      '<div class="cell reveal">' +
+        '<button class="work" data-idx="' + i + '" aria-label="' + p.name + '">' +
+          '<div class="work-t"><span class="arr">⇢</span>' + p.name + '</div>' +
+          '<div class="work-d">' + p.desc[lang] + '</div>' +
+          '<div class="work-tags">' + tags + '</div>' +
+        '</button>' +
+      '</div>';
+    row.querySelector('.work').addEventListener('click', function(){ openModal(i); });
+    wrap.appendChild(row);
   });
   observeReveal();
 }
 
 /* ── TÉMOIGNAGES ──────────────────────────────────── */
-function buildTestimonials() {
-  var grid = document.getElementById('testiGrid');
-  grid.innerHTML = '';
+function buildTestimonials(){
+  var wrap = document.getElementById('testiList');
+  wrap.innerHTML = '';
   TESTIMONIALS.forEach(function(t){
-    var card = document.createElement('div');
-    card.className = 'testi-card reveal';
-    card.innerHTML =
-      '<p class="testi-q">' + t.text[lang] + '</p>' +
-      '<div class="testi-author">' +
-        '<div class="testi-av">' + t.initials + '</div>' +
-        '<div><div class="testi-name">' + t.author + '</div>' +
-        '<div class="testi-role">' + t.role[lang] + '</div></div>' +
+    var row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML =
+      '<div class="cell reveal">' +
+        '<p class="q-txt">' + t.text[lang] + '</p>' +
+        '<p class="q-by"><span class="dia">✦</span><b>' + t.author + '</b> · ' + t.role[lang] + '</p>' +
       '</div>';
-    grid.appendChild(card);
+    wrap.appendChild(row);
   });
   observeReveal();
 }
 
 /* ── MODAL ────────────────────────────────────────── */
 var backdrop = document.getElementById('modalBd');
-var mImg = document.getElementById('mImg');
-var mCat = document.getElementById('mCat');
-var mTitle = document.getElementById('mTitle');
-var mDesc = document.getElementById('mDesc');
-var mLinks = document.getElementById('mLinks');
 
 function openModal(i) {
   var p = PROJECTS[i];
-  mImg.src = p.img; mImg.alt = p.title[lang];
-  mCat.textContent = p.cat[lang];
-  mTitle.textContent = p.title[lang];
-  mDesc.textContent = p.desc[lang];
+  document.getElementById('mImg').src = p.img;
+  document.getElementById('mImg').alt = p.name;
+  document.getElementById('mCat').textContent = p.cat[lang];
+  document.getElementById('mTitle').textContent = p.name;
+  document.getElementById('mDesc').textContent = p.desc[lang];
+  var mLinks = document.getElementById('mLinks');
   mLinks.innerHTML = '';
   p.links.forEach(function(lk){
     var a = document.createElement('a');
     a.href = lk.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-    a.className = 'm-btn' + (lk.primary ? ' pri' : '');
-    a.innerHTML = T[lang][lk.key] + ' <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>';
+    a.innerHTML = '<span class="arr">⇢</span>' + T[lang][lk.key];
     mLinks.appendChild(a);
   });
   backdrop.classList.add('show');
   document.body.classList.add('noscroll');
-  document.getElementById('mClose').focus();
 }
 
 function closeModal() {
   backdrop.classList.remove('show');
   document.body.classList.remove('noscroll');
 }
-
 document.getElementById('mClose').addEventListener('click', closeModal);
 backdrop.addEventListener('click', function(e){ if (e.target === backdrop) closeModal(); });
-document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
 
-/* ── NAV ──────────────────────────────────────────── */
-var nav = document.getElementById('mainNav');
-window.addEventListener('scroll', function(){ nav.classList.toggle('stuck', window.scrollY > 16); }, {passive:true});
-nav.classList.toggle('stuck', window.scrollY > 16);
-
-var burger = document.getElementById('burger');
-var drawer = document.getElementById('navDrawer');
-burger.addEventListener('click', function(){
-  var o = drawer.classList.toggle('open');
-  burger.classList.toggle('open', o);
-});
-document.querySelectorAll('.nav-drawer .nav-link').forEach(function(a){
-  a.addEventListener('click', function(){ drawer.classList.remove('open'); burger.classList.remove('open'); });
-});
-document.addEventListener('click', function(e){
-  if (!nav.contains(e.target)){ drawer.classList.remove('open'); burger.classList.remove('open'); }
-});
-
-/* ── NAV ACTIVE ───────────────────────────────────── */
-document.querySelectorAll('section[id]').forEach(function(s){
-  new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if (e.isIntersecting){
-        document.querySelectorAll('.nav-links .nav-link').forEach(function(l){ l.classList.remove('active'); });
-        var a = document.querySelector('.nav-links .nav-link[href="#'+e.target.id+'"]');
-        if (a) a.classList.add('active');
-      }
-    });
-  },{rootMargin:'-40% 0px -55% 0px'}).observe(s);
-});
-
-/* ── SCROLL REVEAL ────────────────────────────────── */
+/* ── REVEAL ───────────────────────────────────────── */
 function observeReveal(){
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  },{threshold:0.08});
+  },{threshold:0.06});
   document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ io.observe(el); });
 }
 
-/* ── FORMULAIRE ───────────────────────────────────── */
-var form = document.getElementById('contactForm');
-var fStatus = document.getElementById('fStatus');
-
-if (form) {
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var name    = document.getElementById('fname').value;
-    var email   = document.getElementById('femail').value;
-    var subject = document.getElementById('fsubj').value || (lang === 'fr' ? 'Message depuis le portfolio' : 'Message from portfolio');
-    var message = document.getElementById('fmsg').value;
-    var body = (lang === 'fr' ? 'Nom : ' : 'Name: ') + name + '\n' +
-               'Email : ' + email + '\n\n' + message;
-    window.location.href = 'mailto:antoinediokh@gmail.com'
-      + '?subject=' + encodeURIComponent(subject)
-      + '&body=' + encodeURIComponent(body);
-    fStatus.style.color = 'var(--acc)';
-    fStatus.textContent = T[lang].form_ok;
-    setTimeout(function(){ fStatus.textContent = ''; fStatus.style.color = ''; }, 5000);
-  });
-}
-
 /* ── INIT ─────────────────────────────────────────── */
+applyTheme(isDark);
 applyLang(lang);
+buildFonts('');
 observeReveal();
 
 })();
