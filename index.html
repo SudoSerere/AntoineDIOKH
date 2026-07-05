@@ -3,90 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Antoine DIOKH · Product Designer basé en France. UX/UI, motion design, produits numériques et multimédias.">
+<meta name="description" content="Antoine DIOKH · Product Designer basé en France. Je conçois des produits intuitifs pour les utilisateurs et clairs pour les équipes qui les construisent.">
 <title>Antoine DIOKH · Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
 /* =========================================================
-   RESET & TOKENS
+   RESET & TOKENS · inspiration : palette émeraude sur crème,
+   serif expressive, titres [ entre crochets ], blanc généreux
    ========================================================= */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
 
 :root{
-  --bg:    #f7f7fc;
-  --surf:  #eeeef6;
+  --bg:    #FBFFFD;
+  --surf:  #ECF8F5;
   --card:  #ffffff;
-  --cardh: #f0f0f8;
-  --text:  #0f0f18;
-  --muted: #52526e;
-  --sub:   #9090b0;
-  --acc:   #4f7ef6;
-  --acch:  #3b6df0;
-  --glow:  rgba(79,126,246,.22);
-  --bord:  rgba(0,0,0,.08);
-  --bords: rgba(0,0,0,.14);
-  --grn:   #34d399;
+  --text:  #121312;
+  --muted: rgba(17,35,34,.62);
+  --sub:   rgba(17,35,34,.42);
+  --acc:   #00A084;
+  --accd:  #005C47;
+  --hl:    #4EDF88;
+  --teal:  #c2e9e7;
+  --bord:  rgba(0,92,71,.14);
+  --bords: rgba(0,92,71,.26);
+  --glow:  rgba(0,160,132,.16);
   --sans:  'Inter',system-ui,sans-serif;
-  --disp:  'DM Serif Display',Georgia,serif;
-  --rsm:6px;--rmd:12px;--rlg:20px;--rxl:28px;--pill:100px;
+  --disp:  'Fraunces',Georgia,serif;
+  --rsm:8px;--rmd:14px;--rlg:22px;--pill:100px;
   --ease:cubic-bezier(.4,0,.2,1);
   --eout:cubic-bezier(0,.55,.45,1);
   --t:240ms;--ts:480ms;
-  --shmd:0 4px 24px rgba(0,0,0,.08);
-  --shlg:0 24px 80px rgba(0,0,0,.14);
+  --shmd:0 6px 28px rgba(0,92,71,.09);
+  --shlg:0 28px 90px rgba(0,92,71,.16);
 }
 body.dark{
-  --bg:    #060608;
-  --surf:  #0d0d13;
-  --card:  #131319;
-  --cardh: #1b1b24;
-  --text:  #eeeef3;
-  --muted: #7e7e9e;
-  --sub:   #46465a;
-  --bord:  rgba(255,255,255,.055);
-  --bords: rgba(255,255,255,.11);
-  --shmd:  0 4px 24px rgba(0,0,0,.5);
-  --shlg:  0 24px 80px rgba(0,0,0,.65);
+  --bg:    #0e100f;
+  --surf:  #141816;
+  --card:  #181d1a;
+  --text:  #eef5f1;
+  --muted: rgba(219,235,228,.6);
+  --sub:   rgba(219,235,228,.36);
+  --acc:   #4EDF88;
+  --accd:  #00A084;
+  --hl:    #4EDF88;
+  --teal:  rgba(78,223,136,.16);
+  --bord:  rgba(255,255,255,.07);
+  --bords: rgba(255,255,255,.14);
+  --glow:  rgba(78,223,136,.12);
+  --shmd:  0 6px 28px rgba(0,0,0,.5);
+  --shlg:  0 28px 90px rgba(0,0,0,.65);
 }
 
-body{font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s var(--ease),color .3s var(--ease)}
+body{font-family:var(--sans);font-size:16px;line-height:1.7;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s var(--ease),color .3s var(--ease)}
 body.noscroll{overflow:hidden}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
 ul{list-style:none}
 input,textarea{font:inherit}
+::selection{background:var(--hl);color:#121312}
 
-.wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 48px}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 48px}
 
 /* =========================================================
-   BUTTONS
+   BOUTONS
    ========================================================= */
 .btn-p{
   display:inline-flex;align-items:center;gap:10px;
-  padding:14px 28px;background:var(--acc);color:#fff;
+  padding:15px 30px;background:var(--acc);color:var(--bg);
   border-radius:var(--pill);font-size:14px;font-weight:600;
-  box-shadow:0 4px 22px var(--glow);white-space:nowrap;
-  transition:background var(--t) var(--ease),box-shadow var(--t) var(--ease);
-  overflow:hidden;
+  box-shadow:0 6px 24px var(--glow);white-space:nowrap;
+  transition:background var(--t) var(--ease),transform var(--t) var(--ease),box-shadow var(--t) var(--ease);
 }
-.btn-p .t{transition:transform var(--ts) var(--eout)}
+body.dark .btn-p{color:#0e100f}
+.btn-p:hover{background:var(--accd);transform:translateY(-2px);box-shadow:0 10px 34px var(--glow)}
+body.dark .btn-p:hover{color:#fff}
 .btn-p .a{transition:transform var(--ts) var(--eout)}
-.btn-p:hover{background:var(--acch);box-shadow:0 6px 32px rgba(79,126,246,.42)}
-.btn-p:hover .t{transform:translateX(-3px)}
 .btn-p:hover .a{transform:translateX(3px) translateY(-3px)}
 
 .btn-g{
   display:inline-flex;align-items:center;gap:8px;
-  padding:13px 24px;color:var(--text);
+  padding:14px 26px;color:var(--text);
   border:1.5px solid var(--bords);border-radius:var(--pill);
   font-size:14px;font-weight:500;white-space:nowrap;
-  transition:border-color var(--t) var(--ease),color var(--t) var(--ease);
+  transition:border-color var(--t) var(--ease),color var(--t) var(--ease),background var(--t) var(--ease);
 }
 .btn-g:hover{border-color:var(--acc);color:var(--acc)}
 
@@ -94,180 +98,179 @@ input,textarea{font:inherit}
    NAV
    ========================================================= */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;transition:background var(--t) var(--ease),box-shadow var(--t) var(--ease)}
-.nav.stuck{background:rgba(247,247,252,.93);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--bord)}
-body.dark .nav.stuck{background:rgba(6,6,8,.93)}
-.nav-i{display:flex;align-items:center;gap:4px;height:76px;max-width:1280px;margin:0 auto}
-.nav-logo{font-family:var(--disp);font-size:22px;color:var(--text);margin-right:auto;letter-spacing:-.02em;transition:color var(--t)}
+.nav.stuck{background:rgba(251,255,253,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--bord)}
+body.dark .nav.stuck{background:rgba(14,16,15,.92)}
+.nav-i{display:flex;align-items:center;gap:4px;height:80px;max-width:1200px;margin:0 auto}
+.nav-logo{font-family:var(--disp);font-size:21px;font-weight:500;color:var(--text);margin-right:auto;letter-spacing:-.01em;transition:color var(--t)}
+.nav-logo em{font-style:italic;color:var(--acc)}
 .nav-logo:hover{color:var(--acc)}
-.nav-links{display:flex;align-items:center}
-.nav-link{position:relative;font-size:13px;font-weight:500;color:var(--muted);padding:7px 13px;border-radius:var(--rsm);transition:color var(--t)}
-.nav-link::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--acc);opacity:0;transition:opacity var(--t)}
-.nav-link:hover{color:var(--text)}
-.nav-link:hover::after,.nav-link.active::after{opacity:1}
-.nav-link.active{color:var(--text)}
-.nav-cta{background:var(--acc);color:#fff;padding:7px 16px;border-radius:var(--pill);font-size:13px;font-weight:600;box-shadow:0 2px 12px var(--glow);transition:background var(--t)}
-.nav-cta::after{display:none!important}
-.nav-cta:hover{background:var(--acch)}
-.lang-btn{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--bords);padding:6px 12px;border-radius:var(--pill);transition:color var(--t),border-color var(--t),background var(--t);margin-left:8px}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-link{position:relative;font-size:13.5px;font-weight:500;color:var(--muted);padding:7px 14px;border-radius:var(--rsm);transition:color var(--t)}
+.nav-link::before{content:'[';margin-right:5px;color:var(--acc);opacity:0;transition:opacity var(--t)}
+.nav-link::after{content:']';margin-left:5px;color:var(--acc);opacity:0;transition:opacity var(--t)}
+.nav-link:hover,.nav-link.active{color:var(--text)}
+.nav-link:hover::before,.nav-link:hover::after,
+.nav-link.active::before,.nav-link.active::after{opacity:1}
+.nav-cta{background:var(--acc);color:var(--bg);padding:8px 18px;border-radius:var(--pill);font-size:13px;font-weight:600;box-shadow:0 2px 14px var(--glow);transition:background var(--t);margin-left:8px}
+body.dark .nav-cta{color:#0e100f}
+.nav-cta::before,.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--accd);color:var(--bg)}
+body.dark .nav-cta:hover{color:#fff}
+.lang-btn{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--bords);padding:6px 12px;border-radius:var(--pill);transition:color var(--t),border-color var(--t);margin-left:10px}
 .lang-btn:hover{color:var(--acc);border-color:var(--acc)}
-.theme-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;color:var(--muted);background:var(--card);border:1px solid var(--bords);border-radius:50%;transition:color var(--t),border-color var(--t),background var(--t);margin-left:8px;flex-shrink:0}
+.theme-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;color:var(--muted);background:var(--card);border:1px solid var(--bords);border-radius:50%;transition:color var(--t),border-color var(--t);margin-left:8px;flex-shrink:0}
 .theme-btn:hover{color:var(--acc);border-color:var(--acc)}
 .burger{display:none;flex-direction:column;gap:5px;width:28px;padding:2px;flex-shrink:0;margin-left:8px}
 .burger span{height:2px;background:var(--text);border-radius:2px;transition:transform var(--t),opacity var(--t)}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.nav-drawer{display:none;position:fixed;top:76px;left:0;right:0;background:rgba(247,247,252,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--bord);padding:16px 24px 28px;flex-direction:column;gap:2px;box-shadow:var(--shlg)}
-body.dark .nav-drawer{background:rgba(6,6,8,.97)}
+.nav-drawer{display:none;position:fixed;top:80px;left:0;right:0;background:rgba(251,255,253,.97);backdrop-filter:blur(18px);border-bottom:1px solid var(--bord);padding:16px 24px 28px;flex-direction:column;gap:2px;box-shadow:var(--shlg)}
+body.dark .nav-drawer{background:rgba(14,16,15,.97)}
 .nav-drawer.open{display:flex}
-.nav-drawer .nav-link{font-size:17px;padding:13px 16px;color:var(--muted)}
-.nav-drawer .nav-cta{margin-top:8px;display:flex;justify-content:center}
+.nav-drawer .nav-link{font-size:17px;padding:13px 16px}
+.nav-drawer .nav-cta{margin:8px 0 0;display:flex;justify-content:center}
 
 /* =========================================================
    HERO
    ========================================================= */
-#hero{position:relative}
-.hero-wrap{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 48px 80px;max-width:900px;margin:0 auto;position:relative;gap:0}
+#hero{position:relative;background:
+  radial-gradient(900px 500px at 85% -10%, var(--teal) 0%, transparent 60%),
+  radial-gradient(700px 420px at -10% 110%, var(--teal) 0%, transparent 55%)}
+.hero-wrap{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 48px 90px;max-width:980px;margin:0 auto;position:relative}
 
-.hero-avatar{width:108px;height:108px;border-radius:50%;overflow:hidden;margin-bottom:40px;border:2px solid var(--bord);flex-shrink:0}
-.hero-avatar img{width:100%;height:100%;object-fit:cover;object-position:center 8%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:34px;background:var(--card);border:1px solid var(--bord);padding:9px 20px;border-radius:var(--pill)}
+.edot{width:7px;height:7px;border-radius:50%;background:var(--hl);box-shadow:0 0 10px rgba(78,223,136,.6);animation:blink 2.5s ease-in-out infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
 
-.hero-title{font-family:var(--sans);font-size:clamp(34px,4.8vw,68px);font-weight:400;line-height:1.18;letter-spacing:-.02em;color:var(--text);margin-bottom:20px}
-.hero-title strong{font-weight:700}
-.hero-title em{font-style:normal;color:var(--muted)}
+.hero-title{font-family:var(--disp);font-size:clamp(38px,5.6vw,76px);font-weight:500;line-height:1.12;letter-spacing:-.02em;color:var(--text);margin-bottom:28px}
+.hero-title em{font-style:italic;font-weight:400;color:var(--acc)}
+.hero-title .hl{position:relative;white-space:nowrap}
+.hero-title .hl::after{content:'';position:absolute;left:0;right:0;bottom:.08em;height:.32em;background:var(--hl);opacity:.35;z-index:-1;border-radius:3px}
 
-.hero-sub{font-size:16px;line-height:1.6;color:var(--muted);margin-bottom:40px;max-width:560px}
+.hero-sub{font-size:17px;line-height:1.7;color:var(--muted);margin-bottom:44px;max-width:620px}
 
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:64px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:72px}
 
 .hero-scroll{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--sub);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;animation:bobble 2s ease-in-out infinite}
-.hero-scroll svg{opacity:.5}
 @keyframes bobble{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-
-.edot{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 10px rgba(52,211,153,.5);animation:blink 2.5s ease-in-out infinite;flex-shrink:0;display:inline-block;vertical-align:middle;margin-right:6px}
-@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 10px rgba(52,211,153,.5)}50%{opacity:.4;box-shadow:0 0 20px rgba(52,211,153,.2)}}
 
 /* =========================================================
    MARQUEE
    ========================================================= */
-.marquee-band{background:var(--surf);border-top:1px solid var(--bord);border-bottom:1px solid var(--bord);padding:15px 0;overflow:hidden}
-.marquee-track{display:flex;width:max-content;animation:mq 30s linear infinite}
+.marquee-band{background:var(--surf);border-top:1px solid var(--bord);border-bottom:1px solid var(--bord);padding:16px 0;overflow:hidden}
+.marquee-track{display:flex;width:max-content;animation:mq 32s linear infinite}
 .marquee-band:hover .marquee-track{animation-play-state:paused}
-.mq-item{display:inline-flex;align-items:center;gap:20px;padding:0 20px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);white-space:nowrap}
-.mq-dot{color:var(--acc);font-size:7px}
+.mq-item{display:inline-flex;align-items:center;gap:22px;padding:0 22px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.mq-dot{color:var(--acc);font-size:9px}
 @keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* =========================================================
-   SECTION COMMON
+   SECTIONS · titres [ entre crochets ]
    ========================================================= */
-.section{padding:112px 0}
+.section{padding:130px 0}
 .sect-alt{background:var(--surf)}
 
-.sect-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.s-num{font-family:var(--disp);font-size:13px;color:var(--acc);letter-spacing:.12em}
-.s-lbl{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sub)}
-.sect-title{font-family:var(--disp);font-size:clamp(28px,3.4vw,46px);font-weight:400;line-height:1.18;color:var(--text);letter-spacing:-.025em}
-.sect-title em{font-style:italic;color:var(--acc)}
-.sect-hd{margin-bottom:64px}
+.sect-hd{text-align:center;margin-bottom:72px}
+.bracket-lbl{display:inline-flex;align-items:baseline;gap:10px;font-family:var(--disp);font-size:15px;font-weight:500;letter-spacing:.06em;color:var(--muted);margin-bottom:18px}
+.bracket-lbl::before{content:'[';color:var(--acc);font-size:1.25em;font-weight:400}
+.bracket-lbl::after{content:']';color:var(--acc);font-size:1.25em;font-weight:400}
+.sect-title{font-family:var(--disp);font-size:clamp(30px,3.6vw,50px);font-weight:500;line-height:1.15;color:var(--text);letter-spacing:-.02em}
+.sect-title em{font-style:italic;font-weight:400;color:var(--acc)}
 
 /* =========================================================
-   ABOUT
+   À PROPOS
    ========================================================= */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.about-quote{font-family:var(--disp);font-size:clamp(20px,2.2vw,28px);font-weight:400;line-height:1.45;color:var(--text);letter-spacing:-.02em;margin-bottom:24px}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:start}
+.about-quote{font-family:var(--disp);font-size:clamp(22px,2.4vw,31px);font-weight:400;line-height:1.45;color:var(--text);letter-spacing:-.015em;margin-bottom:26px}
 .about-quote em{font-style:italic;color:var(--acc)}
-.about-p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:14px}
+.about-p{font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:14px}
 .about-p:last-of-type{margin-bottom:0}
-.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
-.stat-c{background:var(--card);border:1px solid var(--bord);border-radius:var(--rmd);padding:22px 18px;transition:border-color var(--t),transform var(--t)}
-.stat-c:hover{border-color:var(--bords);transform:translateY(-3px)}
-.stat-n{display:block;font-family:var(--disp);font-size:34px;color:var(--acc);line-height:1;margin-bottom:6px}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-c{background:var(--card);border:1px solid var(--bord);border-radius:var(--rmd);padding:24px 20px;transition:border-color var(--t),transform var(--t)}
+.stat-c:hover{border-color:var(--acc);transform:translateY(-3px)}
+.stat-n{display:block;font-family:var(--disp);font-size:36px;font-weight:500;color:var(--acc);line-height:1;margin-bottom:7px}
 .stat-l{display:block;font-size:12px;font-weight:500;color:var(--sub)}
-.skill-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:28px}
-.stag{font-size:12px;font-weight:500;color:var(--muted);background:var(--card);border:1px solid var(--bord);padding:5px 13px;border-radius:var(--pill);transition:color var(--t),border-color var(--t)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.stag{font-size:12.5px;font-weight:500;color:var(--muted);background:var(--card);border:1px solid var(--bord);padding:6px 14px;border-radius:var(--pill);transition:color var(--t),border-color var(--t)}
 .stag:hover{color:var(--acc);border-color:var(--acc)}
 
 /* =========================================================
-   PORTFOLIO
+   PROJETS
    ========================================================= */
-.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.pf-card{position:relative;border-radius:var(--rmd);overflow:hidden;cursor:pointer;background:var(--card);border:1px solid var(--bord);transition:border-color var(--t),transform var(--t),box-shadow var(--t)}
-.pf-card:hover{border-color:var(--bords);transform:translateY(-3px);box-shadow:var(--shmd)}
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pf-card{position:relative;border-radius:var(--rmd);overflow:hidden;cursor:pointer;background:var(--card);border:1px solid var(--bord);text-align:left;transition:border-color var(--t),transform var(--t),box-shadow var(--t)}
+.pf-card:hover{border-color:var(--acc);transform:translateY(-4px);box-shadow:var(--shmd)}
 .pf-thumb{aspect-ratio:3/2;overflow:hidden;background:var(--surf)}
 .pf-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 .pf-card:hover .pf-thumb img{transform:scale(1.05)}
-.pf-overlay{position:absolute;inset:0;background:rgba(0,0,0,.18);opacity:0;transition:opacity var(--t)}
-.pf-card:hover .pf-overlay{opacity:1}
-.pf-info{padding:12px 14px 14px}
-.pf-cat{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:3px}
-.pf-name{font-size:13px;font-weight:600;color:var(--text);line-height:1.4}
+.pf-info{padding:14px 16px 16px}
+.pf-cat{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+.pf-name{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.4}
 
 /* =========================================================
-   TIMELINE
+   PARCOURS · CV condensé
    ========================================================= */
-.timeline{position:relative;padding-left:32px}
+.cv-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+.cv-head .sect-hd{text-align:left;margin-bottom:0}
+.timeline{position:relative;padding-left:32px;max-width:840px}
 .timeline::before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:1px;background:var(--bords)}
-.tl-item{position:relative;padding-bottom:48px}
+.tl-item{position:relative;padding-bottom:40px}
 .tl-item:last-child{padding-bottom:0}
-.tl-dot{position:absolute;left:-38px;top:14px;width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 3px var(--surf),0 0 16px var(--glow)}
-.tl-card{background:var(--card);border:1px solid var(--bord);border-radius:var(--rmd);padding:24px 28px;transition:border-color var(--t),box-shadow var(--t)}
+.tl-dot{position:absolute;left:-38px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 3px var(--bg),0 0 16px var(--glow)}
+.tl-card{background:var(--card);border:1px solid var(--bord);border-radius:var(--rmd);padding:26px 30px;transition:border-color var(--t),box-shadow var(--t)}
 .tl-card:hover{border-color:var(--bords);box-shadow:var(--shmd)}
-.tl-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:18px}
-.tl-role{font-size:16px;font-weight:600;color:var(--text);margin-bottom:3px}
-.tl-company{font-size:13px;font-weight:500;color:var(--acc)}
-.tl-date{font-size:11px;font-weight:600;color:var(--sub);background:var(--surf);border:1px solid var(--bord);padding:4px 12px;border-radius:var(--pill);white-space:nowrap}
+.tl-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.tl-role{font-family:var(--disp);font-size:19px;font-weight:500;color:var(--text);margin-bottom:3px}
+.tl-company{font-size:13px;font-weight:600;color:var(--acc)}
+.tl-date{font-size:11px;font-weight:600;color:var(--muted);background:var(--surf);border:1px solid var(--bord);padding:5px 13px;border-radius:var(--pill);white-space:nowrap}
 .tl-list{display:flex;flex-direction:column;gap:9px}
-.tl-list li{font-size:13px;line-height:1.65;color:var(--muted);padding-left:18px;position:relative}
-.tl-list li::before{content:'—';position:absolute;left:0;color:var(--acc);font-size:12px}
+.tl-list li{font-size:13.5px;line-height:1.65;color:var(--muted);padding-left:18px;position:relative}
+.tl-list li::before{content:'→';position:absolute;left:0;color:var(--acc);font-size:12px}
+
+/* Formation compacte */
+.edu-block{margin-top:72px;max-width:840px}
+.edu-h{font-family:var(--disp);font-size:22px;font-weight:500;color:var(--text);margin-bottom:22px}
+.edu-h em{font-style:italic;color:var(--acc)}
+.edu-list{border-top:1px solid var(--bord)}
+.edu-row{display:grid;grid-template-columns:110px 1fr auto;gap:18px;align-items:baseline;padding:16px 4px;border-bottom:1px solid var(--bord);transition:background var(--t)}
+.edu-row:hover{background:var(--surf)}
+.edu-yr{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--acc)}
+.edu-deg{font-size:14px;font-weight:600;color:var(--text);line-height:1.45}
+.edu-sch{font-size:12.5px;color:var(--sub);text-align:right;white-space:nowrap}
+.certif-strip{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:26px}
+.certif-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sub)}
+.certif-item{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;color:var(--text);background:var(--card);border:1px solid var(--bord);padding:7px 15px;border-radius:var(--pill)}
+.certif-item svg{color:var(--acc);flex-shrink:0}
 
 /* =========================================================
-   EDUCATION
+   TÉMOIGNAGES · grille statique
    ========================================================= */
-.edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:16px}
-.edu-c{background:var(--card);border:1px solid var(--bord);border-radius:var(--rmd);padding:20px 18px;display:flex;flex-direction:column;gap:7px;transition:border-color var(--t),transform var(--t)}
-.edu-c:hover{border-color:var(--bords);transform:translateY(-3px)}
-.edu-yr{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
-.edu-deg{font-size:13px;font-weight:600;color:var(--text);line-height:1.4}
-.edu-sch{font-size:12px;color:var(--sub)}
-.edu-det{font-size:12px;color:var(--sub);line-height:1.5}
-.certif-strip{background:var(--card);border:1px solid var(--bord);border-radius:var(--rmd);padding:18px 22px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-.certif-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);flex-shrink:0}
-.certif-list{display:flex;flex-wrap:wrap;gap:8px}
-.certif-item{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--text);background:var(--surf);border:1px solid var(--bord);padding:6px 14px;border-radius:var(--pill)}
-.certif-item svg{color:var(--grn);flex-shrink:0}
-
-/* =========================================================
-   TESTIMONIALS
-   ========================================================= */
-.testi-header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;flex-wrap:wrap}
-.testi-nav{display:flex;gap:8px}
-.testi-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--bords);color:var(--muted);transition:color var(--t),border-color var(--t)}
-.testi-btn:hover{color:var(--acc);border-color:var(--acc)}
-.testi-card{background:var(--card);border:1px solid var(--bords);border-radius:var(--rxl);padding:44px 48px;height:100%;display:flex;flex-direction:column}
-.testi-q{font-family:var(--disp);font-size:clamp(17px,1.8vw,22px);font-weight:400;line-height:1.55;color:var(--text);letter-spacing:-.01em;margin-bottom:32px;flex:1}
-.testi-q::before{content:'\201C';font-size:2.2em;color:var(--acc);line-height:0;vertical-align:-.35em;margin-right:3px}
-.testi-author{display:flex;align-items:center;gap:14px}
-.testi-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acch));display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:16px;color:#fff;flex-shrink:0;border:2px solid var(--glow)}
-.testi-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.testi-card{background:var(--card);border:1px solid var(--bord);border-radius:var(--rlg);padding:36px 32px;display:flex;flex-direction:column;transition:border-color var(--t),transform var(--t),box-shadow var(--t)}
+.testi-card:hover{border-color:var(--acc);transform:translateY(-4px);box-shadow:var(--shmd)}
+.testi-q{font-family:var(--disp);font-size:17px;font-weight:400;line-height:1.6;color:var(--text);letter-spacing:-.01em;margin-bottom:28px;flex:1}
+.testi-q::before{content:'\201C';font-size:2em;color:var(--acc);line-height:0;vertical-align:-.3em;margin-right:4px}
+.testi-author{display:flex;align-items:center;gap:13px}
+.testi-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--accd));display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:15px;color:#fff;flex-shrink:0}
+.testi-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:1px}
 .testi-role{font-size:12px;color:var(--muted)}
-.swiper-pagination-bullet{background:var(--sub)!important;opacity:1!important}
-.swiper-pagination-bullet-active{background:var(--acc)!important}
 
 /* =========================================================
    CONTACT
    ========================================================= */
 .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start}
-.contact-intro{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:28px}
-.contact-mail{display:inline-flex;align-items:center;gap:7px;font-size:17px;font-weight:500;color:var(--text);text-decoration:underline;text-underline-offset:5px;text-decoration-color:rgba(79,126,246,.3);margin-bottom:32px;transition:color var(--t),text-decoration-color var(--t)}
+.contact-intro{font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:28px}
+.contact-mail{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-size:21px;font-weight:500;color:var(--text);text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--teal);margin-bottom:32px;transition:color var(--t),text-decoration-color var(--t)}
 .contact-mail:hover{color:var(--acc);text-decoration-color:var(--acc)}
 .socials{display:flex;flex-wrap:wrap;gap:8px}
-.social-lk{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:var(--muted);background:var(--card);border:1px solid var(--bord);padding:8px 16px;border-radius:var(--rsm);transition:color var(--t),border-color var(--t)}
+.social-lk{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:var(--muted);background:var(--card);border:1px solid var(--bord);padding:9px 17px;border-radius:var(--pill);transition:color var(--t),border-color var(--t)}
 .social-lk:hover{color:var(--acc);border-color:var(--acc)}
 .form{display:flex;flex-direction:column;gap:16px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .fg{display:flex;flex-direction:column;gap:6px}
 .fl{font-size:12px;font-weight:600;color:var(--sub);letter-spacing:.02em}
-.fi{background:var(--card);border:1px solid var(--bords);border-radius:var(--rsm);padding:12px 16px;font-size:14px;color:var(--text);outline:none;transition:border-color var(--t),box-shadow var(--t)}
+.fi{background:var(--card);border:1px solid var(--bords);border-radius:var(--rsm);padding:13px 16px;font-size:14px;color:var(--text);outline:none;transition:border-color var(--t),box-shadow var(--t)}
 .fi::placeholder{color:var(--sub)}
 .fi:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--glow)}
 .ft{resize:vertical;min-height:130px;line-height:1.6}
@@ -276,21 +279,22 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
 /* =========================================================
    FOOTER
    ========================================================= */
-.footer{background:var(--bg);border-top:1px solid var(--bord);padding:32px 0}
+.footer{background:var(--bg);border-top:1px solid var(--bord);padding:34px 0}
 .footer-i{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
-.footer-logo{font-family:var(--disp);font-size:20px;color:var(--text);letter-spacing:-.02em}
+.footer-logo{font-family:var(--disp);font-size:19px;font-weight:500;color:var(--text)}
+.footer-logo em{font-style:italic;color:var(--acc)}
 .footer-nav{display:flex;gap:20px}
 .footer-nav a{font-size:12px;color:var(--sub);transition:color var(--t)}
 .footer-nav a:hover{color:var(--acc)}
-.footer-loc{font-size:12px;color:var(--sub);opacity:.6}
+.footer-loc{font-size:12px;color:var(--sub)}
 
 /* =========================================================
    MODAL
    ========================================================= */
-.modal-bd{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:20px}
+.modal-bd{display:none;position:fixed;inset:0;z-index:200;background:rgba(4,12,10,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:20px}
 .modal-bd.show{display:flex;animation:fdi .22s var(--ease)}
 @keyframes fdi{from{opacity:0}to{opacity:1}}
-.modal-box{background:var(--card);border:1px solid var(--bords);border-radius:var(--rxl);overflow:hidden;width:100%;max-width:840px;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;animation:sdi .28s var(--ease);box-shadow:var(--shlg);position:relative}
+.modal-box{background:var(--card);border:1px solid var(--bords);border-radius:var(--rlg);overflow:hidden;width:100%;max-width:840px;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;animation:sdi .28s var(--ease);box-shadow:var(--shlg);position:relative}
 @keyframes sdi{from{opacity:0;transform:scale(.95) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
 .modal-box::-webkit-scrollbar{width:4px}
 .modal-box::-webkit-scrollbar-thumb{background:var(--bords);border-radius:2px}
@@ -298,15 +302,17 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
 .m-img img{max-height:380px;object-fit:contain;border-radius:var(--rsm)}
 .m-body{padding:40px 36px;display:flex;flex-direction:column;gap:13px}
 .m-close{position:absolute;top:14px;right:14px;z-index:1;width:36px;height:36px;border-radius:50%;background:var(--surf);border:1px solid var(--bords);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:color var(--t),background var(--t)}
-.m-close:hover{color:var(--text);background:var(--cardh)}
+.m-close:hover{color:var(--text)}
 .m-cat{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
-.m-title{font-family:var(--disp);font-size:22px;font-weight:400;color:var(--text);line-height:1.3}
-.m-desc{font-size:13px;line-height:1.8;color:var(--muted)}
+.m-title{font-family:var(--disp);font-size:23px;font-weight:500;color:var(--text);line-height:1.3}
+.m-desc{font-size:13.5px;line-height:1.8;color:var(--muted)}
 .m-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}
-.m-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:9px 18px;border-radius:var(--rsm);border:1px solid var(--bords);color:var(--text);transition:color var(--t),border-color var(--t),background var(--t)}
-.m-btn:hover{color:var(--acc);border-color:var(--acc);background:rgba(79,126,246,.06)}
-.m-btn.pri{background:var(--acc);color:#fff;border-color:transparent;box-shadow:0 4px 16px var(--glow)}
-.m-btn.pri:hover{background:var(--acch)}
+.m-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:10px 19px;border-radius:var(--pill);border:1px solid var(--bords);color:var(--text);transition:color var(--t),border-color var(--t),background var(--t)}
+.m-btn:hover{color:var(--acc);border-color:var(--acc)}
+.m-btn.pri{background:var(--acc);color:var(--bg);border-color:transparent;box-shadow:0 4px 16px var(--glow)}
+body.dark .m-btn.pri{color:#0e100f}
+.m-btn.pri:hover{background:var(--accd);color:var(--bg)}
+body.dark .m-btn.pri:hover{color:#fff}
 
 /* =========================================================
    REVEAL
@@ -322,27 +328,27 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
   .pf-grid{grid-template-columns:repeat(2,1fr)}
   .about-grid{grid-template-columns:1fr;gap:48px}
   .contact-grid{grid-template-columns:1fr;gap:48px}
+  .testi-grid{grid-template-columns:1fr}
   .modal-box{grid-template-columns:1fr}
-  .m-img{min-height:200px;border-radius:var(--rxl) var(--rxl) 0 0}
-  .testi-card{padding:32px}
+  .m-img{min-height:200px}
 }
 @media(max-width:768px){
   .wrap{padding:0 24px}
   .nav{padding:0 24px}
   .nav-links{display:none}
   .burger{display:flex}
-  .hero-wrap{padding:100px 24px 60px}
+  .hero-wrap{padding:110px 24px 60px}
   .pf-grid{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
-  .testi-card{padding:24px}
-  .testi-header{flex-direction:column;align-items:flex-start}
+  .edu-row{grid-template-columns:80px 1fr;gap:12px}
+  .edu-sch{grid-column:2;text-align:left;white-space:normal}
 }
 @media(max-width:640px){
-  .section{padding:80px 0}
+  .section{padding:88px 0}
   .stat-row{grid-template-columns:1fr 1fr}
-  .edu-grid{grid-template-columns:1fr}
   .footer-i{flex-direction:column;text-align:center}
   .footer-nav{flex-wrap:wrap;justify-content:center}
+  .cv-head{flex-direction:column;align-items:flex-start}
 }
 
 </style>
@@ -352,13 +358,12 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
 <!-- NAV -->
 <nav class="nav" id="mainNav">
   <div class="nav-i">
-    <a href="#hero" class="nav-logo">AD.</a>
+    <a href="#hero" class="nav-logo">Antoine <em>Diokh</em></a>
     <div class="nav-links" id="navLinks">
-      <a href="#about"      class="nav-link" data-key="nav_about">À propos</a>
-      <a href="#portfolio"  class="nav-link" data-key="nav_portfolio">Portfolio</a>
-      <a href="#experience" class="nav-link" data-key="nav_exp">Expérience</a>
-      <a href="#testimonials" class="nav-link" data-key="nav_testi">Témoignages</a>
-      <a href="#contact"    class="nav-link nav-cta" data-key="nav_contact">Contact</a>
+      <a href="#about"   class="nav-link" data-key="nav_about">À propos</a>
+      <a href="#work"    class="nav-link" data-key="nav_work">Projets</a>
+      <a href="#resume"  class="nav-link" data-key="nav_resume">Parcours</a>
+      <a href="#contact" class="nav-link nav-cta" data-key="nav_contact">Contact</a>
     </div>
     <button class="lang-btn" id="langBtn" aria-label="Switch language">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
@@ -370,26 +375,25 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
   <div class="nav-drawer" id="navDrawer">
-    <a href="#about"        class="nav-link" data-key="nav_about">À propos</a>
-    <a href="#portfolio"    class="nav-link" data-key="nav_portfolio">Portfolio</a>
-    <a href="#experience"   class="nav-link" data-key="nav_exp">Expérience</a>
-    <a href="#testimonials" class="nav-link" data-key="nav_testi">Témoignages</a>
-    <a href="#contact"      class="nav-link nav-cta" data-key="nav_contact">Contact</a>
+    <a href="#about"   class="nav-link" data-key="nav_about">À propos</a>
+    <a href="#work"    class="nav-link" data-key="nav_work">Projets</a>
+    <a href="#resume"  class="nav-link" data-key="nav_resume">Parcours</a>
+    <a href="#contact" class="nav-link nav-cta" data-key="nav_contact">Contact</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-wrap">
-    <h1 class="hero-title">
-      <span data-key="hero_line1">Je suis Antoine,</span> <strong data-key="hero_line2">product designer</strong> <em data-key="hero_line3">qui fait le lien entre besoins utilisateurs et objectifs business.</em>
-    </h1>
+    <span class="hero-eyebrow"><span class="edot"></span><span data-key="hero_eyebrow">Antoine Diokh · Product Designer</span></span>
+    <h1 class="hero-title" data-key="hero_title">Je conçois des produits <span class="hl">intuitifs</span> pour les utilisateurs, <em>clairs</em> pour les équipes qui les construisent.</h1>
+    <p class="hero-sub" data-key="hero_sub">De la recherche utilisateur aux prototypes haute-fidélité : un design minimal, délibéré, au service du produit.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-p">
-        <span class="t" data-key="hero_cta1">Me contacter</span>
+        <span data-key="hero_cta1">Me contacter</span>
         <span class="a">↗</span>
       </a>
-      <a href="#portfolio" class="btn-g" data-key="hero_cta2">Voir mon travail</a>
+      <a href="#work" class="btn-g" data-key="hero_cta2">Voir mes projets</a>
     </div>
     <a href="#about" class="hero-scroll" aria-label="Défiler">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -399,50 +403,30 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
 
 <!-- MARQUEE -->
 <div class="marquee-band" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="mq-item">UX Research<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Interface Design<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Prototypage<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Design System<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Motion Design<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Figma<span class="mq-dot">◆</span></span>
-    <span class="mq-item">User Testing<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Product Strategy<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Webflow<span class="mq-dot">◆</span></span>
-    <span class="mq-item">After Effects<span class="mq-dot">◆</span></span>
-    <!-- duplicate for seamless loop -->
-    <span class="mq-item">UX Research<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Interface Design<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Prototypage<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Design System<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Motion Design<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Figma<span class="mq-dot">◆</span></span>
-    <span class="mq-item">User Testing<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Product Strategy<span class="mq-dot">◆</span></span>
-    <span class="mq-item">Webflow<span class="mq-dot">◆</span></span>
-    <span class="mq-item">After Effects<span class="mq-dot">◆</span></span>
+  <div class="marquee-track" id="mqTrack">
+    <!-- injecté par JS (x2 pour boucle continue) -->
   </div>
 </div>
 
-<!-- ABOUT -->
+<!-- À PROPOS -->
 <section class="section" id="about">
   <div class="wrap">
+    <div class="sect-hd reveal">
+      <span class="bracket-lbl" data-key="about_lbl">À propos</span>
+      <h2 class="sect-title" data-key="about_title">Design <em>centré humain</em>, du cadrage à la livraison</h2>
+    </div>
     <div class="about-grid">
       <div class="reveal">
-        <div class="sect-eyebrow"><span class="s-num">01</span><span class="s-lbl" data-key="about_lbl">À propos</span></div>
-        <p class="about-quote" data-key="about_quote">Je conçois des produits numériques <em>centrés sur l'humain</em>, du cadrage à la livraison.</p>
-        <p class="about-p" data-key="about_p1">Designer de produit avec une solide formation en design d'expérience et d'interface numérique, je m'attache à créer des interfaces claires, accessibles et cohérentes avec l'identité de marque.</p>
-        <p class="about-p" data-key="about_p2">Habitué à travailler en proximité avec les équipes de développement, je pilote chaque projet de la recherche utilisateur à la livraison : conception, prototypage, validation.</p>
-        <p class="about-p" data-key="about_p3">Polyvalent, j'interviens en design de produit comme en communication visuelle : print, motion, illustration. Basé à Bouc-Bel-Air, ouvert à la mobilité nationale.</p>
+        <p class="about-quote" data-key="about_quote">Un bon produit n'a pas besoin d'être expliqué : <em>il se comprend.</em></p>
+        <p class="about-p" data-key="about_p1">Product Designer avec 2 ans d'expérience en conception UX/UI pour des produits B2B et B2C, je suis spécialisé dans la recherche utilisateur, les design systems et la collaboration étroite avec les équipes de développement.</p>
+        <p class="about-p" data-key="about_p2">Polyvalent, j'interviens aussi en communication visuelle : print, motion design, illustration. Basé à Bouc-Bel-Air, ouvert à la mobilité nationale.</p>
         <div class="skill-tags">
-          <span class="stag">Figma</span><span class="stag">Webflow</span><span class="stag">3ds Max</span>
-          <span class="stag">Illustrator</span><span class="stag">After Effects</span><span class="stag">Premiere Pro</span>
-          <span class="stag">HTML / CSS</span><span class="stag">WordPress</span>
+          <span class="stag">Figma</span><span class="stag">Zeroheight</span><span class="stag">Design system</span>
+          <span class="stag">Prototypage</span><span class="stag">HTML / CSS</span><span class="stag">Webflow</span>
+          <span class="stag">After Effects</span><span class="stag">Illustrator</span><span class="stag">3ds Max</span>
         </div>
       </div>
       <div class="reveal">
-        <div class="sect-eyebrow" style="visibility:hidden" aria-hidden="true"><span class="s-num">01</span></div>
-        <div class="sect-title" style="opacity:0;height:0;overflow:hidden" aria-hidden="true">x</div>
         <div class="stat-row">
           <div class="stat-c"><span class="stat-n">2+</span><span class="stat-l" data-key="s1">Ans d'expérience</span></div>
           <div class="stat-c"><span class="stat-n">UX</span><span class="stat-l" data-key="s2">Research & Strategy</span></div>
@@ -454,23 +438,29 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section class="section sect-alt" id="portfolio">
+<!-- PROJETS -->
+<section class="section sect-alt" id="work">
   <div class="wrap">
     <div class="sect-hd reveal">
-      <div class="sect-eyebrow"><span class="s-num">02</span><span class="s-lbl" data-key="pf_lbl">Portfolio</span></div>
-      <h2 class="sect-title" data-key="pf_title">Travaux &amp; <em>projets</em></h2>
+      <span class="bracket-lbl" data-key="pf_lbl">Projets</span>
+      <h2 class="sect-title" data-key="pf_title">Une sélection de <em>travaux choisis</em></h2>
     </div>
-    <div class="pf-grid" id="pfGrid"><!-- injected by JS --></div>
+    <div class="pf-grid" id="pfGrid"><!-- injecté par JS --></div>
   </div>
 </section>
 
-<!-- EXPERIENCE + EDUCATION -->
-<section class="section" id="experience">
+<!-- PARCOURS · CV condensé -->
+<section class="section" id="resume">
   <div class="wrap">
-    <div class="sect-hd reveal">
-      <div class="sect-eyebrow"><span class="s-num">03</span><span class="s-lbl" data-key="exp_lbl">Expérience</span></div>
-      <h2 class="sect-title" data-key="exp_title">Parcours <em>professionnel</em></h2>
+    <div class="cv-head reveal">
+      <div class="sect-hd">
+        <span class="bracket-lbl" data-key="exp_lbl">Parcours</span>
+        <h2 class="sect-title" data-key="exp_title">L'essentiel, <em>en bref</em></h2>
+      </div>
+      <a href="assets/CV_Antoine_DIOKH.pdf" target="_blank" rel="noopener" class="btn-g">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-key="cv_dl">Télécharger mon CV</span>
+      </a>
     </div>
     <div class="timeline">
       <div class="tl-item reveal">
@@ -478,19 +468,16 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
         <div class="tl-card">
           <div class="tl-top">
             <div>
-              <div class="tl-role" data-key="j1_role">Designer de produit</div>
-              <div class="tl-company">DIGDASH · Fuveau La Barque</div>
+              <div class="tl-role" data-key="j1_role">Product Designer</div>
+              <div class="tl-company">DIGDASH · Fuveau</div>
             </div>
-            <span class="tl-date" data-key="j1_date">Sept 2023 · Présent</span>
+            <span class="tl-date" data-key="j1_date">Sept 2023 · Aujourd'hui</span>
           </div>
           <ul class="tl-list">
-            <li data-key="j1_1">Études utilisateurs : entretiens, tests et observations pour identifier besoins et points de friction</li>
-            <li data-key="j1_2">Conception du nouveau thème visuel Digdash Entreprise en cohérence avec l'identité de marque</li>
-            <li data-key="j1_3">Élaboration de prototypes interactifs et maquettes clients pour valider les parcours utilisateurs</li>
-            <li data-key="j1_4">Définition et documentation de parcours utilisateurs (user flows, wireframes)</li>
-            <li data-key="j1_5">Collaboration avec les équipes développement pour assurer la faisabilité de l'intégration UI/UX</li>
-            <li data-key="j1_6">Design graphique print : brochures, habillage de stands (salons BIGDATA)</li>
-            <li data-key="j1_7">Motion design : montage de tutoriels et webinaires, animations 2D</li>
+            <li data-key="j1_1">Recherche utilisateur (entretiens, tests, observations) pour orienter les évolutions produit</li>
+            <li data-key="j1_2">Refonte du thème visuel DigDash Enterprise et contribution au design system (Figma + Zeroheight)</li>
+            <li data-key="j1_3">Prototypes interactifs, user flows et wireframes validés avec les clients</li>
+            <li data-key="j1_4">Collaboration quotidienne avec les développeurs · print & motion (salons, tutoriels, webinaires)</li>
           </ul>
         </div>
       </div>
@@ -499,90 +486,63 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
         <div class="tl-card">
           <div class="tl-top">
             <div>
-              <div class="tl-role" data-key="j2_role">Stage · Designer &amp; UX Designer</div>
-              <div class="tl-company">BioPoolTech · BioHomeTech, Aix-en-Provence</div>
+              <div class="tl-role" data-key="j2_role">UX Designer · Stage</div>
+              <div class="tl-company">BioPoolTech · Aix-en-Provence</div>
             </div>
             <span class="tl-date" data-key="j2_date">Mars · Sept 2023</span>
           </div>
           <ul class="tl-list">
-            <li data-key="j2_1">Nouvelle ergonomie de l'accueil du site et refonte de l'arborescence du menu</li>
-            <li data-key="j2_2">Conception des icônes de l'application mobile BiopoolConnect</li>
-            <li data-key="j2_3">Prototypage des piscines sur 3ds Max</li>
-            <li data-key="j2_4">Design graphique print : plaquettes, étiquettes produits, habillage de stands</li>
-            <li data-key="j2_5">Motion design : animations 2D de présentation des produits</li>
+            <li data-key="j2_1">Refonte de l'ergonomie du site et de l'arborescence du menu</li>
+            <li data-key="j2_2">Icônes de l'application mobile BiopoolConnect et prototypage 3D (3ds Max)</li>
+            <li data-key="j2_3">Print & motion : plaquettes, étiquettes produits, animations 2D</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- EDUCATION (nested) -->
-    <div style="margin-top:88px">
-      <div class="sect-hd reveal">
-        <div class="sect-eyebrow"><span class="s-num">04</span><span class="s-lbl" data-key="edu_lbl">Formation</span></div>
-        <h2 class="sect-title" data-key="edu_title">Parcours <em>académique</em></h2>
-      </div>
-      <div class="edu-grid">
-        <div class="edu-c reveal">
-          <span class="edu-yr">2021 · 2023</span>
-          <div class="edu-deg" data-key="e1">Master Design de Produits et Services Multimédias</div>
-          <div class="edu-sch">Université de Franche-Comté · Montbéliard</div>
-          <div class="edu-det" data-key="e1d">Ergonomie, design d'expérience et d'interface numérique, enseignements techniques et conduite de projets</div>
+    <!-- FORMATION compacte -->
+    <div class="edu-block">
+      <h3 class="edu-h reveal" data-key="edu_h">Formation & <em>certifications</em></h3>
+      <div class="edu-list reveal">
+        <div class="edu-row">
+          <span class="edu-yr">2021 · 23</span>
+          <span class="edu-deg" data-key="e1">Master Design de Produits et Services Multimédias</span>
+          <span class="edu-sch">Univ. de Franche-Comté</span>
         </div>
-        <div class="edu-c reveal">
-          <span class="edu-yr">2018 · 2020</span>
-          <div class="edu-deg" data-key="e2">Master 2 Communication des technologies numériques</div>
-          <div class="edu-sch">Université Gaston Berger · Saint-Louis</div>
-          <div class="edu-det" data-key="e2d">Méthodologie de recherche scientifique, stratégie de contenu</div>
+        <div class="edu-row">
+          <span class="edu-yr">2018 · 20</span>
+          <span class="edu-deg" data-key="e2">Master 2 Communication des technologies numériques</span>
+          <span class="edu-sch">Univ. Gaston Berger</span>
         </div>
-        <div class="edu-c reveal">
-          <span class="edu-yr">2014 · 2017</span>
-          <div class="edu-deg" data-key="e3">Licence en Infographie</div>
-          <div class="edu-sch">Université Gaston Berger · Saint-Louis</div>
-          <div class="edu-det" data-key="e3d">Conception d'infographie, principes du design, multimédias, CMS</div>
-        </div>
-        <div class="edu-c reveal">
-          <span class="edu-yr">2014</span>
-          <div class="edu-deg" data-key="e4">Baccalauréat · Série S2, Sciences expérimentales</div>
+        <div class="edu-row">
+          <span class="edu-yr">2014 · 17</span>
+          <span class="edu-deg" data-key="e3">Licence en Infographie</span>
+          <span class="edu-sch">Univ. Gaston Berger</span>
         </div>
       </div>
       <div class="certif-strip reveal">
         <span class="certif-lbl" data-key="cert_lbl">Certifications</span>
-        <div class="certif-list">
-          <div class="certif-item">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-            <span data-key="cert1">Cybersécurité · MOOC SecNumAcadémie · ANSSI</span>
-          </div>
-          <div class="certif-item">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-            <span data-key="cert2">Visualisation des données · Udemy</span>
-          </div>
+        <div class="certif-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          <span data-key="cert1">Cybersécurité · SecNumAcadémie ANSSI</span>
+        </div>
+        <div class="certif-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          <span data-key="cert2">Visualisation des données · Udemy</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- TÉMOIGNAGES -->
 <section class="section sect-alt" id="testimonials">
   <div class="wrap">
-    <div class="testi-header reveal">
-      <div>
-        <div class="sect-eyebrow"><span class="s-num">05</span><span class="s-lbl" data-key="testi_lbl">Témoignages</span></div>
-        <h2 class="sect-title" data-key="testi_title">Ce qu'ils disent <em>de moi</em></h2>
-      </div>
-      <div class="testi-nav">
-        <button class="testi-btn" id="testiPrev" aria-label="Précédent">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <button class="testi-btn" id="testiNext" aria-label="Suivant">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
+    <div class="sect-hd reveal">
+      <span class="bracket-lbl" data-key="testi_lbl">Témoignages</span>
+      <h2 class="sect-title" data-key="testi_title">Ce qu'ils disent <em>de moi</em></h2>
     </div>
-    <div class="swiper testi-swiper" id="testiSwiper">
-      <div class="swiper-wrapper" id="testiWrapper"><!-- injected by JS --></div>
-      <div class="swiper-pagination" style="bottom:0"></div>
-    </div>
+    <div class="testi-grid" id="testiGrid"><!-- injecté par JS --></div>
   </div>
 </section>
 
@@ -590,15 +550,15 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
 <section class="section" id="contact">
   <div class="wrap">
     <div class="sect-hd reveal">
-      <div class="sect-eyebrow"><span class="s-num">06</span><span class="s-lbl" data-key="ct_lbl">Contact</span></div>
+      <span class="bracket-lbl" data-key="ct_lbl">Contact</span>
       <h2 class="sect-title" data-key="ct_title">Travaillons <em>ensemble</em></h2>
     </div>
     <div class="contact-grid">
       <div class="reveal">
-        <p class="contact-intro" data-key="ct_desc">Vous avez un projet, une opportunité ou simplement une question ? Écrivez-moi, je vous réponds dans les meilleurs délais.</p>
+        <p class="contact-intro" data-key="ct_desc">Un projet, une opportunité, ou simplement envie d'échanger sur le design ? Écrivez-moi, je réponds vite.</p>
         <a href="mailto:antoinediokh@gmail.com" class="contact-mail">
           antoinediokh@gmail.com
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </a>
         <div class="socials">
           <a href="https://www.linkedin.com/in/antoinengordiokh/" target="_blank" rel="noopener noreferrer" class="social-lk">
@@ -631,7 +591,7 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
           <textarea class="fi ft" id="fmsg" name="message" required data-ph="f_msg_ph" placeholder="Décrivez votre projet ou votre demande..."></textarea>
         </div>
         <button type="submit" class="btn-p" style="width:100%;justify-content:center" id="submitBtn">
-          <span class="t" id="submitLabel" data-key="f_send">Envoyer le message</span>
+          <span id="submitLabel" data-key="f_send">Envoyer le message</span>
           <span class="a"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
         </button>
         <p class="f-status" id="fStatus"></p>
@@ -643,13 +603,12 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
 <!-- FOOTER -->
 <footer class="footer">
   <div class="wrap footer-i">
-    <span class="footer-logo">AD.</span>
+    <span class="footer-logo">Antoine <em>Diokh</em></span>
     <nav class="footer-nav">
-      <a href="#about"        data-key="nav_about">À propos</a>
-      <a href="#portfolio"    data-key="nav_portfolio">Portfolio</a>
-      <a href="#experience"   data-key="nav_exp">Expérience</a>
-      <a href="#testimonials" data-key="nav_testi">Témoignages</a>
-      <a href="#contact"      data-key="nav_contact">Contact</a>
+      <a href="#about"   data-key="nav_about">À propos</a>
+      <a href="#work"    data-key="nav_work">Projets</a>
+      <a href="#resume"  data-key="nav_resume">Parcours</a>
+      <a href="#contact" data-key="nav_contact">Contact</a>
     </nav>
     <p class="footer-loc" data-key="footer_loc">Basé en France · Ouvert à la mobilité nationale</p>
   </div>
@@ -671,123 +630,100 @@ body.dark .nav-drawer{background:rgba(6,6,8,.97)}
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 (function(){
 
-/* ── TRANSLATIONS ─────────────────────────────────── */
+/* ── TRADUCTIONS ──────────────────────────────────── */
 var T = {
   fr:{
-    nav_about:'À propos', nav_portfolio:'Portfolio', nav_exp:'Expérience',
-    nav_testi:'Témoignages', nav_contact:'Contact',
-    hero_line1:'Je suis Antoine,',
-    hero_line2:'product designer',
-    hero_line3:'qui fait le lien entre besoins utilisateurs et objectifs business.',
-    hero_sub:"Je pilote tout le processus de design, de la discovery et la stratégie d'expérience jusqu'aux prototypes haute-fidélité et aux features livrées.",
-    hero_cta1:'Me contacter', hero_cta2:'Voir mon travail',
+    nav_about:'À propos', nav_work:'Projets', nav_resume:'Parcours', nav_contact:'Contact',
+    hero_eyebrow:'Antoine Diokh · Product Designer',
+    hero_title:'Je conçois des produits <span class="hl">intuitifs</span> pour les utilisateurs, <em>clairs</em> pour les équipes qui les construisent.',
+    hero_sub:"De la recherche utilisateur aux prototypes haute-fidélité : un design minimal, délibéré, au service du produit.",
+    hero_cta1:'Me contacter', hero_cta2:'Voir mes projets',
     about_lbl:'À propos',
-    about_quote:'Je conçois des produits numériques <em>centrés sur l\'humain</em>, du cadrage à la livraison.',
-    about_p1:"Designer de produit avec une solide formation en design d'expérience et d'interface numérique, je m'attache à créer des interfaces claires, accessibles et cohérentes avec l'identité de marque.",
-    about_p2:"Habitué à travailler en proximité avec les équipes de développement, je pilote chaque projet de la recherche utilisateur à la livraison : conception, prototypage, validation.",
-    about_p3:"Polyvalent, j'interviens en design de produit comme en communication visuelle : print, motion, illustration. Basé à Bouc-Bel-Air, ouvert à la mobilité nationale.",
+    about_title:'Design <em>centré humain</em>, du cadrage à la livraison',
+    about_quote:"Un bon produit n'a pas besoin d'être expliqué : <em>il se comprend.</em>",
+    about_p1:"Product Designer avec 2 ans d'expérience en conception UX/UI pour des produits B2B et B2C, je suis spécialisé dans la recherche utilisateur, les design systems et la collaboration étroite avec les équipes de développement.",
+    about_p2:"Polyvalent, j'interviens aussi en communication visuelle : print, motion design, illustration. Basé à Bouc-Bel-Air, ouvert à la mobilité nationale.",
     s1:"Ans d'expérience", s2:'Research & Strategy', s3:'Interface & Prototype', s4:'Motion & Print',
-    pf_lbl:'Portfolio', pf_title:'Travaux & <em>projets</em>',
+    pf_lbl:'Projets', pf_title:'Une sélection de <em>travaux choisis</em>',
     pf_view:'Voir le projet', pf_mob:'Version mobile', pf_desk:'Version bureau',
-    exp_lbl:'Expérience', exp_title:'Parcours <em>professionnel</em>',
-    j1_role:'Designer de produit', j1_date:'Sept 2023 · Présent',
-    j1_1:"Études utilisateurs : entretiens, tests et observations pour identifier besoins et points de friction",
-    j1_2:"Conception du nouveau thème visuel Digdash Entreprise en cohérence avec l'identité de marque",
-    j1_3:"Élaboration de prototypes interactifs et maquettes clients pour valider les parcours utilisateurs",
-    j1_4:"Définition et documentation de parcours utilisateurs (user flows, wireframes)",
-    j1_5:"Collaboration avec les équipes développement pour assurer la faisabilité de l'intégration UI/UX",
-    j1_6:"Design graphique print : brochures, habillage de stands (salons BIGDATA)",
-    j1_7:"Motion design : montage de tutoriels et webinaires, animations 2D",
-    j2_role:'Stage · Designer & UX Designer', j2_date:'Mars · Sept 2023',
-    j2_1:"Nouvelle ergonomie de l'accueil du site et refonte de l'arborescence du menu",
-    j2_2:"Conception des icônes de l'application mobile BiopoolConnect",
-    j2_3:'Prototypage des piscines sur 3ds Max',
-    j2_4:'Design graphique print : plaquettes, étiquettes produits, habillage de stands',
-    j2_5:'Motion design : animations 2D de présentation des produits',
-    edu_lbl:'Formation', edu_title:'Parcours <em>académique</em>',
+    exp_lbl:'Parcours', exp_title:"L'essentiel, <em>en bref</em>",
+    cv_dl:'Télécharger mon CV',
+    j1_role:'Product Designer', j1_date:"Sept 2023 · Aujourd'hui",
+    j1_1:"Recherche utilisateur (entretiens, tests, observations) pour orienter les évolutions produit",
+    j1_2:"Refonte du thème visuel DigDash Enterprise et contribution au design system (Figma + Zeroheight)",
+    j1_3:"Prototypes interactifs, user flows et wireframes validés avec les clients",
+    j1_4:"Collaboration quotidienne avec les développeurs · print & motion (salons, tutoriels, webinaires)",
+    j2_role:'UX Designer · Stage', j2_date:'Mars · Sept 2023',
+    j2_1:"Refonte de l'ergonomie du site et de l'arborescence du menu",
+    j2_2:"Icônes de l'application mobile BiopoolConnect et prototypage 3D (3ds Max)",
+    j2_3:"Print & motion : plaquettes, étiquettes produits, animations 2D",
+    edu_h:'Formation & <em>certifications</em>',
     e1:'Master Design de Produits et Services Multimédias',
-    e1d:"Ergonomie, design d'expérience et d'interface numérique, enseignements techniques et conduite de projets",
     e2:'Master 2 Communication des technologies numériques',
-    e2d:'Méthodologie de recherche scientifique, stratégie de contenu',
     e3:'Licence en Infographie',
-    e3d:"Conception d'infographie, principes du design, multimédias, CMS",
-    e4:'Baccalauréat · Série S2, Sciences expérimentales',
     cert_lbl:'Certifications',
-    cert1:'Cybersécurité · MOOC SecNumAcadémie · ANSSI',
+    cert1:'Cybersécurité · SecNumAcadémie ANSSI',
     cert2:'Visualisation des données · Udemy',
     testi_lbl:'Témoignages', testi_title:'Ce qu\'ils disent <em>de moi</em>',
     ct_lbl:'Contact', ct_title:'Travaillons <em>ensemble</em>',
-    ct_desc:"Vous avez un projet, une opportunité ou simplement une question ? Écrivez-moi, je vous réponds dans les meilleurs délais.",
+    ct_desc:"Un projet, une opportunité, ou simplement envie d'échanger sur le design ? Écrivez-moi, je réponds vite.",
     f_name:'Nom *', f_name_ph:'Votre nom',
     f_subj:'Sujet', f_subj_ph:'Opportunité, projet, collaboration...',
     f_msg:'Message *', f_msg_ph:'Décrivez votre projet ou votre demande...',
     f_send:'Envoyer le message',
     footer_loc:'Basé en France · Ouvert à la mobilité nationale',
     form_ok:"Message envoyé ! Je vous réponds très bientôt.",
-    form_err:"Erreur d'envoi. Contactez-moi directement par email.",
-    sending:'Envoi…'
+    mq:['UX Research','Interface Design','Prototypage','Design System','Motion Design','Figma','User Testing','Product Strategy','Webflow','After Effects']
   },
   en:{
-    nav_about:'About', nav_portfolio:'Portfolio', nav_exp:'Experience',
-    nav_testi:'Testimonials', nav_contact:'Contact',
-    hero_line1:"I'm Antoine,",
-    hero_line2:'a product designer',
-    hero_line3:'bridging user needs and business outcomes.',
-    hero_sub:'I own the full design process from early discovery and experience strategy to high-fidelity prototypes and shipped features.',
+    nav_about:'About', nav_work:'Work', nav_resume:'Resume', nav_contact:'Contact',
+    hero_eyebrow:'Antoine Diokh · Product Designer',
+    hero_title:'I design products that are <span class="hl">intuitive</span> for users and <em>straightforward</em> for the teams building them.',
+    hero_sub:'From user research to high-fidelity prototypes: minimal, deliberate design in service of the product.',
     hero_cta1:'Contact me', hero_cta2:'See my work',
     about_lbl:'About',
-    about_quote:'I design digital products <em>centred on humans</em>, from framing to delivery.',
-    about_p1:"Product designer with a solid background in UX and digital interface design, I focus on building clear, accessible interfaces that align with brand identity.",
-    about_p2:"Experienced working closely with development teams, I drive each project from user research through to delivery: ideation, prototyping, validation.",
-    about_p3:"A versatile designer, I work across product design and visual communication: print, motion design, illustration. Based in southern France, open to relocation.",
+    about_title:'<em>Human-centred</em> design, from framing to delivery',
+    about_quote:"A good product needs no explanation: <em>it just makes sense.</em>",
+    about_p1:"Product Designer with 2 years of UX/UI experience across B2B and B2C products, specialised in user research, design systems and close collaboration with development teams.",
+    about_p2:"A versatile designer, I also work in visual communication: print, motion design, illustration. Based in southern France, open to relocation.",
     s1:'Years of experience', s2:'Research & Strategy', s3:'Interface & Prototype', s4:'Motion & Print',
-    pf_lbl:'Portfolio', pf_title:'Works & <em>projects</em>',
+    pf_lbl:'Work', pf_title:'A selection of <em>curated works</em>',
     pf_view:'View project', pf_mob:'Mobile version', pf_desk:'Desktop version',
-    exp_lbl:'Experience', exp_title:'<em>Professional</em> background',
+    exp_lbl:'Resume', exp_title:'The essentials, <em>in brief</em>',
+    cv_dl:'Download my resume',
     j1_role:'Product Designer', j1_date:'Sept 2023 · Present',
-    j1_1:"User research: interviews, tests and observations to identify needs and pain points",
-    j1_2:"Design of the new Digdash Enterprise visual theme, aligned with brand identity",
-    j1_3:"Creation of interactive prototypes and client mockups to validate user journeys",
-    j1_4:"Definition and documentation of user journeys (user flows, wireframes)",
-    j1_5:"Close collaboration with development teams to ensure UI/UX feasibility and consistency",
-    j1_6:"Print graphic design: brochures, booth dressing at BIGDATA trade shows",
-    j1_7:"Motion design: tutorial and webinar editing, 2D animations",
-    j2_role:'Internship · Designer & UX Designer', j2_date:'March · Sept 2023',
-    j2_1:"New website homepage ergonomics and menu information architecture redesign",
-    j2_2:"Design of icons for the BiopoolConnect mobile application",
-    j2_3:"Pool prototyping with 3ds Max",
-    j2_4:"Print graphic design: brochures, product labels, booth dressing",
-    j2_5:"Motion design: 2D product presentation animations",
-    edu_lbl:'Education', edu_title:'<em>Academic</em> background',
+    j1_1:"User research (interviews, tests, observations) to guide product decisions",
+    j1_2:"Redesign of the DigDash Enterprise visual theme and design system contribution (Figma + Zeroheight)",
+    j1_3:"Interactive prototypes, user flows and wireframes validated with clients",
+    j1_4:"Daily collaboration with developers · print & motion (trade shows, tutorials, webinars)",
+    j2_role:'UX Designer · Internship', j2_date:'March · Sept 2023',
+    j2_1:"Website ergonomics and menu architecture redesign",
+    j2_2:"BiopoolConnect mobile app icons and 3D prototyping (3ds Max)",
+    j2_3:"Print & motion: brochures, product labels, 2D animations",
+    edu_h:'Education & <em>certifications</em>',
     e1:"Master's in Multimedia Product & Service Design",
-    e1d:"Ergonomics, UX & digital interface design, technical courses and project management",
     e2:"Master's 2 in Digital Technology Communication",
-    e2d:'Scientific research methodology, content strategy',
     e3:"Bachelor's in Infographics",
-    e3d:'Infographic design, design principles, multimedia, CMS',
-    e4:"Baccalauréat · Scientific series (S2)",
     cert_lbl:'Certifications',
-    cert1:'Cybersecurity · MOOC SecNumAcadémie · ANSSI',
+    cert1:'Cybersecurity · SecNumAcadémie ANSSI',
     cert2:'Data visualisation · Udemy',
     testi_lbl:'Testimonials', testi_title:'What they say <em>about me</em>',
     ct_lbl:'Contact', ct_title:"Let's work <em>together</em>",
-    ct_desc:"Got a project, an opportunity or just a question? Write to me and I'll get back to you as soon as possible.",
+    ct_desc:"A project, an opportunity, or just fancy a chat about design? Write to me, I reply quickly.",
     f_name:'Name *', f_name_ph:'Your name',
     f_subj:'Subject', f_subj_ph:'Opportunity, project, collaboration...',
     f_msg:'Message *', f_msg_ph:'Describe your project or enquiry...',
     f_send:'Send message',
     footer_loc:'Based in France · Open to relocation',
     form_ok:"Message sent! I'll get back to you very soon.",
-    form_err:'Sending failed. Please email me directly.',
-    sending:'Sending…'
+    mq:['UX Research','Interface Design','Prototyping','Design System','Motion Design','Figma','User Testing','Product Strategy','Webflow','After Effects']
   }
 };
 
-/* ── PORTFOLIO DATA ───────────────────────────────── */
+/* ── DONNÉES PROJETS ──────────────────────────────── */
 var PROJECTS = [
   {
     img:'assets/image/logoG.png',
@@ -843,7 +779,7 @@ var PROJECTS = [
   }
 ];
 
-/* ── TESTIMONIALS DATA ────────────────────────────── */
+/* ── TÉMOIGNAGES ──────────────────────────────────── */
 var TESTIMONIALS = [
   {
     text:{
@@ -856,7 +792,7 @@ var TESTIMONIALS = [
   },
   {
     text:{
-      fr:"Je recommande Antoine vivement. C'est quelqu'un de très agréable au travail, qui s'est travaillé en équipe et défini ses priorités. Il travaille rapidement, et à beaucoup de compétences dans divers domaines.",
+      fr:"Je recommande Antoine vivement. C'est quelqu'un de très agréable au travail, qui sait travailler en équipe et définir ses priorités. Il travaille rapidement, et a beaucoup de compétences dans divers domaines.",
       en:"I highly recommend Antoine. He is a very pleasant person to work with, who works well in a team and sets his priorities clearly. He works quickly and has many skills in various areas."
     },
     author:"Carla Rossi",
@@ -874,7 +810,7 @@ var TESTIMONIALS = [
   }
 ];
 
-/* ── THEME ────────────────────────────────────────── */
+/* ── THÈME ────────────────────────────────────────── */
 var SUN = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
 var MOON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
 var storedTheme = localStorage.getItem('ad_theme');
@@ -889,7 +825,7 @@ function applyTheme(dark) {
 applyTheme(isDark);
 document.getElementById('themeBtn').addEventListener('click', function(){ applyTheme(!isDark); });
 
-/* ── LANG ─────────────────────────────────────────── */
+/* ── LANGUE ───────────────────────────────────────── */
 var lang = localStorage.getItem('ad_lang') || 'fr';
 
 function applyLang(l) {
@@ -905,6 +841,7 @@ function applyLang(l) {
     var v = T[l][el.dataset.ph];
     if (v !== undefined) el.placeholder = v;
   });
+  buildMarquee();
   buildPortfolio();
   buildTestimonials();
 }
@@ -913,7 +850,21 @@ document.getElementById('langBtn').addEventListener('click', function(){
   applyLang(lang === 'fr' ? 'en' : 'fr');
 });
 
-/* ── PORTFOLIO ────────────────────────────────────── */
+/* ── MARQUEE ──────────────────────────────────────── */
+function buildMarquee() {
+  var track = document.getElementById('mqTrack');
+  var items = T[lang].mq;
+  var html = '';
+  // doublé pour une boucle continue
+  for (var r = 0; r < 2; r++) {
+    items.forEach(function(it){
+      html += '<span class="mq-item">' + it + '<span class="mq-dot">✳</span></span>';
+    });
+  }
+  track.innerHTML = html;
+}
+
+/* ── PROJETS ──────────────────────────────────────── */
 function buildPortfolio() {
   var grid = document.getElementById('pfGrid');
   grid.innerHTML = '';
@@ -924,7 +875,6 @@ function buildPortfolio() {
     card.setAttribute('aria-label', p.title[lang]);
     card.innerHTML =
       '<div class="pf-thumb"><img src="' + p.img + '" alt="' + p.title[lang] + '" loading="lazy"></div>' +
-      '<div class="pf-overlay"></div>' +
       '<div class="pf-info"><div class="pf-cat">' + p.cat[lang] + '</div><div class="pf-name">' + p.title[lang] + '</div></div>';
     card.addEventListener('click', function(){ openModal(i); });
     grid.appendChild(card);
@@ -932,37 +882,23 @@ function buildPortfolio() {
   observeReveal();
 }
 
-/* ── TESTIMONIALS ─────────────────────────────────── */
-var swiperInst = null;
-
+/* ── TÉMOIGNAGES ──────────────────────────────────── */
 function buildTestimonials() {
-  var wrap = document.getElementById('testiWrapper');
-  wrap.innerHTML = '';
+  var grid = document.getElementById('testiGrid');
+  grid.innerHTML = '';
   TESTIMONIALS.forEach(function(t){
-    var slide = document.createElement('div');
-    slide.className = 'swiper-slide testi-slide';
-    slide.innerHTML =
-      '<div class="testi-card">' +
-        '<p class="testi-q">' + t.text[lang] + '</p>' +
-        '<div class="testi-author">' +
-          '<div class="testi-av">' + t.initials + '</div>' +
-          '<div><div class="testi-name">' + t.author + '</div>' +
-          '<div class="testi-role">' + t.role[lang] + '</div></div>' +
-        '</div>' +
+    var card = document.createElement('div');
+    card.className = 'testi-card reveal';
+    card.innerHTML =
+      '<p class="testi-q">' + t.text[lang] + '</p>' +
+      '<div class="testi-author">' +
+        '<div class="testi-av">' + t.initials + '</div>' +
+        '<div><div class="testi-name">' + t.author + '</div>' +
+        '<div class="testi-role">' + t.role[lang] + '</div></div>' +
       '</div>';
-    wrap.appendChild(slide);
+    grid.appendChild(card);
   });
-
-  if (swiperInst) { swiperInst.destroy(true, true); }
-  swiperInst = new Swiper('#testiSwiper', {
-    slidesPerView: 1,
-    spaceBetween: 24,
-    loop: true,
-    autoplay: { delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false },
-    pagination: { el: '.swiper-pagination', clickable: true },
-    navigation: { prevEl: '#testiPrev', nextEl: '#testiNext' },
-    breakpoints: { 768: { slidesPerView: 1.5 }, 1100: { slidesPerView: 2 } }
-  });
+  observeReveal();
 }
 
 /* ── MODAL ────────────────────────────────────────── */
@@ -1019,7 +955,7 @@ document.addEventListener('click', function(e){
   if (!nav.contains(e.target)){ drawer.classList.remove('open'); burger.classList.remove('open'); }
 });
 
-/* ── ACTIVE NAV ───────────────────────────────────── */
+/* ── NAV ACTIVE ───────────────────────────────────── */
 document.querySelectorAll('section[id]').forEach(function(s){
   new IntersectionObserver(function(es){
     es.forEach(function(e){
@@ -1042,11 +978,9 @@ function observeReveal(){
   document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ io.observe(el); });
 }
 
-/* ── CONTACT FORM ─────────────────────────────────── */
+/* ── FORMULAIRE ───────────────────────────────────── */
 var form = document.getElementById('contactForm');
 var fStatus = document.getElementById('fStatus');
-var submitBtn = document.getElementById('submitBtn');
-var submitLabel = document.getElementById('submitLabel');
 
 if (form) {
   form.addEventListener('submit', function(e){
@@ -1060,7 +994,7 @@ if (form) {
     window.location.href = 'mailto:antoinediokh@gmail.com'
       + '?subject=' + encodeURIComponent(subject)
       + '&body=' + encodeURIComponent(body);
-    fStatus.style.color = '#34d399';
+    fStatus.style.color = 'var(--acc)';
     fStatus.textContent = T[lang].form_ok;
     setTimeout(function(){ fStatus.textContent = ''; fStatus.style.color = ''; }, 5000);
   });
