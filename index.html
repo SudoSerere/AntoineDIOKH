@@ -290,7 +290,7 @@ body.dark .lego{opacity:.35}
   <a href="#resume"  data-key="m_resume">Parcours<i>.</i></a>
   <a href="#contact" data-key="m_contact">Contact<i>.</i></a>
   <div class="menu-tools">
-    <button id="langBtn"><span id="langLabel">EN</span></button>
+    <button id="langBtn"><span id="langLabel">FR ⇢ EN</span></button>
     <button id="themeBtn" data-key="menu_theme">Mode sombre</button>
   </div>
 </div>
@@ -748,14 +748,15 @@ function applyTheme(dark) {
   btn.textContent = dark ? T[lang].menu_theme_l : T[lang].menu_theme;
 }
 
-/* ── LANGUE ───────────────────────────────────────── */
-var lang = localStorage.getItem('ad_lang') || 'fr';
+/* ── LANGUE · français par défaut ─────────────────── */
+/* clé v2 : réinitialise les anciens choix mémorisés */
+var lang = localStorage.getItem('ad_lang2') || 'fr';
 
 function applyLang(l) {
   lang = l;
-  localStorage.setItem('ad_lang', l);
+  localStorage.setItem('ad_lang2', l);
   document.documentElement.lang = l;
-  document.getElementById('langLabel').textContent = l === 'fr' ? 'EN' : 'FR';
+  document.getElementById('langLabel').textContent = l === 'fr' ? 'FR ⇢ EN' : 'EN ⇢ FR';
   document.querySelectorAll('[data-key]').forEach(function(el){
     var v = T[l][el.dataset.key];
     if (v !== undefined) el.innerHTML = v;
