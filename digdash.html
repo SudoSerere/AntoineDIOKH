@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Étude de cas : refonte UX/UI du site digdash.com, avant/après et raisonnement de design.">
+<title>DigDash · Refonte UX/UI — Antoine DIOKH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=Doto:wght@700;900&family=Abril+Fatface&family=Lobster&family=Lora:ital@0;1&family=Merriweather:wght@700&family=Oswald:wght@500&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+
+/* =========================================================
+   TOKENS · colonne de cartes sur fond menthe
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+
+:root{
+  --bg:      #cfe9e4;           /* fond profond entre les cartes */
+  --rail:    #e6f5f1;           /* cellules latérales */
+  --card:    #FDFFFE;           /* cartes de contenu */
+  --ink:     #121312;
+  --muted:   rgba(17,35,34,.6);
+  --sub:     rgba(17,35,34,.38);
+  --green:   #00A084;
+  --greend:  #005C47;
+  --mint:    #4EDF88;
+  --teal:    #c2e9e7;
+  --figma:   #0C8CE9;
+  --bord:    rgba(0,92,71,.12);
+  --led-bg:  #101312;
+  --sans:'Inter',system-ui,sans-serif;
+  --serif:'Fraunces',Georgia,serif;
+  --dot:'Doto',monospace;
+  --r:14px;
+  --gap:3px;
+  --col:536px;
+  --t:220ms cubic-bezier(.4,0,.2,1);
+}
+body.dark{
+  --bg:      #0a0f0d;
+  --rail:    #101614;
+  --card:    #151b18;
+  --ink:     #eef5f1;
+  --muted:   rgba(219,235,228,.6);
+  --sub:     rgba(219,235,228,.34);
+  --green:   #4EDF88;
+  --greend:  #00A084;
+  --teal:    rgba(78,223,136,.14);
+  --bord:    rgba(255,255,255,.06);
+  --led-bg:  #050807;
+}
+
+body{font-family:var(--sans);font-size:16px;line-height:1.7;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+body.noscroll{overflow:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+ul{list-style:none}
+::selection{background:var(--mint);color:#121312}
+
+/* =========================================================
+   GRILLE · chaque rangée = rail | carte | rail
+   ========================================================= */
+.row{display:grid;grid-template-columns:1fr min(var(--col),calc(100vw - 12px)) 1fr;gap:var(--gap);margin-bottom:var(--gap)}
+.row::before,.row::after{content:'';background:var(--rail);border-radius:var(--r);min-height:100%}
+.row>.cell{background:var(--card);border-radius:var(--r);padding:34px 32px;position:relative}
+.row>.cell.flush{padding:0;overflow:hidden}
+.row>.cell.split{display:grid;grid-template-columns:1fr 1.2fr;gap:var(--gap);background:transparent;padding:0}
+.row>.cell.split>div{background:var(--card);border-radius:var(--r);padding:28px 26px}
+.row>.cell.cells4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);background:transparent;padding:0}
+.row>.cell.cells4>a{background:var(--card);border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:20px 8px;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--ink);transition:color var(--t),background var(--t)}
+.row>.cell.cells4>a:hover{color:var(--green)}
+.row>.cell.cells4>a svg{transition:transform var(--t)}
+.row>.cell.cells4>a:hover svg{transform:translateY(-2px)}
+
+/* espaceur entre groupes de sections */
+.gaprow{height:56px}
+
+/* =========================================================
+   BARRE HAUTE · MENU
+   ========================================================= */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100}
+.topbar .menu-cell{background:var(--card);border-radius:0 0 var(--r) var(--r);display:flex;align-items:center;justify-content:center;height:58px}
+.topbar::before,.topbar::after{border-radius:0 0 var(--r) var(--r);min-height:58px}
+.menu-btn{font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--green);padding:10px 26px;transition:letter-spacing var(--t)}
+.menu-btn:hover{letter-spacing:.34em}
+
+/* overlay menu */
+.menu-ov{position:fixed;inset:0;z-index:200;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center}
+.menu-ov.open{display:flex;animation:fdi .25s ease}
+@keyframes fdi{from{opacity:0}to{opacity:1}}
+.menu-ov a{font-family:var(--serif);font-size:clamp(34px,6vw,54px);font-weight:500;color:var(--ink);line-height:1.35;transition:color var(--t),letter-spacing var(--t)}
+.menu-ov a:hover{color:var(--green);letter-spacing:.02em}
+.menu-ov a i{font-style:normal;color:var(--green)}
+.menu-x{position:absolute;top:18px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--green);padding:10px 26px}
+.menu-tools{display:flex;gap:10px;margin-top:38px}
+.menu-tools button{font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--muted);background:var(--card);border-radius:var(--pill,100px);padding:10px 22px;transition:color var(--t)}
+.menu-tools button:hover{color:var(--green)}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero-h{font-family:var(--serif);font-size:clamp(30px,4.6vw,42px);font-weight:600;line-height:1.22;letter-spacing:-.01em;margin-bottom:22px}
+.hero-h i{font-style:normal;color:var(--green)}
+.hero-p{font-size:15.5px;color:var(--muted);margin-bottom:34px}
+.hero-p b{color:var(--ink);font-weight:600}
+.hero-p .cut{color:var(--green);font-weight:600;white-space:nowrap}
+.narrator{font-size:14px;color:var(--muted);margin-bottom:30px}
+.narrator b{color:var(--ink);font-weight:600}
+.timebar{display:flex;align-items:center;gap:14px;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--sub)}
+.timebar .dia{color:var(--green);font-size:13px}
+.timebar .clock{font-family:var(--dot);font-weight:900;font-size:15px;color:var(--ink);letter-spacing:.08em}
+.timebar .gmt{color:var(--green);font-family:var(--dot);font-weight:700}
+
+/* =========================================================
+   RÔLE · Product Designer + sélection Figma
+   ========================================================= */
+.role-h{font-family:var(--serif);font-size:clamp(40px,7vw,58px);font-weight:500;line-height:1.18;letter-spacing:-.015em}
+.figsel{position:relative;display:inline-block;outline:1.6px solid var(--figma);outline-offset:4px;margin:4px}
+.figsel b{position:absolute;width:7px;height:7px;background:var(--card);border:1.6px solid var(--figma);z-index:1}
+.figsel b:nth-child(1){top:-8px;left:-8px}
+.figsel b:nth-child(2){top:-8px;right:-8px}
+.figsel b:nth-child(3){bottom:-8px;left:-8px}
+.figsel b:nth-child(4){bottom:-8px;right:-8px}
+
+/* panneau Fonts façon Figma */
+.fonts-panel{background:#1e1e1e;border-radius:10px;overflow:hidden;color:#e6e6e6;font-size:13px;box-shadow:0 18px 60px rgba(0,40,30,.25)}
+.fp-head{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;font-weight:600;font-size:12.5px;border-bottom:1px solid #2c2c2c}
+.fp-head svg{opacity:.55;cursor:pointer}
+.fp-search{margin:10px 12px 6px;display:flex;align-items:center;gap:8px;background:#2c2c2c;border-radius:6px;padding:7px 10px;color:#9a9a9a}
+.fp-search input{background:none;border:none;outline:none;color:#e6e6e6;font-size:12.5px;width:100%}
+.fp-hint{margin:6px 12px 8px;border:1px solid #3a3a3a;border-radius:6px;padding:6px 10px;font-size:11.5px;color:#bdbdbd}
+.fp-list{padding:2px 4px 8px;max-height:250px;overflow:auto}
+.fp-list::-webkit-scrollbar{width:4px}
+.fp-list::-webkit-scrollbar-thumb{background:#3a3a3a;border-radius:2px}
+.fp-item{display:flex;align-items:center;gap:9px;width:100%;text-align:left;padding:7px 12px;border-radius:5px;font-size:15px;color:#e6e6e6;transition:background .15s}
+.fp-item:hover,.fp-item.on{background:#333}
+.fp-item .tick{width:12px;color:#4EDF88;font-size:11px;visibility:hidden}
+.fp-item.on .tick{visibility:visible}
+
+/* =========================================================
+   STATS · chiffres dot-matrix
+   ========================================================= */
+.stat-lbl{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.stat-num{font-family:var(--dot);font-weight:900;font-size:clamp(44px,7vw,58px);line-height:1;color:var(--ink);letter-spacing:.04em}
+.stat-note{font-size:13.5px;color:var(--muted);line-height:1.65}
+
+/* bandeau LED */
+.led{background:var(--led-bg);border-radius:10px;border-left:10px solid var(--green);border-right:10px solid var(--green);overflow:hidden;padding:14px 0}
+.led-track{display:flex;width:max-content;animation:led 18s linear infinite;font-family:var(--dot);font-weight:900;font-size:24px;color:var(--mint);letter-spacing:.14em;white-space:nowrap}
+.led-track span{padding:0 26px}
+@keyframes led{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* carte-lien fléchée */
+.arrow-link{display:flex;align-items:center;gap:14px;font-size:20px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:uppercase;transition:color var(--t)}
+.arrow-link em{font-style:normal;color:var(--green)}
+.arrow-link .arr{color:var(--green);font-size:22px;transition:transform var(--t)}
+.arrow-link:hover{color:var(--green)}
+.arrow-link:hover .arr{transform:translateX(6px)}
+.arrow-sub{font-size:13.5px;color:var(--muted);margin-top:8px}
+
+/* =========================================================
+   NOTE DU NARRATEUR / sections texte
+   ========================================================= */
+.sec-lbl{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+.note-p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:18px}
+.note-p:last-child{margin-bottom:0}
+.note-p b{color:var(--ink);font-weight:600}
+
+/* =========================================================
+   < PROJETS /> · rangées de travaux
+   ========================================================= */
+.code-h{font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.code-h i{font-style:normal;color:var(--green);font-weight:600}
+.code-sub{font-size:14.5px;color:var(--muted)}
+.work{width:100%;text-align:left;transition:background var(--t)}
+.work-t{display:flex;align-items:center;gap:13px;font-size:20px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);margin-bottom:10px;transition:color var(--t)}
+.work-t .arr{color:var(--green);font-size:21px;flex-shrink:0;transition:transform var(--t)}
+.work:hover .work-t{color:var(--green)}
+.work:hover .work-t .arr{transform:translateX(6px)}
+.work-d{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px}
+.work-tags{display:flex;flex-wrap:wrap;gap:20px;font-size:13px;font-weight:600;color:var(--muted)}
+.work-tags span{display:inline-flex;align-items:center;gap:8px}
+.work-tags .dia{color:var(--green);font-size:11px}
+
+/* =========================================================
+   PARCOURS
+   ========================================================= */
+.job-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.job-role{font-family:var(--serif);font-size:23px;font-weight:600}
+.job-role i{font-style:normal;color:var(--green)}
+.job-date{font-family:var(--dot);font-weight:700;font-size:13px;letter-spacing:.06em;color:var(--green)}
+.job-org{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.job-list li{font-size:14px;color:var(--muted);line-height:1.7;padding-left:20px;position:relative;margin-bottom:10px}
+.job-list li::before{content:'✦';position:absolute;left:0;top:1px;color:var(--green);font-size:11px}
+.job-list li:last-child{margin-bottom:0}
+
+.edu-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px dashed var(--bord)}
+.edu-row:last-of-type{border-bottom:none}
+.edu-deg{font-size:14px;font-weight:600;line-height:1.5}
+.edu-deg small{display:block;font-weight:400;font-size:12.5px;color:var(--sub)}
+.edu-yr{font-family:var(--dot);font-weight:700;font-size:13px;color:var(--green);white-space:nowrap}
+
+/* =========================================================
+   TÉMOIGNAGES
+   ========================================================= */
+.q-txt{font-family:var(--serif);font-size:17.5px;font-weight:400;line-height:1.65;margin-bottom:20px}
+.q-txt::before{content:'\201C';color:var(--green);margin-right:2px}
+.q-txt::after{content:'\201D';color:var(--green);margin-left:2px}
+.q-by{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.q-by .dia{color:var(--green);font-size:11px}
+.q-by b{color:var(--ink);font-weight:600}
+
+/* =========================================================
+   CONTACT · [ … ]
+   ========================================================= */
+.mute-h{font-family:var(--sans);font-size:clamp(34px,5.6vw,46px);font-weight:600;color:var(--green);letter-spacing:.01em;margin-bottom:56px}
+.ct-p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:26px}
+.ct-mail{display:inline-flex;align-items:center;gap:10px;font-family:var(--serif);font-size:clamp(19px,3.4vw,25px);font-weight:500;color:var(--ink);border-bottom:2px solid var(--green);padding-bottom:4px;transition:color var(--t)}
+.ct-mail:hover{color:var(--green)}
+.ct-mail .arr{color:var(--green)}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.copy-l{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.copy-s{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);margin-bottom:34px}
+.fin{font-family:var(--serif);font-size:clamp(48px,8vw,64px);font-weight:500;line-height:1}
+.fin i{font-style:italic}
+.fin span{color:var(--green)}
+.lego{height:220px;border-radius:var(--r);background:
+  radial-gradient(circle at 50% 42%, var(--teal) 26%, rgba(0,92,71,.18) 30%, transparent 34%),
+  var(--teal);
+  background-size:44px 44px;opacity:.85}
+body.dark .lego{opacity:.35}
+
+/* =========================================================
+   MODAL PROJET
+   ========================================================= */
+.modal-bd{display:none;position:fixed;inset:0;z-index:300;background:rgba(4,14,11,.86);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:16px}
+.modal-bd.show{display:flex;animation:fdi .2s ease}
+.modal-box{background:var(--card);border-radius:var(--r);overflow:hidden;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;position:relative;animation:sdi .25s ease}
+@keyframes sdi{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.m-close{position:absolute;top:12px;right:12px;z-index:1;width:34px;height:34px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.m-close:hover{color:var(--ink)}
+.m-img{background:var(--rail);display:flex;align-items:center;justify-content:center;padding:24px}
+.m-img img{max-height:280px;object-fit:contain;border-radius:8px}
+.m-body{padding:28px 30px 32px}
+.m-cat{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
+.m-title{font-family:var(--serif);font-size:22px;font-weight:600;margin:8px 0 12px}
+.m-desc{font-size:13.5px;color:var(--muted);line-height:1.75;margin-bottom:22px}
+.m-links{display:flex;flex-wrap:wrap;gap:16px}
+.m-links a{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);transition:color var(--t)}
+.m-links a .arr{color:var(--green);transition:transform var(--t)}
+.m-links a:hover{color:var(--green)}
+.m-links a:hover .arr{transform:translateX(5px)}
+
+/* =========================================================
+   REVEAL & RESPONSIVE
+   ========================================================= */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+@media(max-width:700px){
+  .row{grid-template-columns:6px 1fr 6px}
+  .row::before,.row::after{border-radius:6px}
+  .row>.cell{padding:28px 22px}
+  .row>.cell.split{grid-template-columns:1fr}
+  .topbar{grid-template-columns:6px 1fr 6px}
+  .gaprow{height:36px}
+}
+
+/* ===== CASE STUDY ===== */
+.rl{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.row.wide{grid-template-columns:1fr min(1080px,calc(100vw - 12px)) 1fr}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.cs-h{font-family:var(--serif);font-size:clamp(32px,5.2vw,50px);font-weight:600;line-height:1.14;letter-spacing:-.015em;margin-bottom:18px}
+.cs-h i{font-style:normal;color:var(--green)}
+.cs-lead{font-size:16px;color:var(--muted);line-height:1.8;max-width:62ch}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);background:transparent;padding:0}
+.meta>div{background:var(--card);border-radius:var(--r);padding:20px 22px}
+.meta small{display:block;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sub);margin-bottom:6px}
+.meta b{font-size:14.5px;font-weight:600;line-height:1.45}
+.sec-h{font-family:var(--serif);font-size:clamp(24px,3.6vw,32px);font-weight:600;line-height:1.2;margin-bottom:10px}
+.sec-h i{font-style:normal;color:var(--green)}
+.sec-n{font-family:var(--dot);font-weight:900;font-size:13px;letter-spacing:.1em;color:var(--green);margin-bottom:10px;display:block}
+.pain{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;margin-top:22px}
+.pain li{font-size:14px;color:var(--muted);line-height:1.65;padding-left:22px;position:relative}
+.pain li::before{content:'✕';position:absolute;left:0;top:1px;color:#e0584b;font-size:11px;font-weight:700}
+.pain b{color:var(--ink);font-weight:600}
+/* avant / après */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);background:transparent!important;padding:0!important}
+.ba>figure{background:var(--card);border-radius:var(--r);padding:16px 16px 20px;margin:0}
+.ba .tag{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:99px;margin-bottom:12px}
+.ba .tag.b{background:rgba(224,88,75,.12);color:#c8453a}
+.ba .tag.a{background:var(--teal);color:var(--greend)}
+body.dark .ba .tag.b{color:#ff8a7e}
+body.dark .ba .tag.a{color:var(--green)}
+.bf{border-radius:10px;overflow:hidden;border:1px solid var(--bord);background:var(--rail);box-shadow:0 14px 40px rgba(0,40,30,.14)}
+.bf .bar{display:flex;align-items:center;gap:6px;padding:8px 12px;background:var(--rail);border-bottom:1px solid var(--bord)}
+.bf .bar i{width:8px;height:8px;border-radius:50%;background:rgba(17,35,34,.18)}
+.bf .bar span{margin-left:10px;flex:1;font-size:10.5px;color:var(--sub);background:var(--card);border-radius:5px;padding:3px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bf img{width:100%;height:auto;display:block;cursor:zoom-in}
+.phones{display:flex;justify-content:center;gap:10px}
+.ph{width:46%;max-width:210px;border-radius:26px;border:6px solid #121312;background:#121312;overflow:hidden;box-shadow:0 18px 44px rgba(0,40,30,.25)}
+.ph img{width:100%;display:block;border-radius:18px;cursor:zoom-in}
+.ba figcaption{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+/* raisonnement */
+.why{display:grid;gap:0}
+.why li{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:13px 0;border-bottom:1px dashed var(--bord);font-size:14px;color:var(--muted);line-height:1.6;align-items:baseline}
+.why li:last-child{border-bottom:none;padding-bottom:0}
+.why em{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
+.why b{color:var(--ink);font-weight:600}
+/* arbo */
+.tree{font-size:12.5px;line-height:1.5;color:var(--muted)}
+.tree .lv0{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.tree .lab{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);margin:12px 0 6px}
+.n{display:inline-flex;align-items:center;gap:6px;background:var(--rail);border:1px solid var(--bord);border-radius:8px;padding:5px 10px;font-weight:600;color:var(--ink)}
+.n small{font-weight:500;color:var(--sub);font-size:10.5px}
+.n.dead{border-style:dashed;color:#c8453a}
+.n.cta{background:var(--green);color:#fff;border-color:transparent}
+.branch{margin:0 0 10px 6px;padding-left:12px;border-left:2px solid var(--bord);display:flex;flex-wrap:wrap;gap:5px}
+.branch .n{font-weight:500;font-size:11.5px;padding:3px 8px;background:transparent}
+.branch .n.sub{border-color:var(--green)}
+.kpis{display:flex;gap:26px;margin-top:18px;flex-wrap:wrap}
+.kpi b{display:block;font-family:var(--dot);font-weight:900;font-size:30px;color:var(--ink);letter-spacing:.04em;line-height:1}
+.kpi span{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sub)}
+.kpi i{font-style:normal;color:var(--green);margin:0 6px}
+.todo li{font-size:14px;color:var(--muted);line-height:1.7;padding-left:20px;position:relative;margin-bottom:10px}
+.todo li::before{content:'✦';position:absolute;left:0;top:1px;color:var(--green);font-size:11px}
+.todo b{color:var(--ink);font-weight:600}
+.lb{position:fixed;inset:0;z-index:400;background:rgba(4,14,11,.92);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+.lb.show{display:flex}
+.lb img{max-width:100%;max-height:100%;border-radius:8px}
+@media(max-width:860px){.meta{grid-template-columns:1fr 1fr}.ba{grid-template-columns:1fr}.pain{grid-template-columns:1fr}.why li{grid-template-columns:1fr;gap:4px}}
+</style></head><body><header class="topbar row" style="margin-bottom:0"><div class="cell menu-cell flush" style="border-radius:0 0 var(--r) var(--r)"><button class="menu-btn" id="menuBtn">MENU</button></div></header>
+<div class="menu-ov" id="menuOv"><button class="menu-x" id="menuX">FERMER</button>
+<a href="index.html">Accueil<i>.</i></a><a href="index.html#works">Projets<i>.</i></a><a href="#constat">Constat<i>.</i></a><a href="#arbo">Arborescence<i>.</i></a><a href="#ecrans">Écrans<i>.</i></a><a href="#autres">Autres pages<i>.</i></a><a href="index.html#contact">Contact<i>.</i></a>
+<div class="menu-tools"><button id="themeBtn">Mode sombre</button></div></div><main style="padding-top:61px"><div class="row wide"><div class="cell reveal" style="padding:44px 40px">
+<div class="eyebrow"><span>✦</span> Étude de cas · UX/UI · Web</div>
+<h1 class="cs-h">Refonte UX/UI de <i>digdash.com</i></h1>
+<p class="cs-lead">DigDash est un éditeur français de solutions data et IA. Refonte de la navigation, de la structure des pages et de l'interface de son site, avec livraison des maquettes Figma à un développeur WordPress pour intégration. Les textes de contenu ont été fournis par le pôle communication au démarrage du projet : le travail porte sur la structure, la hiérarchie et l'interface.</p>
+<div class="work-tags" style="margin-top:22px"><span><span class="dia">✦</span>Architecture de l'information</span><span><span class="dia">✦</span>UI design</span><span><span class="dia">✦</span>Responsive</span><span><span class="dia">✦</span>Figma → WordPress</span></div></div></div>
+<div class="row wide"><div class="cell meta reveal">
+<div><small>Rôle</small><b>Product Designer · UX/UI</b></div>
+<div><small>Périmètre</small><b>Menu, accueil, produits, secteurs, clients, ressources, mobile</b></div>
+<div><small>Livraison</small><b>Maquettes Figma → dev WordPress</b></div>
+<div><small>Statut</small><b><a href="https://www.digdash.com" target="_blank" rel="noopener" style="border-bottom:2px solid var(--green)">En ligne ⇢</a></b></div></div></div><div class="gaprow" id="constat"></div><div class="row wide"><div class="cell reveal"><span class="sec-n">01 — CONSTAT</span><h2 class="sec-h">Audit de <i>l'existant</i></h2><p class="cs-lead">Points de blocage relevés avant toute maquette, dans l'ordre où le visiteur les rencontre.</p></div></div>
+<div class="row wide"><div class="cell reveal"><ul class="pain" style="margin-top:0">
+<li><b>Deux barres de navigation empilées.</b> 9 entrées de premier niveau se disputent l'attention.</li>
+<li><b>Niveaux de navigation confus.</b> « Solutions » ne mène nulle part (lien vide) et contient « Secteurs » : 3 niveaux de profondeur.</li>
+<li><b>Le produit est invisible.</b> Grande photo décorative en hero, aucun dashboard visible sur le premier écran.</li>
+<li><b>Lisibilité.</b> Titres en capitales posés sur des photos, contraste variable selon l'image.</li></ul></div></div><div class="gaprow" id="arbo"></div><div class="row wide"><div class="cell reveal"><span class="sec-n">02 — STRUCTURE</span><h2 class="sec-h"><i>Arborescence</i></h2><p class="cs-lead">Les contenus sont reclassés selon l'intention du visiteur : comprendre l'offre, trouver son secteur, se renseigner, être accompagné.</p></div></div>
+<div class="row wide"><div class="cell ba reveal">
+<figure><span class="tag b">✕ Avant</span><div class="tree">
+<div class="lab">Barre 1 · utilitaire</div>
+<div class="lv0"><span class="n ">Forum</span><span class="n ">Événements</span><span class="n ">Ressources</span><span class="n ">Support</span></div>
+<div class="branch"><span class="n ">Webinaires</span><span class="n ">Glossaire</span><span class="n ">Documentation</span><span class="n ">Interviews</span><span class="n ">Livres blancs</span><span class="n ">Vidéos tutos</span></div>
+<div class="lab">Barre 2 · principale</div>
+<div class="lv0"><span class="n dead">Solutions <small>lien vide</small></span><span class="n ">Clients</span><span class="n ">À propos</span><span class="n ">Blog</span><span class="n cta">Démonstration</span></div>
+<div class="branch"><span class="n sub">Secteurs ▸ 4</span><span class="n ">Produit</span><span class="n ">HDS</span><span class="n ">Connecteurs</span><span class="n ">Services</span><span class="n ">Formation</span><span class="n ">Cloud</span><span class="n ">Démo en ligne</span></div>
+<div class="kpis"><div class="kpi"><b>9</b><span>entrées niveau 1</span></div><div class="kpi"><b>3</b><span>niveaux</span></div></div></div></figure>
+<figure><span class="tag a">✦ Après</span><div class="tree">
+<div class="lab">Une seule barre</div>
+<div class="lv0"><span class="n ">Solutions</span><span class="n ">Secteurs</span><span class="n ">Ressources</span><span class="n ">À propos</span><span class="n ">Accompagnement</span><span class="n cta">Démonstration</span></div>
+<div class="branch"><span class="n sub">Solutions</span><span class="n ">DigDash DS</span><span class="n ">DigDash BI</span><span class="n ">DigDash AI</span></div>
+<div class="branch"><span class="n sub">Secteurs</span><span class="n ">Public</span><span class="n ">Santé Social &amp; Emploi</span><span class="n ">Industrie, Commerce &amp; Transport</span><span class="n ">Énergie, télécom &amp; service</span><span class="n ">Banque &amp; Assurance</span><span class="n ">Défense &amp; sécurité</span></div>
+<div class="branch"><span class="n sub">Ressources</span><span class="n ">Blog</span><span class="n ">Livres blancs</span><span class="n ">Témoignages</span><span class="n ">Glossaire</span><span class="n ">Agenda</span><span class="n ">Replays</span><span class="n ">Interviews</span><span class="n ">Presse</span></div>
+<div class="branch"><span class="n sub">Accompagnement</span><span class="n ">Formations</span><span class="n ">Services</span><span class="n ">Tutoriels</span><span class="n ">Forum</span><span class="n ">Support</span><span class="n ">Démos en ligne</span></div>
+<div class="kpis"><div class="kpi"><b>5<i>+</i>1</b><span>entrées + CTA</span></div><div class="kpi"><b>2</b><span>niveaux</span></div></div></div></figure>
+</div></div><div class="row wide"><div class="cell reveal"><h3 class="sec-h" style="font-size:19px">Justification</h3><ul class="why"><li><em>Loi de Hick</em><span>Moins d'options au premier niveau, décision plus rapide : <b>9 entrées → 5 + un CTA</b> isolé.</span></li><li><em>Modèle mental</em><span>Regroupement par besoin du visiteur : <b>« Accompagnement »</b> réunit tout ce qui répond à « j'ai besoin d'aide » (support, forum, formation, services).</span></li><li><em>Information scent</em><span>Chaque entrée mène à une destination identifiable ; les secteurs deviennent visibles d'emblée. Fin du lien « Solutions » vide.</span></li><li><em>Profondeur</em><span>Maximum <b>2 niveaux</b> : toute page reste accessible sans sous-menus imbriqués.</span></li></ul></div></div><div class="gaprow" id="ecrans"></div><div class="row wide"><div class="cell reveal"><span class="sec-n">03 — ÉCRANS</span><h2 class="sec-h">Écrans <i>clés</i></h2><p class="cs-lead">Comparaison avant / après, avec la règle de design qui justifie chaque choix.</p></div></div>
+  <div class="row wide"><div class="cell ba reveal">
+    <figure><span class="tag b">✕ Avant</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/</span></div><img src="assets/digdash/before-menu.jpg" alt="Ancien menu Solutions déroulé" loading="lazy"></div><figcaption>Un déroulant étroit qui recouvre le titre du hero. Huit liens de même poids visuel.</figcaption></figure>
+    <figure><span class="tag a">✦ Après</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/</span></div><img src="assets/digdash/after-menu.jpg" alt="Nouveau méga-menu Solutions" loading="lazy"></div><figcaption>Un méga-menu : panneau de présentation à gauche, puis destinations structurées en blocs (icône + texte) sur fond plein.</figcaption></figure>
+  </div></div><div class="row wide"><div class="cell reveal"><h3 class="sec-h" style="font-size:19px">Menu · justification</h3><ul class="why"><li><em>Gestalt · proximité</em><span>Un panneau de présentation à gauche, les destinations à droite : la <b>catégorie</b> est comprise avant la lecture des liens.</span></li><li><em>Loi de Fitts</em><span>Zones de clic larges (icône + bloc de texte), bien plus faciles à viser que des liens serrés.</span></li><li><em>Lisibilité</em><span>Panneau plein et opaque : plus de texte qui passe <b>sous</b> un fond photo.</span></li></ul></div></div>
+  <div class="row wide"><div class="cell ba reveal">
+    <figure><span class="tag b">✕ Avant</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/</span></div><img src="assets/digdash/before-home.jpg" alt="Ancien hero de la page d'accueil" loading="lazy"></div><figcaption>Photo plein écran sans lien avec le produit, titre centré en capitales sur image, aucun élément de réassurance.</figcaption></figure>
+    <figure><span class="tag a">✦ Après</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/</span></div><img src="assets/digdash/after-home.jpg" alt="Nouveau hero de la page d'accueil" loading="lazy"></div><figcaption>Composition en deux colonnes : titre et CTA à gauche, <b>capture produit</b> à droite, badges de confiance et bandeau de logos dès le premier écran.</figcaption></figure>
+  </div></div><div class="row wide"><div class="cell reveal"><h3 class="sec-h" style="font-size:19px">Accueil · justification</h3><ul class="why"><li><em>Hiérarchie visuelle</em><span>Lecture en F : badge, titre, sous-titre, <b>un seul CTA primaire</b> orange. Le reste s'efface.</span></li><li><em>Show, don't tell</em><span>Montrer le dashboard réel plutôt qu'une photo d'ambiance : le produit est compris dès le premier écran.</span></li><li><em>Réassurance</em><span>Badges et logos placés <b>au-dessus de la ligne de flottaison</b> : la preuve visuelle précède le défilement.</span></li><li><em>Contraste</em><span>Texte blanc sur aplat bleu nuit, plus fiable que du texte sur photo (WCAG AA).</span></li></ul></div></div>
+  <div class="row wide"><div class="cell ba reveal">
+    <figure><span class="tag b">✕ Avant</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/produit/</span></div><img src="assets/digdash/before-produit.jpg" alt="Ancienne page produit" loading="lazy"></div><figcaption>Un bandeau photo « PRODUIT » occupe tout le premier écran. Le vrai titre est sous la ligne de flottaison.</figcaption></figure>
+    <figure><span class="tag a">✦ Après</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/produit-digdash-bi/</span></div><img src="assets/digdash/after-produit.jpg" alt="Nouvelle page DigDash BI" loading="lazy"></div><figcaption>Le premier écran regroupe tout : badge, titre, capture produit, <b>CTA primaire + CTA secondaire</b>.</figcaption></figure>
+  </div></div><div class="row wide"><div class="cell reveal"><h3 class="sec-h" style="font-size:19px">Produit · justification</h3><ul class="why"><li><em>Fold utile</em><span>Un bandeau décoratif gaspille l'écran le plus vu. Ici chaque zone du premier écran a une fonction.</span></li><li><em>Hiérarchie des CTA</em><span>Un bouton plein et un bouton contour : deux niveaux d'engagement, une seule action dominante.</span></li><li><em>Réassurance</em><span>Un badge placé avant le titre signale la crédibilité avant toute lecture.</span></li></ul></div></div>
+  <div class="row wide"><div class="cell ba reveal">
+    <figure><span class="tag b">✕ Avant</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/solutions/secteur-public/</span></div><img src="assets/digdash/before-secteur.jpg" alt="Ancienne page secteur" loading="lazy"></div><figcaption>Titre sur photo, bandeau de logos sans contexte, aucun CTA visible.</figcaption></figure>
+    <figure><span class="tag a">✦ Après</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/solutions/secteur-public/</span></div><img src="assets/digdash/after-secteur.jpg" alt="Nouvelle page secteur" loading="lazy"></div><figcaption>Titre, badge de cibles et CTA <b>groupés à gauche</b>, photo contextuelle à droite.</figcaption></figure>
+  </div></div><div class="row wide"><div class="cell reveal"><h3 class="sec-h" style="font-size:19px">Secteur · justification</h3><ul class="why"><li><em>Hiérarchie</em><span>Titre, badge et CTA forment un bloc lisible en un coup d'œil ; la photo devient un support, plus un fond.</span></li><li><em>Cohérence</em><span>Un gabarit réutilisable d'un secteur à l'autre : une fois la page comprise, elle se lit de la même façon partout (loi de Jakob).</span></li></ul></div></div>
+  <div class="row wide"><div class="cell ba reveal">
+    <figure><span class="tag b">✕ Avant</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/nos-clients/</span></div><img src="assets/digdash/before-clients.jpg" alt="Ancienne page clients" loading="lazy"></div><figcaption>Filtres cachés dans deux listes déroulantes posées sur la photo, contenu repoussé sous le hero.</figcaption></figure>
+    <figure><span class="tag a">✦ Après</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/clients/</span></div><img src="assets/digdash/after-clients.jpg" alt="Nouvelle page clients" loading="lazy"></div><figcaption>Filtres <b>toujours visibles</b> sous forme de puces (secteur, fonction), puis cartes avec logos clients.</figcaption></figure>
+  </div></div><div class="row wide"><div class="cell reveal"><h3 class="sec-h" style="font-size:19px">Clients · justification</h3><ul class="why"><li><em>Reconnaissance &gt; rappel</em><span>Les puces montrent d'un coup d'œil toutes les options : plus besoin d'ouvrir une liste pour savoir ce qui existe.</span></li><li><em>Affordance</em><span>Une puce se lit comme « cliquable », un select sur photo beaucoup moins.</span></li><li><em>Réassurance</em><span>Logos en tête de liste : la page remplit son rôle de preuve visuelle.</span></li></ul></div></div>
+  <div class="row wide"><div class="cell ba reveal">
+    <figure><span class="tag b">✕ Avant</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/type_de_ressource/livres-blancs/</span></div><img src="assets/digdash/before-livres.jpg" alt="Ancienne page Livres blancs" loading="lazy"></div><figcaption>Bandeau photo « Ressources » en tête, onglets de type de ressource et premiers documents repoussés au bas du premier écran.</figcaption></figure>
+    <figure><span class="tag a">✦ Après</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/ressources/livres-blancs/</span></div><img src="assets/digdash/after-livres.jpg" alt="Nouvelle page Livres blancs" loading="lazy"></div><figcaption>Navigation par type de ressource en haut de page, onglet actif mis en évidence, <b>documents illustrés</b> dès le premier écran.</figcaption></figure>
+  </div></div><div class="row wide"><div class="cell reveal"><h3 class="sec-h" style="font-size:19px">Ressources · justification</h3><ul class="why"><li><em>Fold utile</em><span>Les documents, raison d'être de la page, sont visibles sans défilement.</span></li><li><em>État du système</em><span>L'onglet actif se distingue des autres : le visiteur sait où il se trouve parmi les cinq types de ressources.</span></li><li><em>Reconnaissance</em><span>Une couverture par document permet de l'identifier avant d'ouvrir la fiche.</span></li></ul></div></div><div class="row wide"><div class="cell ba reveal">
+<figure><span class="tag b">✕ Avant · mobile</span><div class="phones"><div class="ph"><img src="assets/digdash/before-mobile.jpg" alt="Ancienne version mobile" loading="lazy"></div></div><figcaption>Quatre icônes sans libellé, bouton « Menu » séparé, hero photo.</figcaption></figure>
+<figure><span class="tag a">✦ Après · mobile</span><div class="phones"><div class="ph"><img src="assets/digdash/after-mobile.jpg" alt="Nouvelle version mobile" loading="lazy"></div></div><figcaption>Logo, <b>CTA « Démo » toujours présent</b>, langue, menu burger : 3 actions claires.</figcaption></figure></div></div><div class="row wide"><div class="cell reveal"><h3 class="sec-h" style="font-size:19px">Mobile · justification</h3><ul class="why"><li><em>Libellés &gt; icônes</em><span>Une icône seule est ambiguë : le texte « Démo » est conservé pour l'action clé.</span></li><li><em>Loi de Fitts</em><span>Le CTA reste dans la zone de pouce, visible sans scroller.</span></li><li><em>Priorités</em><span>La navigation secondaire passe dans le burger ; le mobile ne garde que l'essentiel.</span></li></ul></div></div><div class="gaprow" id="autres"></div><div class="row wide"><div class="cell reveal"><span class="sec-n">04 — AUTRES PAGES</span><h2 class="sec-h">Autres <i>pages</i></h2><p class="cs-lead">Le même traitement appliqué au reste du site.</p></div></div>
+  <div class="row wide"><div class="cell ba reveal">
+    <figure><span class="tag b">✕ Avant</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/news-articles/</span></div><img src="assets/digdash/before-blog.jpg" alt="Ancienne page Blog" loading="lazy"></div><figcaption>Recherche et filtre dans des champs posés sur la photo, articles repoussés hors du premier écran.</figcaption></figure>
+    <figure><span class="tag a">✦ Après</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/news-articles/</span></div><img src="assets/digdash/after-blog.jpg" alt="Nouvelle page Blog" loading="lazy"></div><figcaption>Catégories visibles en puces, recherche et inscription à la newsletter dans le premier écran.<br><span class="rl">Règle · reconnaissance &gt; rappel</span></figcaption></figure>
+  </div></div>
+  <div class="row wide"><div class="cell ba reveal">
+    <figure><span class="tag b">✕ Avant</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/carriere/</span></div><img src="assets/digdash/before-carriere.jpg" alt="Ancienne page Carrières" loading="lazy"></div><figcaption>Titre sur photo, contenu sous la ligne de flottaison, aucune action proposée d'emblée.</figcaption></figure>
+    <figure><span class="tag a">✦ Après</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/carriere/</span></div><img src="assets/digdash/after-carriere.jpg" alt="Nouvelle page Carrières" loading="lazy"></div><figcaption>Titre, deux boutons (primaire et secondaire) et photo d'équipe au premier plan.<br><span class="rl">Règle · hiérarchie des actions</span></figcaption></figure>
+  </div></div>
+  <div class="row wide"><div class="cell ba reveal">
+    <figure><span class="tag b">✕ Avant</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/evenements/</span></div><img src="assets/digdash/before-evenements.jpg" alt="Ancienne page Événements" loading="lazy"></div><figcaption>Bandeau photo occupant tout le premier écran, prochain événement non visible.</figcaption></figure>
+    <figure><span class="tag a">✦ Après</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/evenements/</span></div><img src="assets/digdash/after-evenements.jpg" alt="Nouvelle page Événements" loading="lazy"></div><figcaption>Prochain événement mis en avant dans une carte, avec deux boutons (Webinaires, Événements).<br><span class="rl">Règle · fold utile</span></figcaption></figure>
+  </div></div>
+  <div class="row wide"><div class="cell ba reveal">
+    <figure><span class="tag b">✕ Avant</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/services/</span></div><img src="assets/digdash/before-services.jpg" alt="Ancienne page Services" loading="lazy"></div><figcaption>Titre « Nos services » sur photo, texte long en capitales peu lisible.</figcaption></figure>
+    <figure><span class="tag a">✦ Après</span><div class="bf"><div class="bar"><i></i><i></i><i></i><span>digdash.com/fr/accompagnement/</span></div><img src="assets/digdash/after-services.jpg" alt="Nouvelle page Accompagnement" loading="lazy"></div><figcaption>Titre, visuel d'appui et action principale, puis sections en casse normale.<br><span class="rl">Règle · lisibilité et hiérarchie</span></figcaption></figure>
+  </div></div><div class="gaprow"></div><div class="row wide"><div class="cell reveal"><span class="sec-n">05 — SUITE</span><h2 class="sec-h">Pistes <i>d'amélioration</i></h2>
+<ul class="todo"><li><b>Absence de tests post-livraison.</b> Aucun test n'a été mené après la mise en ligne : les gains attendus (lisibilité, navigation, conversion) restent à valider auprès de vrais visiteurs.</li></ul></div></div>
+<div class="gaprow"></div><div class="row wide"><div class="cell reveal" style="text-align:center;padding:40px"><a class="arrow-link" style="justify-content:center" href="index.html#works"><span class="arr">⇠</span> Retour aux projets</a></div></div></main><div class="lb" id="lb"><img alt=""></div><script>
+(function(){
+var b=document.body,dark=false;try{var t=localStorage.getItem('ad_theme');dark=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}
+var tb=document.getElementById('themeBtn');
+function th(d){dark=d;b.classList.toggle('dark',d);try{localStorage.setItem('ad_theme',d?'dark':'light')}catch(e){}tb.textContent=d?'Mode clair':'Mode sombre'}
+tb.onclick=function(){th(!dark)};th(dark);
+var ov=document.getElementById('menuOv');
+function tm(o){ov.classList.toggle('open',o);b.classList.toggle('noscroll',o)}
+document.getElementById('menuBtn').onclick=function(){tm(true)};document.getElementById('menuX').onclick=function(){tm(false)};
+ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){tm(false)})});
+var lb=document.getElementById('lb'),li=lb.querySelector('img');
+document.querySelectorAll('.bf img,.ph img').forEach(function(i){i.onclick=function(){li.src=i.src;lb.classList.add('show')}});
+lb.onclick=function(){lb.classList.remove('show')};
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){tm(false);lb.classList.remove('show')}});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+})();
+</script></body></html>

@@ -583,7 +583,7 @@ var T = {
     ct_p:"Toujours partant pour discuter, de motion design, de dataviz ou de votre prochain projet. Vous pouvez m'écrire à..",
     f_home:'ACCUEIL', f_work:'PROJETS', f_resume:'PARCOURS', f_contact:'CONTACT',
     f_lefts:'TOUS DROITS RENVERSÉS',
-    pf_view:'Voir le projet', pf_mob:'Version mobile', pf_desk:'Version bureau'
+    pf_view:'Voir le projet', pf_case:'Lire l\'étude de cas', pf_live:'Voir le site en ligne', pf_mob:'Version mobile', pf_desk:'Version bureau'
   },
   en:{
     menu_close:'CLOSE', menu_theme:'Dark mode', menu_theme_l:'Light mode',
@@ -621,12 +621,23 @@ var T = {
     ct_p:"Always up for a chat, about motion design, dataviz or your next project. You can reach me at..",
     f_home:'HOME', f_work:'WORK', f_resume:'RESUME', f_contact:'CONTACT',
     f_lefts:'ALL RIGHTS RELAXED',
-    pf_view:'View project', pf_mob:'Mobile version', pf_desk:'Desktop version'
+    pf_view:'View project', pf_case:'Read the case study', pf_live:'Visit the live site', pf_mob:'Mobile version', pf_desk:'Desktop version'
   }
 };
 
 /* ── PROJETS ──────────────────────────────────────── */
 var PROJECTS = [
+  {
+    img:'assets/digdash/after-home.jpg',
+    name:'DIGDASH',
+    cat:{fr:'UX/UI Design · Web',en:'UX/UI Design · Web'},
+    tags:{fr:['Arborescence','UI','WordPress'],en:['Information architecture','UI','WordPress']},
+    desc:{fr:"Refonte complète du site digdash.com : arborescence, menu, pages clés et mobile. Étude de cas avant / après, justifiée par les règles du design d'interface.",en:"Complete redesign of digdash.com: information architecture, menu, key pages and mobile. Before / after case study, justified by interface design principles."},
+    links:[
+      {key:'pf_case',url:'digdash.html'},
+      {key:'pf_live',url:'https://www.digdash.com'}
+    ]
+  },
   {
     img:'assets/image/rodia.png',
     name:'LA RODIA',
@@ -873,7 +884,7 @@ function openModal(i) {
   mLinks.innerHTML = '';
   p.links.forEach(function(lk){
     var a = document.createElement('a');
-    a.href = lk.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    a.href = lk.url; if (/^https?:/.test(lk.url)) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
     a.innerHTML = '<span class="arr">⇢</span>' + T[lang][lk.key];
     mLinks.appendChild(a);
   });
