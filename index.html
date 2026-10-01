@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Antoine DIOKH · Product Designer. Idées non conventionnelles, exécution minimaliste. UX/UI, design systems, motion.">
 <title>Antoine DIOKH — Product Designer</title>
+<script>try{if(localStorage.getItem('ad_theme')==='dark'||(!localStorage.getItem('ad_theme')&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){if(matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.classList.add('dark')}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=Doto:wght@700;900&family=Abril+Fatface&family=Lobster&family=Lora:ital@0;1&family=Merriweather:wght@700&family=Oswald:wght@500&family=Pacifico&display=swap" rel="stylesheet">
@@ -38,7 +39,7 @@ html{scroll-behavior:smooth;scroll-padding-top:76px}
   --col:536px;
   --t:220ms cubic-bezier(.4,0,.2,1);
 }
-body.dark{
+html.dark,body.dark{
   --bg:      #0a0f0d;
   --rail:    #101614;
   --card:    #151b18;
@@ -50,6 +51,7 @@ body.dark{
   --teal:    rgba(78,223,136,.14);
   --bord:    rgba(255,255,255,.06);
   --led-bg:  #050807;
+  color-scheme:dark;
 }
 
 body{font-family:var(--sans);font-size:16px;line-height:1.7;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
@@ -59,6 +61,7 @@ a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
 ul{list-style:none}
 ::selection{background:var(--mint);color:#121312}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px}
 
 /* =========================================================
    GRILLE · chaque rangée = rail | carte | rail
@@ -82,10 +85,16 @@ ul{list-style:none}
    BARRE HAUTE · MENU
    ========================================================= */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:100}
-.topbar .menu-cell{background:var(--card);border-radius:0 0 var(--r) var(--r);display:flex;align-items:center;justify-content:center;height:58px}
+.topbar .menu-cell{position:relative;background:var(--card);border-radius:0 0 var(--r) var(--r);display:flex;align-items:center;justify-content:center;height:58px}
 .topbar::before,.topbar::after{border-radius:0 0 var(--r) var(--r);min-height:58px}
-.menu-btn{font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--green);padding:10px 26px;transition:letter-spacing var(--t)}
+.menu-btn{min-height:44px;font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--green);padding:10px 26px;transition:letter-spacing var(--t)}
 .menu-btn:hover{letter-spacing:.34em}
+.theme-toggle{position:absolute;right:12px;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--bord);border-radius:50%;background:var(--rail);color:var(--green)}
+.theme-toggle:hover{background:var(--teal)}
+.theme-toggle[aria-pressed="true"]{background:var(--teal);border-color:var(--green)}
+.theme-toggle svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.theme-toggle .icon-sun,.theme-toggle[aria-pressed="true"] .icon-moon{display:none}
+.theme-toggle[aria-pressed="true"] .icon-sun{display:block}
 
 /* overlay menu */
 .menu-ov{position:fixed;inset:0;z-index:200;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center}
@@ -271,6 +280,7 @@ body.dark .lego{opacity:.35}
   .topbar{grid-template-columns:6px 1fr 6px}
   .gaprow{height:36px}
 }
+@media(max-width:480px){.topbar .menu-cell{justify-content:space-between;padding:0 9px}.theme-toggle{position:static}.menu-btn{padding:10px 14px}}
 </style>
 </head>
 <body>
@@ -279,6 +289,7 @@ body.dark .lego{opacity:.35}
 <header class="topbar row" style="margin-bottom:0">
   <div class="cell menu-cell flush" style="border-radius:0 0 var(--r) var(--r)">
     <button class="menu-btn" id="menuBtn">MENU</button>
+    <button type="button" class="theme-toggle" id="themeBtn" aria-label="Mode sombre" title="Mode sombre" aria-pressed="false"><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.7 8.7 0 0 1 8.9 3.8 8.8 8.8 0 1 0 20.2 15.1Z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
   </div>
 </header>
 
@@ -291,7 +302,6 @@ body.dark .lego{opacity:.35}
   <a href="#contact" data-key="m_contact">Contact<i>.</i></a>
   <div class="menu-tools">
     <button id="langBtn"><span id="langLabel">FR ⇢ EN</span></button>
-    <button id="themeBtn" data-key="menu_theme">Mode sombre</button>
   </div>
 </div>
 
@@ -748,15 +758,16 @@ function buildFonts(filter){
 document.getElementById('fpSearch').addEventListener('input', function(){ buildFonts(this.value); });
 
 /* ── THÈME ────────────────────────────────────────── */
+var themeMedia = window.matchMedia('(prefers-color-scheme: dark)');
 var storedTheme = localStorage.getItem('ad_theme');
-var isDark = storedTheme ? storedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+var isDark = storedTheme ? storedTheme === 'dark' : themeMedia.matches;
 
-function applyTheme(dark) {
+function applyTheme(dark, savePreference) {
   isDark = dark;
+  document.documentElement.classList.toggle('dark', dark);
   document.body.classList.toggle('dark', dark);
-  localStorage.setItem('ad_theme', dark ? 'dark' : 'light');
-  var btn = document.getElementById('themeBtn');
-  btn.textContent = dark ? T[lang].menu_theme_l : T[lang].menu_theme;
+  if (savePreference) localStorage.setItem('ad_theme', dark ? 'dark' : 'light');
+  document.getElementById('themeBtn').setAttribute('aria-pressed', String(dark));
 }
 
 /* ── LANGUE · français par défaut ─────────────────── */
@@ -768,6 +779,8 @@ function applyLang(l) {
   localStorage.setItem('ad_lang2', l);
   document.documentElement.lang = l;
   document.getElementById('langLabel').textContent = l === 'fr' ? 'FR ⇢ EN' : 'EN ⇢ FR';
+  document.getElementById('themeBtn').setAttribute('aria-label', T[l].menu_theme);
+  document.getElementById('themeBtn').title = T[l].menu_theme;
   document.querySelectorAll('[data-key]').forEach(function(el){
     var v = T[l][el.dataset.key];
     if (v !== undefined) el.innerHTML = v;
@@ -779,13 +792,14 @@ function applyLang(l) {
   buildLed();
   buildWorks();
   buildTestimonials();
-  document.getElementById('themeBtn').textContent = isDark ? T[l].menu_theme_l : T[l].menu_theme;
 }
 
 document.getElementById('langBtn').addEventListener('click', function(){
   applyLang(lang === 'fr' ? 'en' : 'fr');
 });
-document.getElementById('themeBtn').addEventListener('click', function(){ applyTheme(!isDark); });
+document.getElementById('themeBtn').addEventListener('click', function(){ applyTheme(!isDark, true); });
+themeMedia.addEventListener('change', function(e){ if (!localStorage.getItem('ad_theme')) applyTheme(e.matches, false); });
+window.addEventListener('storage', function(e){ if (e.key === 'ad_theme') applyTheme(e.newValue === 'dark' || (!e.newValue && themeMedia.matches), false); });
 
 /* ── MENU ─────────────────────────────────────────── */
 var menuOv = document.getElementById('menuOv');
@@ -910,7 +924,7 @@ function observeReveal(){
 }
 
 /* ── INIT ─────────────────────────────────────────── */
-applyTheme(isDark);
+applyTheme(isDark, false);
 applyLang(lang);
 buildFonts('');
 observeReveal();
