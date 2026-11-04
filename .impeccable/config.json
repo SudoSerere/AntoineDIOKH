@@ -1,0 +1,53 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "redesign/digdash.html"
+        ],
+        "createdAt": "2026-11-04T18:55:41.194Z",
+        "reason": "finish reviewer: hairline-column tables carry 18-20px inner padding; same false positive as li.job"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "redesign/index.html"
+        ],
+        "createdAt": "2026-11-04T18:58:53.192Z",
+        "reason": "panel sampler faces in index.html are the user-required fonts panel; decision/*.html are spent direction-round sketches, not shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/decision/assigned.html"
+        ],
+        "createdAt": "2026-11-04T18:58:53.210Z",
+        "reason": "panel sampler faces in index.html are the user-required fonts panel; decision/*.html are spent direction-round sketches, not shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/decision/pick.html"
+        ],
+        "createdAt": "2026-11-04T18:58:53.228Z",
+        "reason": "panel sampler faces in index.html are the user-required fonts panel; decision/*.html are spent direction-round sketches, not shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/decision/canon.html"
+        ],
+        "createdAt": "2026-11-04T18:58:53.246Z",
+        "reason": "panel sampler faces in index.html are the user-required fonts panel; decision/*.html are spent direction-round sketches, not shipped"
+      }
+    ]
+  }
+}

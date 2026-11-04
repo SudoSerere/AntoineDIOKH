@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DigDash, refonte de l'architecture et de l'interface du site. Étude de cas d'Antoine Diokh.">
+<title>DigDash — Étude de cas · Antoine Diokh</title>
+<script>try{var t=localStorage.getItem('ad_theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Martian+Mono:wdth,wght@87.5,400;87.5,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#ffffff;--ink:#111111;--ink-2:#4a4a47;--stock:#e9e9e4;--rule:#111111;--hair:#cfcfc8;
+  --blue:#2b4cff;--blue-ink:#ffffff;--before:#a8432c;
+  --sans:'Archivo',ui-sans-serif,sans-serif;--mono:'Martian Mono',ui-monospace,monospace;
+  --pad:clamp(20px,3.4vw,48px);--ease:cubic-bezier(.16,1,.3,1);color-scheme:light;
+}
+html.dark{--paper:#121211;--ink:#f2f1ec;--ink-2:#adaca4;--stock:#1f1f1d;--rule:#f2f1ec;--hair:#3a3a37;--blue:#8fa1ff;--blue-ink:#121211;--before:#f0a48e;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:72px;scrollbar-color:var(--ink) var(--paper)}
+body{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;caret-color:var(--blue)}
+::selection{background:var(--blue);color:var(--blue-ink)}
+a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:1px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block;max-width:100%;height:auto}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.mono{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;font-stretch:87.5%}
+.icon{width:1em;height:1em;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition-duration:0s!important}}
+
+/* barre haute (identique à l'accueil) */
+.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px;padding:0 var(--pad)}
+.top-id{font-weight:700;font-size:15px;white-space:nowrap;text-decoration:none}
+.top-id span{font-weight:400;color:var(--ink-2)}
+.top nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,32px);font-size:15px}
+.top nav a{text-decoration:none;padding:6px 0;display:inline-flex;align-items:center;gap:6px}
+.top nav a:hover{text-decoration:underline}
+.ctl{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;border:1px solid var(--rule)}
+.ctl:hover{background:var(--ink);color:var(--paper)}
+.ctl .icon{width:18px;height:18px}
+.ctl .i-sun{display:none}
+html.dark .ctl .i-sun{display:block}
+html.dark .ctl .i-moon{display:none}
+
+/* page de titre */
+.cover{padding:clamp(24px,5vh,56px) var(--pad) 0;container-type:inline-size}
+.name{font-weight:800;font-stretch:125%;letter-spacing:-.04em;line-height:.86;font-size:clamp(64px,19cqi,300px);padding-bottom:.1em;position:relative;white-space:nowrap}
+.name::before,.name::after{content:'';position:absolute;left:0;right:0;border-top:1px dashed var(--blue)}
+.name::before{top:.06em}
+.name::after{bottom:.24em}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--blue);margin-top:4px}
+.claim{font-size:clamp(34px,4.6vw,68px);line-height:1;letter-spacing:-.03em;font-weight:300;font-stretch:88%;margin-top:clamp(28px,5vh,56px);max-width:16ch}
+.cover-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(24px,4vw,64px);align-items:end;margin-top:clamp(28px,5vh,48px)}
+.lead{font-size:clamp(19px,1.6vw,23px);line-height:1.45;max-width:46ch;margin-bottom:18px}
+.note{font-size:15px;color:var(--ink-2);max-width:52ch}
+.shot{background:var(--stock);padding:clamp(10px,1.6vw,20px)}
+.shot img{width:100%}
+
+/* repères */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);background:var(--stock);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-top:clamp(40px,7vh,72px)}
+.facts div{padding:18px var(--pad) 22px;border-right:1px solid var(--rule)}
+.facts div:last-child{border-right:0}
+.facts dt{color:var(--ink-2);margin-bottom:8px}
+.facts dd{font-size:clamp(17px,1.4vw,20px);font-weight:600;line-height:1.3;letter-spacing:-.01em}
+.facts a{display:inline-flex;align-items:center;gap:6px}
+
+/* chapitres */
+.ch{padding:clamp(72px,11vh,128px) var(--pad) 0}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;border-bottom:1px solid var(--rule);padding-bottom:14px;flex-wrap:wrap}
+.head h2{font-size:clamp(38px,5.2vw,78px);font-weight:800;letter-spacing:-.035em;line-height:.98;font-stretch:88%;max-width:18ch;text-wrap:balance}
+.head h2 em{font-style:normal;font-weight:300}
+.head .mono{color:var(--ink-2)}
+.summary{font-size:clamp(18px,1.4vw,20px);line-height:1.55;max-width:62ch;margin-top:22px}
+.logic{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin-top:32px}
+.logic div{padding:18px 20px 20px 0}
+.logic div+div{padding-left:20px;border-left:1px solid var(--hair)}
+.logic dt{font-weight:700;font-size:15px;margin-bottom:6px}
+.logic dd{font-size:15px;color:var(--ink-2)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,28px);margin-top:32px}
+.compare figure{min-width:0}
+.frame{display:block;background:var(--stock);padding:clamp(8px,1.2vw,16px);cursor:zoom-in}
+.frame img{width:100%;aspect-ratio:1.52;object-fit:cover;object-position:top}
+.frame{outline:1px solid transparent;outline-offset:-1px;transition:outline-color .32s var(--ease)}
+.frame:hover{outline-color:var(--rule)}
+.tall .frame img{aspect-ratio:1.1}
+figcaption{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;padding-top:12px;font-size:15px;color:var(--ink-2)}
+.tag{font-family:var(--mono);font-size:12px;font-stretch:87.5%;padding-top:2px;color:var(--before)}
+.tag.after{color:var(--blue)}
+.proof{margin-top:32px;padding-top:18px;border-top:1px solid var(--rule);font-size:17px;max-width:72ch}
+.proof b{font-weight:700}
+
+/* arborescence */
+.trees{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,40px);margin-top:32px}
+.tree-p{border-top:1px solid var(--rule);padding-top:16px}
+.tree-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:18px}
+.tree-h b{font-size:26px;font-weight:800;letter-spacing:-.02em;font-stretch:88%;color:var(--before)}
+.tree-p.new .tree-h b{color:var(--blue)}
+.tree-h span{color:var(--ink-2)}
+.util{border:1px solid var(--hair);padding:10px 14px;font-size:14px;margin-bottom:14px}
+.util b{margin-right:10px}
+.tree{list-style:none;border-left:1px solid var(--rule);margin-left:6px}
+.tree>li{position:relative;margin:0 0 10px 22px;padding:10px 14px;border:1px solid var(--hair);font-size:15px;line-height:1.4}
+.tree>li::before{content:'';position:absolute;left:-23px;top:20px;width:22px;border-top:1px solid var(--rule)}
+.tree>li:last-child{margin-bottom:0}
+.tree li b{display:block;font-weight:700}
+.tree li span{display:block;color:var(--ink-2);font-size:14px;margin-top:2px}
+.branch{list-style:none;margin-top:8px;border-left:1px solid var(--hair);padding-left:12px}
+.branch li{color:var(--ink-2);font-size:14px;margin:4px 0}
+.gains{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule);margin-top:32px}
+.gains div{padding:18px 20px 0 0;font-size:15px;color:var(--ink-2)}
+.gains div+div{padding-left:20px;border-left:1px solid var(--hair)}
+.gains b{display:block;color:var(--ink);font-size:17px;margin-bottom:6px}
+
+/* famille */
+.family{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start;margin-top:32px}
+.family h3{font-size:22px;font-weight:700;letter-spacing:-.015em;margin-bottom:12px}
+.family ul{list-style:none;border-top:1px solid var(--hair)}
+.family li{padding:12px 0;border-bottom:1px solid var(--hair);font-size:16px;color:var(--ink-2)}
+.family li b{color:var(--ink);font-weight:600}
+.fine{font-size:14px;color:var(--ink-2);margin-top:16px;max-width:66ch}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px)}
+.duo .ch{padding-left:0;padding-right:0}
+.duo .compare{gap:12px}
+.duo .frame img{aspect-ratio:1.18}
+
+/* processus */
+.process{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule);margin-top:32px;list-style:none}
+.process li{padding:18px 20px 0 0}
+.process li+li{padding-left:20px;border-left:1px solid var(--hair)}
+.process .mono{color:var(--blue)}
+.process h3{font-size:clamp(24px,2.2vw,32px);font-weight:700;letter-spacing:-.025em;font-stretch:90%;margin:6px 0 8px}
+.process p{font-size:15px;color:var(--ink-2)}
+.ai{background:var(--stock);margin-top:clamp(48px,7vh,72px);padding:clamp(24px,3vw,44px);border-top:1px solid var(--rule)}
+.ai-h{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.ai h3{font-size:clamp(28px,3vw,44px);font-weight:800;letter-spacing:-.03em;font-stretch:88%}
+.ai-h .mono{color:var(--ink-2)}
+.ai>p{max-width:72ch;font-size:16px}
+.prompt{margin-top:22px;padding:16px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.prompt .mono{color:var(--blue);display:block;margin-bottom:6px}
+.prompt p{font-size:17px;font-style:italic;max-width:76ch}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:22px 0;list-style:none;font-size:15px;font-weight:600}
+.flow li{display:inline-flex;align-items:center;gap:12px}
+.flow li+li::before{content:'';width:18px;border-top:1px solid var(--blue)}
+.board{border:1px solid var(--rule);background:var(--paper)}
+.board-h{display:flex;justify-content:space-between;gap:16px;padding:12px 16px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.board-h b{font-size:15px}
+.board-h .mono{color:var(--ink-2)}
+.board-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.board-g>div{padding:16px;font-size:14px;color:var(--ink-2)}
+.board-g>div+div{border-left:1px solid var(--hair)}
+.board-g h4{color:var(--ink);font-size:15px;font-weight:700;margin-bottom:10px}
+.board-g em{display:block;margin-top:8px;font-style:normal;color:var(--blue);font-family:var(--mono);font-size:12px;font-stretch:87.5%}
+.sw{display:flex;gap:6px;margin-bottom:10px}
+.sw i{width:28px;height:28px;border:1px solid var(--hair)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;list-style:none}
+.chips li{border:1px solid var(--hair);padding:2px 8px;font-size:13px;color:var(--ink)}
+.caveat{margin-top:16px;font-size:14px;color:var(--ink-2);max-width:76ch}
+
+/* autres vues */
+.more{list-style:none;margin-top:32px}
+.more>li{padding:28px 0;border-top:1px solid var(--hair)}
+.more>li:first-child{border-top:0;padding-top:0}
+.more h3{font-size:clamp(26px,2.6vw,36px);font-weight:700;letter-spacing:-.025em;font-stretch:90%}
+.more p{font-size:16px;color:var(--ink-2);margin-top:4px}
+.more .compare{margin-top:18px}
+
+.out a.big{display:inline-flex;align-items:center;gap:12px;margin-top:28px;font-size:clamp(22px,2.4vw,32px);font-weight:700;letter-spacing:-.02em;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+.out a.big:hover{color:var(--blue)}
+.out a.big .icon{width:24px;height:24px}
+
+.back{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:clamp(80px,12vh,140px);border-top:1px solid var(--rule);padding:clamp(28px,5vh,48px) var(--pad);text-decoration:none;transition:background .32s var(--ease),color .32s var(--ease)}
+.back span{font-size:clamp(32px,5vw,72px);font-weight:800;letter-spacing:-.035em;font-stretch:88%;transition:font-stretch .32s var(--ease)}
+.back .icon{width:clamp(28px,4vw,56px);height:clamp(28px,4vw,56px)}
+.back:hover{background:var(--ink);color:var(--paper)}
+.back:hover span{font-stretch:112%}
+footer{background:var(--stock);border-top:1px solid var(--rule);padding:28px var(--pad) 36px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;font-size:14px;color:var(--ink-2)}
+footer b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+footer a{color:var(--ink)}
+
+@media (max-width:900px){
+  .cover-g,.family,.duo{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div:nth-child(2){border-right:0}
+  .facts div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .process{grid-template-columns:1fr 1fr}
+  .process li:nth-child(3){padding-left:0;border-left:0}
+  .board-g{grid-template-columns:1fr}
+  .board-g>div+div{border-left:0;border-top:1px solid var(--hair)}
+}
+@media (max-width:640px){
+  .top nav .hide-s,.top-id span{display:none}
+  .compare,.trees,.logic,.gains{grid-template-columns:1fr}
+  .logic div+div,.gains div+div{padding-left:0;border-left:0;border-top:1px solid var(--hair)}
+  .logic div,.gains div{padding-right:0}
+  .gains div{padding-bottom:16px}
+  .process{grid-template-columns:1fr}
+  .process li+li{padding-left:0;border-left:0;border-top:1px solid var(--hair);margin-top:18px}
+  .facts{grid-template-columns:1fr}
+  .facts div{border-right:0;border-bottom:1px solid var(--rule)}
+  .facts div:last-child{border-bottom:0}
+  footer{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M8 16 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15.1A8.7 8.7 0 0 1 8.9 4 8.8 8.8 0 1 0 20 15.1Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+</svg>
+
+<header class="top">
+  <a class="top-id" href="index.html"><span>Spécimen — </span>Antoine Diokh</a>
+  <nav aria-label="Navigation de l'étude">
+    <a class="hide-s" href="#decisions">Décisions</a>
+    <a class="hide-s" href="#processus">Processus</a>
+    <a href="index.html#p-digdash"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg>Projets</a>
+    <button class="ctl" id="themeBtn" type="button" aria-pressed="false" aria-label="Mode sombre"><svg class="icon i-moon"><use href="#i-moon"/></svg><svg class="icon i-sun"><use href="#i-sun"/></svg></button>
+  </nav>
+</header>
+
+<main>
+  <section class="cover" aria-labelledby="titre">
+    <h1 id="titre"><span class="name">DigDash</span><span class="claim" style="display:block">Rendre l’offre lisible.</span></h1>
+    <p class="meta mono"><span>Étude de cas</span><span>Site web</span><span>2026</span><span>Archivo wdth 125 · wght 800</span></p>
+    <div class="cover-g">
+      <div>
+        <p class="lead">Un site riche en contenus, mais une offre difficile à saisir. J’ai repensé son arborescence et son interface pour que l’on comprenne plus vite les produits, les usages et la prochaine action.</p>
+        <p class="note">J’ai conçu l’architecture, les maquettes Figma, les composants destinés à l’intégration et l’identité des trois nouveaux produits. Un développeur WordPress a réalisé la mise en ligne.</p>
+      </div>
+      <div class="shot"><img src="../assets/digdash-study/home-after.jpg" alt="Nouvel accueil DigDash présentant le produit" width="1600" height="1000" fetchpriority="high"></div>
+    </div>
+  </section>
+
+  <dl class="facts" aria-label="Repères du projet">
+    <div><dt class="mono">Rôle</dt><dd>Architecture · UX/UI · identité produit</dd></div>
+    <div><dt class="mono">Livrables</dt><dd>Maquettes Figma et composants d’intégration</dd></div>
+    <div><dt class="mono">Collaboration</dt><dd>Développeur WordPress</dd></div>
+    <div><dt class="mono">Résultat visible</dt><dd><a href="https://www.digdash.com/fr/" target="_blank" rel="noopener noreferrer">Site actuel<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></dd></div>
+  </dl>
+
+  <section class="ch" id="decisions" aria-labelledby="nav-title">
+    <div class="head"><h2 id="nav-title">Trouver son chemin <em>avant de chercher.</em></h2></div>
+    <p class="summary">L’ancien menu demandait au visiteur de deviner où se trouvait chaque sujet. « Solutions » mélangeait secteurs, produit, services, formation et cloud sur plusieurs niveaux.</p>
+    <dl class="logic">
+      <div><dt>Constat</dt><dd>Deux barres et des rubriques concurrentes compliquaient le balayage.</dd></div>
+      <div><dt>Choix</dt><dd>Cinq familles visibles : Solutions, Secteurs, Ressources, À propos et Accompagnement.</dd></div>
+      <div><dt>Intention</dt><dd>Regrouper par question du visiteur et rendre les destinations reconnaissables.</dd></div>
+    </dl>
+    <div class="compare">
+      <figure><a class="frame" href="../assets/digdash-study/menu-before.jpg" target="_blank" aria-label="Agrandir l'ancien menu DigDash"><img src="../assets/digdash-study/menu-before.jpg" alt="Ancien menu : plusieurs niveaux et liens serrés" loading="lazy"></a><figcaption><span class="tag">Avant</span><span>Secteurs et services sont imbriqués sous « Solutions ».</span></figcaption></figure>
+      <figure><a class="frame" href="../assets/digdash-study/menu-after.jpg" target="_blank" aria-label="Agrandir le nouveau menu DigDash"><img src="../assets/digdash-study/menu-after.jpg" alt="Nouveau menu : familles visibles et trois produits identifiés" loading="lazy"></a><figcaption><span class="tag after">Après</span><span>Le menu expose les produits et les décrit en quelques mots.</span></figcaption></figure>
+    </div>
+    <p class="proof"><b>Architecture de l’information · loi de Jakob :</b> des rubriques familières et des descriptions de produits donnent un meilleur indice de destination que la liste hétérogène « Solutions ».</p>
+  </section>
+
+  <section class="ch" aria-labelledby="map-title">
+    <div class="head"><h2 id="map-title">L’arborescence, <em>mise à plat.</em></h2></div>
+    <p class="summary">Vue simplifiée des grandes entrées de navigation. Elle montre ce qui change de place et ce qui devient directement visible, sans représenter chaque page du site.</p>
+    <div class="trees">
+      <div class="tree-p">
+        <div class="tree-h"><b>Avant</b><span class="mono">Deux barres · sujets dispersés</span></div>
+        <div class="util"><b>Barre utilitaire</b>Forum · Événements · Ressources · Support</div>
+        <ul class="tree">
+          <li><b>Solutions</b><ul class="branch"><li>Secteurs → 4 sous-pages au 3ᵉ niveau</li><li>Produit · HDS · Connecteurs</li><li>Services · Formation · Cloud</li><li>Démo en ligne</li></ul></li>
+          <li><b>Clients</b></li>
+          <li><b>À propos</b><span>Entreprise · Carrières · Partenaires · Presse</span></li>
+          <li><b>Blog</b></li>
+          <li><b>Démonstration</b></li>
+        </ul>
+      </div>
+      <div class="tree-p new">
+        <div class="tree-h"><b>Après</b><span class="mono">Cinq familles · accès directs</span></div>
+        <ul class="tree">
+          <li><b>Solutions</b><span>DigDash DS · DigDash BI · DigDash AI</span></li>
+          <li><b>Secteurs</b><span>Public · Santé · Industrie et commerce · Banque…</span></li>
+          <li><b>Ressources</b><span>Blog · Livres blancs · Témoignages · Événements</span></li>
+          <li><b>À propos</b><span>Entreprise · Partenaires · Carrières · Presse</span></li>
+          <li><b>Accompagnement</b><span>Formations · Services · Tutoriels · Forum · Documentation · Support</span></li>
+        </ul>
+        <div class="util" style="margin:14px 0 0"><b>Action visible</b>Démonstration</div>
+      </div>
+    </div>
+    <div class="gains">
+      <div><b>Produit identifiable</b>« Produit » devient trois offres nommées, chacune avec sa fonction.</div>
+      <div><b>Secteurs remontés</b>Le secteur n’est plus enfoui sous « Solutions ».</div>
+      <div><b>Aide rassemblée</b>Services, formation, documentation et support se retrouvent sous « Accompagnement ».</div>
+    </div>
+  </section>
+
+  <section class="ch" aria-labelledby="home-title">
+    <div class="head"><h2 id="home-title">Montrer le produit <em>dès l’accueil.</em></h2></div>
+    <p class="summary">La première impression reposait sur une photographie d’ambiance. Elle ne disait rien de l’interface que DigDash vend.</p>
+    <div class="compare">
+      <figure><a class="frame" href="../assets/digdash-study/home-before.jpg" target="_blank" aria-label="Agrandir l'ancien accueil"><img src="../assets/digdash-study/home-before.jpg" alt="Ancien accueil : titre superposé à une photo de montagne" loading="lazy"></a><figcaption><span class="tag">Avant</span><span>Photographie générique, proposition de valeur et interface du produit séparées.</span></figcaption></figure>
+      <figure><a class="frame" href="../assets/digdash-study/home-after.jpg" target="_blank" aria-label="Agrandir le nouvel accueil"><img src="../assets/digdash-study/home-after.jpg" alt="Nouvel accueil : titre, action principale et tableau de bord" loading="lazy"></a><figcaption><span class="tag after">Après</span><span>Titre, démonstration et aperçu du tableau de bord partagent le premier écran.</span></figcaption></figure>
+    </div>
+    <p class="proof"><b>Hiérarchie visuelle :</b> promesse, interface réelle et action de démonstration sont réunies dans le premier écran ; le visiteur peut relier le discours au produit montré.</p>
+  </section>
+
+  <section class="ch" aria-labelledby="family-title">
+    <div class="head"><h2 id="family-title">Trois produits. <em>Une famille.</em></h2></div>
+    <p class="summary">Avec DataStack, BI et AI, DigDash ne présente plus une seule offre. J’ai créé une identité pour chacun des trois produits et conçu leur présentation commune.</p>
+    <div class="family">
+      <a class="frame" href="../assets/digdash-study/menu-after.jpg" target="_blank" aria-label="Agrandir la présentation des trois produits"><img src="../assets/digdash-study/menu-after.jpg" alt="Le méga-menu montre les identités de DigDash DS, BI et AI" loading="lazy"></a>
+      <div>
+        <h3>Décision d’identité</h3>
+        <ul>
+          <li><b>Un socle commun</b> : les trois entrées appartiennent visiblement au même ensemble.</li>
+          <li><b>Des repères distincts</b> : icônes et couleurs permettent de différencier DS, BI et AI.</li>
+          <li><b>Un rôle compréhensible</b> : « unifier », « piloter » et « travailler avec l’assistant » expliquent chaque produit.</li>
+        </ul>
+        <p class="fine">La capture montre les identités dans le menu livré ; les planches Figma pourront compléter cette vue du système.</p>
+      </div>
+    </div>
+    <p class="proof"><b>Principes de similarité et de proximité :</b> même forme d’icône et même emplacement pour les trois produits ; couleur et nom les distinguent sans rompre la famille.</p>
+  </section>
+
+  <section class="ch" aria-labelledby="product-title">
+    <div class="head"><h2 id="product-title">Une page produit qui <em>répond tout de suite.</em></h2></div>
+    <p class="summary">Sur l’ancienne page, le nom du produit et son usage arrivaient après un grand bandeau photographique. La nouvelle page DigDash BI commence par la solution elle-même.</p>
+    <div class="compare">
+      <figure><a class="frame" href="../assets/digdash-study/produit-before.jpg" target="_blank" aria-label="Agrandir l'ancienne page produit"><img src="../assets/digdash-study/produit-before.jpg" alt="Ancienne page produit avec bandeau décoratif" loading="lazy"></a><figcaption><span class="tag">Avant</span><span>Le bandeau occupe l’espace où le visiteur cherche à comprendre l’offre.</span></figcaption></figure>
+      <figure><a class="frame" href="../assets/digdash-study/produit-after.jpg" target="_blank" aria-label="Agrandir la nouvelle page produit"><img src="../assets/digdash-study/produit-after.jpg" alt="Nouvelle page DigDash BI avec capture du produit et actions" loading="lazy"></a><figcaption><span class="tag after">Après</span><span>Nom, fonction, aperçu de l’interface et deux niveaux d’action sont réunis.</span></figcaption></figure>
+    </div>
+    <p class="proof"><b>Loi de proximité :</b> nom, fonction, aperçu et actions forment un même groupe de lecture. Le bouton de démo garde la priorité sur l’inscription au webinaire.</p>
+  </section>
+
+  <div class="duo" style="padding:0 var(--pad)">
+    <section class="ch" aria-labelledby="client-title">
+      <div class="head"><h2 id="client-title">Les références <em>à portée de vue.</em></h2></div>
+      <p class="summary">Les filtres clients passent de listes déroulantes à des catégories directement visibles.</p>
+      <div class="compare">
+        <figure><a class="frame" href="../assets/digdash-study/clients-before.jpg" target="_blank" aria-label="Agrandir l'ancienne page clients"><img src="../assets/digdash-study/clients-before.jpg" alt="Ancienne page clients avec filtres sur la photo" loading="lazy"></a><figcaption><span class="tag">Avant</span></figcaption></figure>
+        <figure><a class="frame" href="../assets/digdash-study/clients-after.jpg" target="_blank" aria-label="Agrandir la nouvelle page clients"><img src="../assets/digdash-study/clients-after.jpg" alt="Nouvelle page clients et catégories visibles" loading="lazy"></a><figcaption><span class="tag after">Après</span></figcaption></figure>
+      </div>
+      <p class="proof"><b>Reconnaissance plutôt que rappel :</b> les secteurs et fonctions visibles permettent de repérer une catégorie sans ouvrir les deux listes déroulantes.</p>
+    </section>
+    <section class="ch" aria-labelledby="resource-title">
+      <div class="head"><h2 id="resource-title">Le contenu <em>avant le décor.</em></h2></div>
+      <p class="summary">Sur les ressources, la navigation et les documents sont rapprochés du haut de page.</p>
+      <div class="compare">
+        <figure><a class="frame" href="../assets/digdash-study/livres-before.jpg" target="_blank" aria-label="Agrandir les anciennes ressources"><img src="../assets/digdash-study/livres-before.jpg" alt="Ancienne page de livres blancs" loading="lazy"></a><figcaption><span class="tag">Avant</span></figcaption></figure>
+        <figure><a class="frame" href="../assets/digdash-study/livres-after.jpg" target="_blank" aria-label="Agrandir les nouvelles ressources"><img src="../assets/digdash-study/livres-after.jpg" alt="Nouvelle page de livres blancs" loading="lazy"></a><figcaption><span class="tag after">Après</span></figcaption></figure>
+      </div>
+      <p class="proof"><b>Priorisation du contenu :</b> catégories et livres blancs remontent dans la zone visible ; le visuel d’ambiance occupe moins de place.</p>
+    </section>
+  </div>
+
+  <section class="ch tall" aria-labelledby="mobile-title">
+    <div class="head"><h2 id="mobile-title">Prioriser <em>sur mobile.</em></h2></div>
+    <p class="summary">L’en-tête mobile passe de plusieurs icônes sans texte à une hiérarchie plus nette : marque, démonstration, langue et menu.</p>
+    <div class="compare">
+      <figure><a class="frame" href="../assets/digdash-study/mobile-before.jpg" target="_blank" aria-label="Agrandir l'ancien mobile"><img src="../assets/digdash-study/mobile-before.jpg" alt="Ancienne version mobile avec icônes et photographie" loading="lazy"></a><figcaption><span class="tag">Avant</span><span>Quatre icônes sans libellé précèdent le menu.</span></figcaption></figure>
+      <figure><a class="frame" href="../assets/digdash-study/mobile-after.jpg" target="_blank" aria-label="Agrandir le nouveau mobile"><img src="../assets/digdash-study/mobile-after.jpg" alt="Nouvelle version mobile avec bouton Démo visible" loading="lazy"></a><figcaption><span class="tag after">Après</span><span>L’action « Démo » est nommée dans l’en-tête. La capture conserve aussi la fenêtre événementielle du site.</span></figcaption></figure>
+    </div>
+    <p class="proof"><b>Loi de Fitts :</b> « Démo » devient une cible large dans l’en-tête mobile. Son libellé rend l’action identifiable, là où les anciennes icônes demandaient une interprétation.</p>
+  </section>
+
+  <section class="ch" id="processus" aria-labelledby="process-title">
+    <div class="head"><h2 id="process-title">Du diagnostic <em>à la livraison.</em></h2></div>
+    <p class="summary">Le processus relie l’analyse de l’existant à des choix d’interface et à des composants exploitables par le développeur.</p>
+    <ol class="process">
+      <li><span class="mono">Étape 1</span><h3>Observer</h3><p>Repérer les niveaux de navigation, la place du contenu et les points de friction visibles.</p></li>
+      <li><span class="mono">Étape 2</span><h3>Organiser</h3><p>Redéfinir l’arborescence autour des besoins du visiteur et de la nouvelle famille de produits.</p></li>
+      <li><span class="mono">Étape 3</span><h3>Concevoir</h3><p>Créer les identités DS, BI et AI, puis les maquettes et composants dans Figma.</p></li>
+      <li><span class="mono">Étape 4</span><h3>Transmettre</h3><p>Livrer les maquettes et les composants au développeur chargé de l’intégration WordPress.</p></li>
+    </ol>
+
+    <aside class="ai" aria-labelledby="ai-title">
+      <div class="ai-h"><h3 id="ai-title">Des écrans au système.</h3><span class="mono">Atelier rétrospectif · IA + design system</span></div>
+      <p>Pour documenter la refonte, j’ai demandé à un assistant IA d’inventorier les motifs récurrents des captures : rôles de couleur, boutons, cartes et entrées de navigation. Ses propositions ont été recoupées avec les écrans visibles, puis séparées des éléments qu’une capture ne peut pas prouver.</p>
+      <div class="prompt"><span class="mono">Consigne reproductible</span><p>« À partir des captures du site livré, relève les motifs visuels répétés, propose des familles de composants et associe chaque observation à un écran. Signale les états et valeurs impossibles à vérifier sans le fichier Figma. »</p></div>
+      <ol class="flow" aria-label="Flux de formalisation du système visuel"><li>Captures du site livré</li><li>Inventaire proposé par l’IA</li><li>Tri sur les écrans</li><li>Composants à documenter</li></ol>
+      <div class="board" aria-label="Extrait de l’inventaire assisté">
+        <div class="board-h"><b>Extrait du tri</b><span class="mono">Observation visuelle · pas de tokens Figma extraits</span></div>
+        <div class="board-g">
+          <div><h4>Rôles de couleur</h4><div class="sw" aria-hidden="true"><i style="background:#1d286e"></i><i style="background:#f36b21"></i><i style="background:#20b5c2"></i><i style="background:#9a3db9"></i></div><p>Fond bleu pour les sections produit ; orange pour l’action principale ; accents distincts pour DS, BI et AI.</p><em>Captures : accueil, menu, page BI</em></div>
+          <div><h4>Familles de composants</h4><ul class="chips"><li>Navigation</li><li>CTA</li><li>Entrée produit</li><li>Carte ressource</li></ul><p>Regrouper les occurrences avant de décider quelles variantes méritent un composant commun.</p><em>Captures : menu, page BI, livres blancs</em></div>
+          <div><h4>Points à contrôler</h4><p>Les captures confirment les rôles et la répétition visuelle. Elles ne révèlent ni les valeurs exactes des styles Figma, ni les états survol, focus et désactivé : ces points restent à contrôler dans la source.</p></div>
+        </div>
+      </div>
+      <p class="caveat">Cet inventaire assisté a été réalisé pour documenter le projet après la refonte. Les maquettes et composants remis au développeur avaient déjà été conçus dans Figma ; aucun gain de temps n’est chiffré ici.</p>
+    </aside>
+  </section>
+
+  <section class="ch out" aria-labelledby="outcome-title">
+    <div class="head"><h2 id="outcome-title">Ce que montre <em>le résultat.</em></h2></div>
+    <p class="summary">Le site livré présente désormais trois offres identifiables, une navigation structurée et des pages où le produit apparaît plus tôt. Ces comparaisons illustrent les choix de conception ; elles ne prétendent pas mesurer un gain de conversion ou d’usage.</p>
+    <a class="big" href="https://www.digdash.com/fr/" target="_blank" rel="noopener noreferrer">Voir le site actuel<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a>
+    <p class="fine">Principes utilisés comme grille de lecture des captures : <a href="https://lawsofux.com/jakobs-law/" target="_blank" rel="noopener noreferrer">loi de Jakob</a>, <a href="https://www.nngroup.com/articles/gestalt-proximity/" target="_blank" rel="noopener noreferrer">proximité</a>, <a href="https://www.nngroup.com/articles/recognition-and-recall/" target="_blank" rel="noopener noreferrer">reconnaissance</a> et <a href="https://www.nngroup.com/articles/fitts-law/" target="_blank" rel="noopener noreferrer">loi de Fitts</a>. Ces rapprochements explicitent les choix visibles ; ils ne remplacent pas une mesure auprès des utilisateurs.</p>
+  </section>
+
+  <section class="ch" aria-labelledby="more-title">
+    <div class="head"><h2 id="more-title">La cohérence, <em>page après page.</em></h2><span class="mono">Quatre vues de plus</span></div>
+    <p class="summary">Quatre autres vues montrent comment les mêmes choix se prolongent sur les pages de découverte, de contenu et de recrutement.</p>
+    <ul class="more">
+      <li><h3>Page secteur public</h3><p>Le contexte métier et l’action « Démonstration » apparaissent dès le premier écran.</p><div class="compare"><figure><a class="frame" href="../assets/digdash-study/secteur-before.jpg" target="_blank" aria-label="Agrandir l'ancienne page secteur public"><img src="../assets/digdash-study/secteur-before.jpg" alt="Ancienne page secteur public : titre sur une photo générique." loading="lazy"></a><figcaption><span class="tag">Avant</span></figcaption></figure><figure><a class="frame" href="../assets/digdash-study/secteur-after.jpg" target="_blank" aria-label="Agrandir la nouvelle page secteur public"><img src="../assets/digdash-study/secteur-after.jpg" alt="Nouvelle page secteur public : promesse ciblée et bouton de démonstration." loading="lazy"></a><figcaption><span class="tag after">Après</span></figcaption></figure></div></li>
+      <li><h3>Accompagnement</h3><p>Le service est formulé comme une aide concrète, avec une action de contact identifiable.</p><div class="compare"><figure><a class="frame" href="../assets/digdash-study/services-before.jpg" target="_blank" aria-label="Agrandir l'ancienne page Accompagnement"><img src="../assets/digdash-study/services-before.jpg" alt="Ancienne page services : grand visuel et titre générique." loading="lazy"></a><figcaption><span class="tag">Avant</span></figcaption></figure><figure><a class="frame" href="../assets/digdash-study/services-after.jpg" target="_blank" aria-label="Agrandir la nouvelle page Accompagnement"><img src="../assets/digdash-study/services-after.jpg" alt="Nouvelle page accompagnement : proposition claire et bouton Nous contacter." loading="lazy"></a><figcaption><span class="tag after">Après</span></figcaption></figure></div></li>
+      <li><h3>Blog</h3><p>Les catégories sont visibles sans ouvrir de filtre, et les articles remontent dans la page.</p><div class="compare"><figure><a class="frame" href="../assets/digdash-study/blog-before.jpg" target="_blank" aria-label="Agrandir l'ancienne page Blog"><img src="../assets/digdash-study/blog-before.jpg" alt="Ancien blog : recherche et filtre posés sur une grande photo." loading="lazy"></a><figcaption><span class="tag">Avant</span></figcaption></figure><figure><a class="frame" href="../assets/digdash-study/blog-after.jpg" target="_blank" aria-label="Agrandir la nouvelle page Blog"><img src="../assets/digdash-study/blog-after.jpg" alt="Nouveau blog : catégories visibles et cartes d’articles." loading="lazy"></a><figcaption><span class="tag after">Après</span></figcaption></figure></div></li>
+      <li><h3>Carrières</h3><p>L’offre d’emploi est accessible dès l’entrée, accompagnée d’une photo de l’équipe.</p><div class="compare"><figure><a class="frame" href="../assets/digdash-study/carriere-before.jpg" target="_blank" aria-label="Agrandir l'ancienne page Carrières"><img src="../assets/digdash-study/carriere-before.jpg" alt="Ancienne page carrières : photographie générique et contenu plus bas." loading="lazy"></a><figcaption><span class="tag">Avant</span></figcaption></figure><figure><a class="frame" href="../assets/digdash-study/carriere-after.jpg" target="_blank" aria-label="Agrandir la nouvelle page Carrières"><img src="../assets/digdash-study/carriere-after.jpg" alt="Nouvelle page carrières : bouton offres d’emploi et photographie de l’équipe." loading="lazy"></a><figcaption><span class="tag after">Après</span></figcaption></figure></div></li>
+    </ul>
+  </section>
+</main>
+
+<a class="back" href="index.html#projets"><span>Retour aux projets</span><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></a>
+<footer>
+  <div><b>Antoine Diokh © <span id="year">2026</span></b>Tous droits renversés.</div>
+  <div><b>Colophon</b>Composé en Archivo (Omnibus-Type) et Martian Mono (Evil Martians). HTML et CSS écrits à la main.</div>
+  <div><b>Navigation</b><a href="index.html#projets">Projets</a> · <a href="index.html#parcours">Parcours</a> · <a href="index.html#contact">Contact</a></div>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('themeBtn'), mq=matchMedia('(prefers-color-scheme: dark)');
+  function dark(){return document.documentElement.classList.contains('dark')}
+  function label(){b.setAttribute('aria-pressed',String(dark()));b.setAttribute('aria-label',dark()?'Mode clair':'Mode sombre')}
+  b.addEventListener('click',function(){var d=!dark();document.documentElement.classList.toggle('dark',d);localStorage.setItem('ad_theme',d?'dark':'light');label()});
+  mq.addEventListener('change',function(e){if(!localStorage.getItem('ad_theme')){document.documentElement.classList.toggle('dark',e.matches);label()}});
+  addEventListener('storage',function(e){if(e.key==='ad_theme'){document.documentElement.classList.toggle('dark',e.newValue==='dark'||(!e.newValue&&mq.matches));label()}});
+  label();
+  document.getElementById('year').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

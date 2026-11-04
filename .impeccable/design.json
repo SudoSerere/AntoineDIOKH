@@ -1,0 +1,394 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-04T20:00:00Z",
+  "title": "Design System: Antoine Diokh — Spécimen",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Coated Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#1a1a19",
+          "#333332",
+          "#5c5c5a",
+          "#858583",
+          "#adadab",
+          "#d6d6d4",
+          "#f2f2f1",
+          "#ffffff"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#111111",
+        "tonalRamp": [
+          "#111111",
+          "#262626",
+          "#3d3d3d",
+          "#595959",
+          "#7a7a7a",
+          "#a3a3a3",
+          "#cccccc",
+          "#f0f0f0"
+        ]
+      },
+      "ink-secondary": {
+        "role": "neutral",
+        "displayName": "Grey Ink",
+        "canonical": "#4a4a47",
+        "tonalRamp": [
+          "#1c1c1b",
+          "#2f2f2d",
+          "#4a4a47",
+          "#666662",
+          "#85857f",
+          "#a6a6a0",
+          "#c9c9c4",
+          "#ececea"
+        ]
+      },
+      "stock": {
+        "role": "neutral",
+        "displayName": "Warm Stock",
+        "canonical": "#e9e9e4",
+        "tonalRamp": [
+          "#1f1f1d",
+          "#383835",
+          "#55554f",
+          "#77776f",
+          "#9c9c93",
+          "#c2c2ba",
+          "#e9e9e4",
+          "#f6f6f3"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule Black",
+        "canonical": "#111111"
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline Grey",
+        "canonical": "#cfcfc8",
+        "tonalRamp": [
+          "#262624",
+          "#3a3a37",
+          "#5a5a55",
+          "#7c7c76",
+          "#a0a099",
+          "#cfcfc8",
+          "#e3e3de",
+          "#f4f4f1"
+        ]
+      },
+      "measurement-blue": {
+        "role": "primary",
+        "displayName": "Measurement Blue",
+        "canonical": "#2b4cff",
+        "tonalRamp": [
+          "#0b1554",
+          "#132485",
+          "#1d36c4",
+          "#2b4cff",
+          "#5c75ff",
+          "#8fa1ff",
+          "#c2ccff",
+          "#ebeeff"
+        ]
+      },
+      "on-blue": {
+        "role": "neutral",
+        "displayName": "On Blue",
+        "canonical": "#ffffff"
+      },
+      "before-terracotta": {
+        "role": "tertiary",
+        "displayName": "Before Terracotta",
+        "canonical": "#a8432c",
+        "tonalRamp": [
+          "#3d150c",
+          "#5e2214",
+          "#83301e",
+          "#a8432c",
+          "#c9654d",
+          "#f0a48e",
+          "#f7cbbd",
+          "#fcece6"
+        ]
+      },
+      "dark-paper": {
+        "role": "neutral",
+        "displayName": "Dark Paper",
+        "canonical": "#121211"
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Dark Ink",
+        "canonical": "#f2f1ec"
+      },
+      "dark-ink-secondary": {
+        "role": "neutral",
+        "displayName": "Dark Grey Ink",
+        "canonical": "#adaca4"
+      },
+      "dark-stock": {
+        "role": "neutral",
+        "displayName": "Dark Stock",
+        "canonical": "#1f1f1d"
+      },
+      "dark-hairline": {
+        "role": "neutral",
+        "displayName": "Dark Hairline",
+        "canonical": "#3a3a37"
+      },
+      "dark-measurement-blue": {
+        "role": "primary",
+        "displayName": "Measurement Blue (dark)",
+        "canonical": "#8fa1ff"
+      },
+      "dark-before-terracotta": {
+        "role": "tertiary",
+        "displayName": "Before Terracotta (dark)",
+        "canonical": "#f0a48e"
+      },
+      "panel-bg": {
+        "role": "neutral",
+        "displayName": "Panel Chrome",
+        "canonical": "#1e1e1e"
+      },
+      "panel-field": {
+        "role": "neutral",
+        "displayName": "Panel Field",
+        "canonical": "#2c2c2c"
+      },
+      "panel-selected": {
+        "role": "neutral",
+        "displayName": "Panel Selected Row",
+        "canonical": "#383838"
+      },
+      "panel-text": {
+        "role": "neutral",
+        "displayName": "Panel Text",
+        "canonical": "#e6e6e6"
+      },
+      "panel-muted": {
+        "role": "neutral",
+        "displayName": "Panel Muted",
+        "canonical": "#9a9a9a"
+      },
+      "panel-accent": {
+        "role": "secondary",
+        "displayName": "Panel Accent",
+        "canonical": "#7d93ff"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Specimen title and case-study name; fitted to the column by script, between dashed blue baselines, annotated live."
+      },
+      "project-line": {
+        "displayName": "Project Line",
+        "purpose": "Project names in the index, each at its own wdth/wght, printed beside it in mono."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section heads on a black rule with a mono running head on the same baseline."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Job titles, process steps, sub-chapters."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "The one-line positioning statement under the title."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Light condensed tabular numerals in facts lists."
+      },
+      "body-large": {
+        "displayName": "Body Large",
+        "purpose": "Running text, max 58ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default text; secondary text steps to 14-15px in grey ink."
+      },
+      "label": {
+        "displayName": "Label (Martian Mono)",
+        "purpose": "Measurements, dates, counts, running heads, comparison tags only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel-lift",
+        "value": "0 18px 40px -12px rgba(0,0,0,.35)",
+        "purpose": "Fonts panel only (sanctioned exception). Dark theme: 0 0 0 1px #2e2e2c, 0 18px 40px -12px rgba(0,0,0,.6)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-axis",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Exponential ease-out for every axis interpolation and ink inversion."
+      },
+      {
+        "name": "duration-axis",
+        "value": "320ms",
+        "purpose": "Width/weight interpolation on hover, index and back-band inversion, plus-icon rotation."
+      },
+      {
+        "name": "duration-title-settle",
+        "value": "1100ms",
+        "purpose": "One-time opening: the display title settles from weight 300 / width 62 to its set axes. Skipped under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "home-stack-panel",
+        "value": "1024px"
+      },
+      {
+        "name": "home-single-column",
+        "value": "760px"
+      },
+      {
+        "name": "case-study-stack",
+        "value": "900px"
+      },
+      {
+        "name": "case-study-single-column",
+        "value": "640px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Square Control",
+      "kind": "button",
+      "refersTo": "control",
+      "description": "Square ruled toggle (language, theme) in the top bar; inverts to ink on hover.",
+      "html": "<button class=\"ds-ctl\" type=\"button\">EN</button>",
+      "css": ".ds-ctl{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 10px;border:1px solid #111;background:#fff;color:#111;font-family:'Martian Mono',ui-monospace,monospace;font-size:12px;font-stretch:87.5%;cursor:pointer;border-radius:0}.ds-ctl:hover{background:#111;color:#fff}.ds-ctl:focus-visible{outline:2px solid #2b4cff;outline-offset:3px}"
+    },
+    {
+      "name": "Ruled Link",
+      "kind": "button",
+      "refersTo": "ruled-link",
+      "description": "Primary text action with a 1px underline rule and a trailing stroked arrow; turns blue on hover.",
+      "html": "<a class=\"ds-rlink\" href=\"#\">Ouvrir le CV (PDF)<svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-rlink{display:inline-flex;align-items:center;gap:10px;font-family:'Archivo',ui-sans-serif,sans-serif;font-size:18px;font-weight:600;color:#111;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}.ds-rlink:hover{color:#2b4cff}.ds-rlink:focus-visible{outline:2px solid #2b4cff;outline-offset:3px}"
+    },
+    {
+      "name": "Index Band",
+      "kind": "nav",
+      "refersTo": "index-cell",
+      "description": "Stock band of ruled cells; the lead cell is measurement blue; hover inverts to ink and widens the name.",
+      "html": "<nav class=\"ds-index\"><a class=\"ds-ix ds-ix-lead\" href=\"#\"><span class=\"ds-ix-n\">DigDash<svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span><span class=\"ds-ix-m\">Étude de cas · UX/UI · Web</span></a><a class=\"ds-ix\" href=\"#\"><span class=\"ds-ix-n\">La Rodia<svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span><span class=\"ds-ix-m\">UX/UI</span></a><a class=\"ds-ix\" href=\"#\"><span class=\"ds-ix-n\">+5 projets<svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5v14M6 13l6 6 6-6\"/></svg></span><span class=\"ds-ix-m\">Identité, print, motion</span></a></nav>",
+      "css": ".ds-index{display:grid;grid-template-columns:repeat(3,1fr);background:#e9e9e4;border-top:1px solid #111;font-family:'Archivo',ui-sans-serif,sans-serif}.ds-ix{display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:112px;padding:18px 24px 20px;color:#111;text-decoration:none;border-right:1px solid #111;transition:background .32s cubic-bezier(.16,1,.3,1),color .32s cubic-bezier(.16,1,.3,1)}.ds-ix:last-child{border-right:0}.ds-ix-n{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.05;transition:font-stretch .32s cubic-bezier(.16,1,.3,1)}.ds-ix-m{font-family:'Martian Mono',ui-monospace,monospace;font-size:12px;font-stretch:87.5%;color:#4a4a47}.ds-ix-lead{background:#2b4cff;color:#fff}.ds-ix-lead .ds-ix-m{color:inherit;opacity:.85}.ds-ix:hover,.ds-ix:focus-visible{background:#111;color:#fff;outline:none}.ds-ix:hover .ds-ix-m,.ds-ix:focus-visible .ds-ix-m{color:inherit}.ds-ix:hover .ds-ix-n{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;font-stretch:112%}"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Static square label with a 1px rule border.",
+      "html": "<ul class=\"ds-tags\"><li>Arborescence</li><li>UI</li><li>Identité produit</li></ul>",
+      "css": ".ds-tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}.ds-tags li{border:1px solid #111;padding:3px 9px;font-family:'Archivo',ui-sans-serif,sans-serif;font-size:13px;color:#111;border-radius:0}"
+    },
+    {
+      "name": "Annotated Specimen Title",
+      "kind": "custom",
+      "refersTo": "display",
+      "description": "Display setting between dashed blue baselines with its true measurements in blue mono.",
+      "html": "<div class=\"ds-spec\"><h1 class=\"ds-title\"><span class=\"ds-ln\">Product</span><span class=\"ds-ln\">Designer</span></h1><p class=\"ds-metrics\"><span><b>Archivo</b></span><span>corps 120/108 px</span><span>graisse 700</span><span>chasse 100 %</span><span>approche −3,5 %</span></p></div>",
+      "css": ".ds-spec{overflow:hidden;font-family:'Archivo',ui-sans-serif,sans-serif;color:#111}.ds-title{margin:0;font-size:120px;font-weight:700;font-stretch:100%;line-height:.9;letter-spacing:-.035em;padding-bottom:.12em;transition:font-weight .32s cubic-bezier(.16,1,.3,1),font-stretch .32s cubic-bezier(.16,1,.3,1)}.ds-title:hover{font-stretch:88%}.ds-ln{display:block;position:relative;white-space:nowrap}.ds-ln::after{content:'';position:absolute;left:0;right:-9999px;bottom:.155em;border-bottom:1px dashed #2b4cff}.ds-ln:first-child::before{content:'';position:absolute;left:0;right:-9999px;top:.13em;border-top:1px dashed #2b4cff}.ds-metrics{display:flex;flex-wrap:wrap;gap:6px 22px;margin:6px 0 0;color:#2b4cff;font-family:'Martian Mono',ui-monospace,monospace;font-size:14px;font-stretch:87.5%;font-variant-numeric:tabular-nums}.ds-metrics b{font-weight:500}"
+    },
+    {
+      "name": "Project Index Line",
+      "kind": "custom",
+      "refersTo": "project-line",
+      "description": "Full-width ruled row: name at its own axes, blue mono axis readout, plus icon; hover interpolates width.",
+      "html": "<button class=\"ds-work\" type=\"button\" aria-expanded=\"false\"><span class=\"ds-work-n\">La Rodia</span><span class=\"ds-work-m\"><span class=\"ds-cat\">UX/UI</span><span class=\"ds-ax\">wdth 62 · wght 300</span></span><svg class=\"ds-pm\" viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"><path d=\"M12 4v16M4 12h16\"/></svg></button>",
+      "css": ".ds-work{width:100%;display:grid;grid-template-columns:minmax(0,1fr) 220px 40px;gap:24px;align-items:center;padding:22px 0;text-align:left;background:none;border:0;border-bottom:1px solid #111;color:#111;cursor:pointer;font-family:'Archivo',ui-sans-serif,sans-serif}.ds-work-n{font-size:72px;line-height:.92;letter-spacing:-.035em;font-stretch:62%;font-weight:300;white-space:nowrap;overflow:hidden;transition:font-stretch .32s cubic-bezier(.16,1,.3,1),font-weight .32s cubic-bezier(.16,1,.3,1)}.ds-work:hover .ds-work-n,.ds-work:focus-visible .ds-work-n{font-stretch:125%;font-weight:400}.ds-work:focus-visible{outline:2px solid #2b4cff;outline-offset:3px}.ds-work-m{display:grid;gap:6px;font-size:14px;color:#4a4a47}.ds-cat{color:#111;font-weight:600;font-size:15px}.ds-ax{color:#2b4cff;font-family:'Martian Mono',ui-monospace,monospace;font-size:12px;font-stretch:87.5%}.ds-pm{justify-self:end;transition:transform .32s cubic-bezier(.16,1,.3,1)}.ds-work[aria-expanded=\"true\"] .ds-pm{transform:rotate(45deg)}"
+    },
+    {
+      "name": "Fonts Panel",
+      "kind": "custom",
+      "refersTo": "fonts-panel",
+      "description": "Sanctioned exception: Figma-style dark fonts sampler, 8px radius, soft shadow, in both themes.",
+      "html": "<aside class=\"ds-fp\"><div class=\"ds-fp-h\"><span>Polices</span><span class=\"ds-fp-c\">8/8</span></div><label class=\"ds-fp-s\"><input type=\"text\" placeholder=\"Rechercher une police\"></label><ul class=\"ds-fp-l\"><li><button class=\"ds-fp-i\" aria-pressed=\"true\"><svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"#7d93ff\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m5 12 5 5 9-10\"/></svg>Archivo</button></li><li><button class=\"ds-fp-i\" aria-pressed=\"false\" style=\"font-family:Georgia,serif\"><span style=\"display:inline-block;width:12px\"></span>Lora</button></li></ul><div class=\"ds-fp-ax\"><label><span>Graisse</span><input type=\"range\" min=\"100\" max=\"900\" value=\"700\"><output>700</output></label></div></aside>",
+      "css": ".ds-fp{width:288px;background:#1e1e1e;color:#e6e6e6;border-radius:8px;font-family:'Archivo',ui-sans-serif,sans-serif;font-size:13px;box-shadow:0 18px 40px -12px rgba(0,0,0,.35);overflow:hidden}.ds-fp-h{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-weight:600;border-bottom:1px solid #2c2c2c}.ds-fp-c{font-family:'Martian Mono',ui-monospace,monospace;font-size:11px;color:#9a9a9a}.ds-fp-s{display:flex;margin:10px 10px 6px;background:#2c2c2c;border-radius:5px;padding:6px 9px}.ds-fp-s:focus-within{box-shadow:0 0 0 1.5px #7d93ff}.ds-fp-s input{background:none;border:0;outline:0;color:#e6e6e6;font:inherit;font-size:12.5px;width:100%}.ds-fp-l{list-style:none;margin:0;padding:2px 4px 6px}.ds-fp-i{display:flex;align-items:center;gap:9px;width:100%;text-align:left;padding:6px 10px;border:0;border-radius:4px;background:none;color:#e6e6e6;font-size:16px;line-height:1.3;cursor:pointer}.ds-fp-i:hover,.ds-fp-i[aria-pressed=\"true\"]{background:#383838}.ds-fp-i:focus-visible{outline:2px solid #7d93ff;outline-offset:-2px}.ds-fp-ax{border-top:1px solid #2c2c2c;padding:10px 12px 12px}.ds-fp-ax label{display:grid;grid-template-columns:62px 1fr 34px;align-items:center;gap:8px;font-size:12px;color:#bdbdbd}.ds-fp-ax input{accent-color:#7d93ff;width:100%}.ds-fp-ax output{font-family:'Martian Mono',ui-monospace,monospace;font-size:11px;text-align:right;color:#e6e6e6}"
+    },
+    {
+      "name": "Facts List",
+      "kind": "custom",
+      "refersTo": "figure",
+      "description": "Ruled rows pairing a grey label with a light condensed tabular figure.",
+      "html": "<dl class=\"ds-facts\"><div><dt>Années de design produit</dt><dd>3+</dd></div><div><dt>Certifications</dt><dd>02</dd></div></dl>",
+      "css": ".ds-facts{margin:0;border-top:1px solid #111;font-family:'Archivo',ui-sans-serif,sans-serif}.ds-facts div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid #111}.ds-facts dt{font-size:15px;color:#4a4a47}.ds-facts dd{margin:0;font-size:44px;font-weight:300;font-stretch:75%;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;color:#111}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Working Type Specimen",
+    "overview": "The portfolio is set like a foundry's specimen book. Every section is a specimen page: a huge setting of one word or name, the measurements of that setting printed beside it in mono, and hairline rules dividing the page into ruled lines rather than boxes. The visitor is not told about craft; they see a face set at size with its size, leading, weight and width annotated, and they can change it.\n\nDensity is editorial and generous at the top of each page, then tight and ruled below: lists of projects, jobs, testimonials and facts sit between full-width black hairlines, never in cards. One variable family (Archivo, weight 100 to 900, width 62 to 125) carries every voice; contrast comes from moving its axes, not from adding faces. Martian Mono is the specimen's furniture: metrics, dates, counts, running heads. Measurement blue is the printer's correction pen, kept for metrics, baselines, selection and the single most important action.\n\nThe only rounded, shadowed object in the world is the Figma-style fonts panel, deliberately kept as a piece of software laid on the specimen page. The world rejects the category default of a short headline over a grid of equal thumbnail cards.",
+    "keyCharacteristics": [
+      "White coated paper, black ink, warm grey stock bands, one blue.",
+      "One variable sans (Archivo) at many widths and weights; Martian Mono only for measurements and page furniture.",
+      "Display settings fill the measure, run between dashed blue baselines, and are annotated live.",
+      "Structure by full-width hairline rules; no cards, no shadows, square corners everywhere outside the fonts panel.",
+      "Motion is axis interpolation: width and weight ease over 320ms."
+    ],
+    "rules": [
+      {
+        "name": "The Measuring Pen Rule",
+        "body": "Blue marks measurements, baselines, selection, focus and the one lead action. It is never a background band, never body text, and never a second decorative accent.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Inks Rule",
+        "body": "Running text and headings are ink or grey ink; colour on text is reserved for measurements, link hover and before/after markers. Hierarchy comes from size, weight and width, not from tinting text.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Archivo carries every voice. Make contrast by moving weight and width, not by introducing another face. The fonts panel may set the title in other faces because that is its job; nothing else does.",
+        "section": "typography"
+      },
+      {
+        "name": "The Annotated Setting Rule",
+        "body": "A display setting is accompanied by its measurements in blue mono (face, size/leading, weight, width, tracking), and those numbers must be true of the setting as rendered.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Measures Rule",
+        "body": "Martian Mono appears only for numbers, measurements, dates and page furniture. Never for headings, sentences or buttons with words.",
+        "section": "typography"
+      },
+      {
+        "name": "The Printed Page Rule",
+        "body": "Outside the fonts panel there are no shadows and no raised surfaces. If something needs separation, give it a rule or a stock band.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do set display type to fill the column and annotate it with true measurements in blue Martian Mono.",
+      "Do make hierarchy with Archivo's weight and width axes; condensed heads (width 88 to 90), light condensed figures (300, width 75).",
+      "Do divide content with full-width 1px black rules, and use hairline grey only for subdivisions inside a ruled block.",
+      "Do mat every screenshot on warm stock with no border or radius.",
+      "Do animate only axes (width, weight) and ink inversion, over 320ms with `cubic-bezier(.16,1,.3,1)`; respect reduced motion.",
+      "Do keep every role working in both themes; the dark theme is a value swap, not a new layout."
+    ],
+    "donts": [
+      "Don't use cards, rounded boxes or shadows anywhere except the fonts panel.",
+      "Don't use measurement blue as a band, a body-text colour or a decorative accent; one blue-filled lead action per band at most.",
+      "Don't introduce a second text family; other faces appear only as samples inside the fonts panel.",
+      "Don't use Martian Mono for sentences, headings or uppercase labels above headings.",
+      "Don't lay projects out as a grid of equal thumbnail cards.",
+      "Don't use terracotta outside a before/after comparison."
+    ]
+  }
+}
