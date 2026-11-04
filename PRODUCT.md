@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Static HTML/CSS/JS, no build step, deployable as-is on GitHub Pages (repo SudoSerere/AntoineDIOKH). The redesign is a local clone beside the live `index.html`, not a replacement of it.
+Static HTML/CSS/JS, no build step, deployable as-is on GitHub Pages (repo SudoSerere/AntoineDIOKH). The specimen redesign replaced the previous site on main.
 
 ## Users
 

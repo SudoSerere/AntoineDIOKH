@@ -1,13 +1,13 @@
 ---
 version: 1
 slug: "redesign-index-html"
-primary_target: "redesign/index.html"
+primary_target: "index.html"
 related_targets: []
 ---
 
-# Surface: portfolio redesign (redesign/index.html)
+# Surface: portfolio redesign (index.html)
 
-Mode: Experience. Local clone beside the live index.html; the live site is untouched.
+Mode: Experience. Replaced the previous live site.
 Audience: recruiters and design leads hiring a Product Designer. Job: understand role and level in one viewport, open DigDash or the CV, write to Antoine.
 Constraints: static HTML/CSS/JS, FR/EN, light/dark, the Figma-style fonts panel survives, eight real projects, three real testimonials, no invented claims.
 
