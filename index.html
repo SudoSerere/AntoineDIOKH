@@ -145,6 +145,10 @@ html.dark .fp{box-shadow:0 0 0 1px #2e2e2c,0 18px 40px -12px rgba(0,0,0,.6)}
 .links{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
 .links a{display:inline-flex;align-items:center;gap:10px;font-size:18px;font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
 .links a:hover{color:var(--blue)}
+.soon-tag{color:var(--blue)}
+.soon-l{display:grid;gap:6px;border-top:1px solid var(--rule);padding-top:14px;max-width:40ch}
+.soon-l b{font-size:18px;font-weight:600}
+.soon-l .mono{color:var(--blue)}
 .links .icon{width:18px;height:18px}
 
 /* texte courant */
@@ -299,7 +303,7 @@ footer a{color:var(--ink)}
   </section>
 
   <section class="page" id="projets" aria-labelledby="hProjets">
-    <div class="head"><h2 id="hProjets" data-i18n="works">Projets</h2><span class="mono" data-i18n="works_m">8 projets · UX/UI, identité, print, motion</span></div>
+    <div class="head"><h2 id="hProjets" data-i18n="works">Projets</h2><span class="mono" data-i18n="works_m">9 projets · UX/UI, dataviz, identité, print, motion</span></div>
     <ul class="works" id="works"></ul>
   </section>
 
@@ -380,8 +384,8 @@ var T={
   lede:'Idées non conventionnelles, exécution minimaliste.',
   lede_p:'Je conçois des produits intuitifs pour les utilisateurs et clairs pour les développeurs. Actuellement <strong>Product Designer chez DigDash</strong>.',
   time:'Heure locale, Fuveau',size:'corps',wght:'graisse',wdth:'chasse',
-  more:'+5 projets',more_m:'Identité, print, motion',case:'Étude de cas',
-  works:'Projets',works_m:'8 projets · UX/UI, identité, print, motion',
+  more:'+6 projets',more_m:'Identité, print, motion',case:'Étude de cas',
+  works:'Projets',works_m:'9 projets · UX/UI, dataviz, identité, print, motion',
   about:'À propos',about_m:'Texte courant',f1:'Projets présentés',f2:'Années de design produit',f3:'Certifications',
   f3n:'Cybersécurité (ANSSI · SecNumAcadémie) et visualisation de données (Udemy).',
   a1:"Depuis deux ans, Antoine s'est plongé dans le design produit, avec une ambition : faire des interfaces que personne n'a besoin d'expliquer. Discret, on le surprend à redessiner mentalement les écrans mal alignés des autres.",
@@ -400,15 +404,15 @@ var T={
   ct:'Contact',ct_m:'En français ou en anglais',ct_p:'Toujours partant pour parler design produit, motion, dataviz ou de votre prochain recrutement.',
   rights:'Tous droits renversés.',colo:'Colophon',colo_t:'Composé en Archivo (Omnibus-Type) et Martian Mono (Evil Martians). HTML et CSS écrits à la main.',
   open:'Voir le détail',close:'Masquer le détail',
-  pf_view:'Voir le projet',pf_case:"Lire l'étude de cas",pf_live:'Voir le site en ligne',pf_mob:'Prototype mobile',pf_desk:'Prototype bureau',
+  pf_view:'Voir le projet',pf_case:"Lire l'étude de cas",pf_live:'Voir le site en ligne',pf_mob:'Prototype mobile',pf_desk:'Prototype bureau',soon:'Bientôt',soon_t:'Étude de cas bientôt disponible',soon_d:'Dévoilement le 14 décembre 2026',
   theme_d:'Mode sombre',theme_l:'Mode clair',lang:'Switch to English'},
  en:{spec:'Specimen — ',nav_work:'Work',nav_cv:'Resume',nav_contact:'Contact',nav:'Navigation',track:'tracking',
   fp_title:'Fonts',fp_ph:'Search fonts',fp_none:'No font matches.',ax_w:'Weight',ax_s:'Width',fp_static:'Static font: axes unavailable.',fp_var:'Variable font: weight and width adjustable.',
   lede:'Unconventional ideas, minimalist execution.',
   lede_p:'I design products that are intuitive for users and clear for developers. Currently <strong>Product Designer at DigDash</strong>.',
   time:'Local time, Fuveau',size:'size',wght:'weight',wdth:'width',
-  more:'+5 projects',more_m:'Identity, print, motion',case:'Case study',
-  works:'Work',works_m:'8 projects · UX/UI, identity, print, motion',
+  more:'+6 projects',more_m:'Identity, print, motion',case:'Case study',
+  works:'Work',works_m:'9 projects · UX/UI, dataviz, identity, print, motion',
   about:'About',about_m:'Running text',f1:'Projects showcased',f2:'Years of product design',f3:'Certifications',
   f3n:'Cybersecurity (ANSSI · SecNumAcadémie) and data visualisation (Udemy).',
   a1:"For the past two years, Antoine has immersed himself in product design, with one ambition: interfaces nobody needs explained. Quiet by nature, he can be caught mentally realigning other people's misaligned screens.",
@@ -427,7 +431,7 @@ var T={
   ct:'Contact',ct_m:'In French or English',ct_p:'Always up for talking product design, motion, dataviz or your next hire.',
   rights:'All rights relaxed.',colo:'Colophon',colo_t:'Set in Archivo (Omnibus-Type) and Martian Mono (Evil Martians). HTML and CSS written by hand.',
   open:'Show details',close:'Hide details',
-  pf_view:'View project',pf_case:'Read the case study',pf_live:'Visit the live site',pf_mob:'Mobile prototype',pf_desk:'Desktop prototype',
+  pf_view:'View project',pf_case:'Read the case study',pf_live:'Visit the live site',pf_mob:'Mobile prototype',pf_desk:'Desktop prototype',soon:'Coming soon',soon_t:'Case study coming soon',soon_d:'Revealed on 14 December 2026',
   theme_d:'Dark mode',theme_l:'Light mode',lang:'Passer en français'}
 };
 
@@ -436,6 +440,11 @@ var P=[
   cat:{fr:'UX/UI · Web',en:'UX/UI · Web'},tags:{fr:['Arborescence','UI','Identité produit'],en:['Information architecture','UI','Product identity']},
   desc:{fr:"Refonte de l'arborescence et de l'interface du site DigDash ; création de l'identité de trois produits. Une étude de cas avant / après.",en:'DigDash site architecture and interface redesign; identities for three products. A before / after case study.'},
   links:[{k:'pf_case',u:'digdash.html'},{k:'pf_live',u:'https://www.digdash.com/fr/'}]},
+ {id:'dataviz',img:'assets/digdash-dataviz/colonnes-apres.jpg',name:'DigDash Dataviz',w:90,g:700,hw:62,
+  soon:'2026-12-14T00:00:00+01:00',
+  cat:{fr:'UX/UI · Data visualisation',en:'UX/UI · Data visualisation'},tags:{fr:['Dataviz','Design system','Figma','D3.js'],en:['Dataviz','Design system','Figma','D3.js']},
+  desc:{fr:"Refonte des 34 graphiques du logiciel de BI DigDash : un système de règles commun pour la lisibilité, la couleur et le survol, documenté pour les développeurs.",en:"Redesign of the 34 charts in the DigDash BI software: one shared rule system for legibility, colour and hover, documented for developers."},
+  links:[{k:'pf_case',u:'digdash-dataviz.html'}]},
  {id:'rodia',img:'assets/image/rodia.png',name:'La Rodia',w:62,g:300,
   cat:{fr:'UX/UI',en:'UX/UI'},tags:{fr:['UX/UI','Mobile','Bureau'],en:['UX/UI','Mobile','Desktop']},
   desc:{fr:"Refonte complète du site de la salle de concert La Rodia : expérience, interface et parcours repensés, en deux versions (mobile et bureau).",en:'Complete redesign of La Rodia concert hall website: experience, interface and flows rethought, in mobile and desktop versions.'},
@@ -583,12 +592,13 @@ var ARROW='<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>';
 function buildIndex(){
   var ix=$('#index'), h='';
   P.slice(0,3).forEach(function(p,i){
-    h+='<a href="#p-'+p.id+'" data-open="'+p.id+'"'+(i===0?' class="lead"':'')+'><span class="nm">'+p.name+ARROW+'</span><span class="mono">'+(i===0?T[lang].case+' · ':'')+p.cat[lang]+'</span></a>';
+    h+='<a href="#p-'+p.id+'" data-open="'+p.id+'"'+(i===0?' class="lead"':'')+'><span class="nm">'+p.name+ARROW+'</span><span class="mono">'+(i===0?T[lang].case+' · ':'')+(isSoon(p)?T[lang].soon+' · ':'')+p.cat[lang]+'</span></a>';
   });
   h+='<a href="#projets"><span class="nm">'+T[lang].more+'<svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></span><span class="mono">'+T[lang].more_m+'</span></a>';
   ix.innerHTML=h;
   ix.querySelectorAll('[data-open]').forEach(function(a){a.addEventListener('click',function(){toggle(a.dataset.open,true)})});
 }
+function isSoon(p){return !!p.soon&&new Date()<new Date(p.soon)}
 var openSet={digdash:true};
 function buildWorks(){
   var ul=$('#works');ul.innerHTML='';
@@ -598,7 +608,7 @@ function buildWorks(){
     li.innerHTML=
       '<button type="button" class="work-b" aria-expanded="'+open+'" aria-controls="d-'+p.id+'">'+
         '<span class="work-n" style="font-stretch:'+p.w+'%;font-weight:'+p.g+'">'+p.name+'</span>'+
-        '<span class="work-m"><span class="cat">'+p.cat[lang]+'</span><span class="mono ax">wdth '+p.w+' · wght '+p.g+'</span></span>'+
+        '<span class="work-m"><span class="cat">'+p.cat[lang]+(isSoon(p)?' · <span class="soon-tag">'+T[lang].soon+'</span>':'')+'</span><span class="mono ax">wdth '+p.w+' · wght '+p.g+'</span></span>'+
         '<svg class="icon pm" aria-hidden="true"><use href="#i-plus"/></svg>'+
         '<span class="sr">'+(open?T[lang].close:T[lang].open)+'</span>'+
       '</button>'+
@@ -606,12 +616,13 @@ function buildWorks(){
         '<figure><img src="'+p.img+'" alt="'+p.name+'" loading="lazy"></figure>'+
         '<div><p class="dsc">'+p.desc[lang]+'</p>'+
         '<ul class="tags">'+p.tags[lang].map(function(t){return '<li>'+t+'</li>'}).join('')+'</ul>'+
-        '<div class="links">'+p.links.map(function(l){var ext=/^https?:/.test(l.u);return '<a href="'+l.u+'"'+(ext?' target="_blank" rel="noopener noreferrer"':'')+'>'+T[lang][l.k]+'<svg class="icon" aria-hidden="true"><use href="#'+(ext?'i-out':'i-arrow')+'"/></svg></a>'}).join('')+'</div></div>'+
+        (isSoon(p)?'<p class="soon-l"><b>'+T[lang].soon_t+'</b><span class="mono">'+T[lang].soon_d+'</span></p>':
+        '<div class="links">'+p.links.map(function(l){var ext=/^https?:/.test(l.u);return '<a href="'+l.u+'"'+(ext?' target="_blank" rel="noopener noreferrer"':'')+'>'+T[lang][l.k]+'<svg class="icon" aria-hidden="true"><use href="#'+(ext?'i-out':'i-arrow')+'"/></svg></a>'}).join('')+'</div>')+'</div>'+
       '</div>';
     var b=li.querySelector('.work-b'), n=li.querySelector('.work-n'), ax=li.querySelector('.ax');
     b.addEventListener('click',function(){toggle(p.id)});
     var hot=function(on){
-      var w=on?(p.w>=110?62:125):p.w, g=on?Math.min(900,p.g+100):p.g;
+      var w=on?(p.hw||(p.w>=110?62:125)):p.w, g=on?Math.min(900,p.g+100):p.g;
       n.style.fontStretch=w+'%';n.style.fontWeight=g;ax.textContent='wdth '+w+' · wght '+g;
     };
     b.addEventListener('mouseenter',function(){hot(true)});

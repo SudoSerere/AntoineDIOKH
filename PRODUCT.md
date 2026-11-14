@@ -33,7 +33,7 @@ A product designer who ships inside a BI platform (DigDash Enterprise visual the
 
 ## Evidence on Hand
 
-- Projects: DigDash (case study `digdash.html`, images in `assets/digdash-study/`), La Rodia, Covid Alert, Greilsammer, Escape Game, Richmeet, Rescue, Lamtoro; thumbnails in `assets/image/` (low-res, ~350×249).
+- Projects: DigDash (case study `digdash.html`, images in `assets/digdash-study/`), DigDash Dataviz (charts redesign; shown as "coming soon" on the home page until 2026-12-14, date in `index.html` (`soon`); only its teaser image `assets/digdash-dataviz/colonnes-apres.jpg` is published. The case study page is kept outside this repository until the reveal), La Rodia, Covid Alert, Greilsammer, Escape Game, Richmeet, Rescue, Lamtoro; thumbnails in `assets/image/` (low-res, ~350×249).
 - Experience: DigDash Product Designer 2023→today; Biopooltech UX internship 2023. Education: Master DPSM (Univ. Franche-Comté), Master 2 & Licence (Univ. Gaston Berger).
 - Certifications: ANSSI SecNumAcadémie, Udemy dataviz.
 - Three real testimonials (Anouk Spitz, Carla Rossi, Emmanuel Berthod).
